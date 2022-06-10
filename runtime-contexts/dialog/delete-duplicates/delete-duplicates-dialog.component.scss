@@ -1,0 +1,18 @@
+@import 'const';
+
+
+:host {
+    [content] {
+        display: flex;
+        flex-direction: column;
+        min-width: 480px;
+        .warning {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 4px;
+            xc-icon {
+                margin-right: 6px;
+            }
+        }
+    }
+}

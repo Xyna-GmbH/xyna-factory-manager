@@ -1,0 +1,14 @@
+<xc-dialog-wrapper xc-i18n-context="fman.export-application">
+    <ng-container header>{{'title' | xcI18n:injectedData.name:injectedData.version}}</ng-container>
+    <section content>
+        <xc-checkbox
+            [(checked)]="application.isStub"
+            label="stub"
+            xc-i18n
+        ></xc-checkbox>
+    </section>
+    <ng-container footer>
+        <xc-button (click)="dismiss()" xc-focus-initial xc-i18n>cancel</xc-button>
+        <xc-button (click)="export()" [busy]="pending" [disabled]="pending" xc-i18n>export</xc-button>
+    </ng-container>
+</xc-dialog-wrapper>

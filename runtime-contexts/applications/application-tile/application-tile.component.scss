@@ -1,0 +1,223 @@
+/*
+ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ * Copyright 2022 GIP SmartMercial GmbH, Germany
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ */
+$application-tile-border: unset !default; // none
+$application-tile-header-background-color: unset !default;  // $color-gray-1
+$application-tile-header-color: unset !default; // $color-white
+$application-tile-selected-header-background-color: unset !default;  // $color-invert
+$application-tile-details-background-color: unset !default; // $color-gray-0;
+$application-tile-details-button-row-background-color: unset !default; // $color-gray-0
+$application-tile-details-button-row-border-bottom: unset !default;     // 2px solid $color-invert
+$application-tile-details-button-row-border-top: unset !default;     // unset
+
+
+@import 'const';
+
+
+:host {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 4px;
+    border: $application-tile-border;
+
+    &.runtime-application {
+        box-shadow: +4px 0 0 -0.5px $color-primary;
+
+        > .header {
+            background: $application-tile-selected-header-background-color !important;
+        }
+    }
+
+    > .header {
+        display: flex;
+        flex: 1 1 auto;
+        background: $application-tile-header-background-color;
+        align-items: flex-start;
+
+        &:hover {
+            background: $application-tile-details-background-color;
+        }
+
+        > label {
+            padding: 7px 16px;
+            margin-right: auto;
+            color: $application-tile-header-color;
+        }
+
+        > .aside {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            align-items: center;
+        }
+    }
+
+    > .detail {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        background: $application-tile-details-background-color;
+
+        > .row {
+            display: flex;
+            padding: 12px;
+
+            &:first-child {
+                background: $application-tile-details-button-row-background-color;
+                border-top: $application-tile-details-button-row-border-top;
+                border-bottom: $application-tile-details-button-row-border-bottom;
+                padding: 12px;
+            }
+
+            > .title {
+                white-space: pre;
+                align-self: center;
+
+                > span:first-child:after {
+                    content: ": ";
+                }
+
+                .stub {
+                    margin-left: 4px;
+                    color: $color-gray-4;
+                    font-style: italic;
+                }
+            }
+
+            > .actions {
+                margin-left: auto;
+                display: flex;
+                flex: 0 0 auto;
+            }
+
+            > .repository-link {
+
+                > label {
+                    margin-left: 12px;
+                    color: $color-gray-4;
+
+                    &:first-of-type {
+                        margin-left: 0;
+                    }
+
+                    &:after {
+                        content: ": ";
+                    }
+                }
+            }
+
+            > xc-form-input:first-child {
+                margin-right: 6px;
+            }
+
+            > xc-form-input:last-child {
+                margin-left: 6px;
+            }
+
+            > .dependencies, > .application {
+                display: flex;
+                flex: 1 1 auto;
+
+                > .requires,
+                > .required-by,
+                > .content,
+                > .issues {
+                    flex: 1 1 50%;
+
+                    &:first-child:not(:last-child) {
+                        margin-right: 6px;
+                    }
+
+                    &:last-child:not(:first-child) {
+                        margin-left: 6px;
+                    }
+
+                    xc-form-label {
+                        margin-top: 14px;
+                    }
+
+                    > .row {
+                        display: flex;
+                        align-items: flex-end;
+
+                        > xc-button {
+                            margin-left: auto;
+                        }
+                    }
+                }
+            }
+
+            > .order-entries {
+                display: flex;
+                flex: 1 1 auto;
+                flex-direction: column;
+
+                > .list {
+                    display: flex;
+
+                    > * {
+                        margin-left: 32px;
+
+                        &:first-child {
+                            margin-left: 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        .issues {
+            flex-direction: column;
+            .row {
+                display: flex;
+                margin: 2px;
+                padding: 2px 4px;
+                background-color: $color-gray-1;
+                overflow: auto;
+
+                .issue-identifier {
+                    flex: 0 0 160px;
+
+                    &::after {
+                        content: ':';
+                    }
+                }
+
+                .issue-entries {
+                    display: flex;
+                    flex-wrap: wrap;
+
+                    .issue-entry {
+                        display: flex;
+
+                        .issue-entry-key {
+                            margin-left: 8px;
+                            color: $color-gray-4;
+                            font-size: $font-size-tiny;
+                        }
+
+                        .issue-entry-value {
+                            margin-left: 4px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

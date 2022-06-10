@@ -1,0 +1,24 @@
+<xc-dialog-wrapper xc-form xc-i18n-context="fman.undeploy-report">
+    <ng-container header><span xc-i18n>header</span></ng-container>
+
+    <section content>
+
+        <xc-rich-list [xc-rich-list-items]="resultListItems" xc-i18n-context="undeploy-report-item"></xc-rich-list>
+
+        <xc-form-textarea
+            label="label-stacktrace"
+            [value]="stacktrace"
+            xc-form-textarea-lines="6"
+            xc-form-field-compact
+            readonly
+            xc-i18n
+        ></xc-form-textarea>
+
+    </section>
+
+    <ng-container footer>
+        <xc-button (click)="dismiss(null)" xc-i18n>button-cancel</xc-button>
+        <xc-button (click)="apply()" color="primary" xc-i18n>button-retry</xc-button>
+    </ng-container>
+
+</xc-dialog-wrapper>

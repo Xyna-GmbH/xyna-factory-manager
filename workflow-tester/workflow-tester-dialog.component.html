@@ -1,0 +1,17 @@
+<xc-dialog-wrapper xc-i18n-context="fman.workflow-tester">
+    <div header>
+        <xc-icon xc-icon-style="modeller" xc-icon-name="sp-launcher" xc-i18n>header</xc-icon>
+        <div>{{injectedData.orderType}}</div>
+    </div>
+    <section content class="zeta-scrollbar">
+        <xfm-fman-workflow-tester
+            [runtimeContext]="injectedData.runtimeContext"
+            [orderType]="injectedData.orderType"
+            [input]="injectedData.input"
+            (navigate)="dismiss()"
+        ></xfm-fman-workflow-tester>
+    </section>
+    <ng-container footer>
+        <xc-button (click)="dismiss()" xc-i18n>button-close</xc-button>
+    </ng-container>
+</xc-dialog-wrapper>

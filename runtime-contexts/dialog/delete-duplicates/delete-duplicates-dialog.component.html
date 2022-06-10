@@ -1,0 +1,12 @@
+<xc-dialog-wrapper xc-i18n-context="fman.delete-duplicates">
+  <ng-container header>{{'delete-duplicates-title' | xcI18n:injectedData.name}}</ng-container>
+  <section content>
+      <span class="warning">
+          <xc-icon xc-icon-name="msgwarning" color="warn"></xc-icon>{{'delete-duplicates-warning-message' | xcI18n:injectedData.name}}
+      </span>
+  </section>
+  <ng-container footer>
+      <xc-button (click)="dismiss()" xc-focus-initial xc-i18n>delete-duplicates-cancel</xc-button>
+      <xc-button (click)="delete()" [busy]="isLoading" [disabled]="isLoading" xc-i18n>delete-duplicates-delete</xc-button>
+  </ng-container>
+</xc-dialog-wrapper>

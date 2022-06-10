@@ -1,0 +1,24 @@
+
+<div class="report" tabindex="0" (keydown.enter)="focus()">
+
+    <div class="name field">
+        <span class="label" xc-i18n>span-name</span>{{injectedData.result.deploymentItem.id.name}}
+    </div>
+    <div class="message field">
+        <span class="label" xc-i18n>span-message</span>{{injectedData.result.exceptionInformation.message}}
+    </div>
+    <div class="resolution field">
+        <xc-form-autocomplete
+            label="label-resolution"
+            placeholder="playholder-select"
+            [(xc-form-autocomplete-option)]="resolutionDataWrapper.value"
+            [xc-form-autocomplete-options]="resolutionDataWrapper.values"
+            xc-form-field-suffix="clear"
+            xc-form-autocomplete-fulltextsearch
+            xc-form-autocomplete-asdropdown
+            xc-form-field-compact
+            xc-i18n
+        ></xc-form-autocomplete>
+    </div>
+
+</div>
