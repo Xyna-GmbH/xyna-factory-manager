@@ -21,7 +21,7 @@ import { ApiService, StartOrderOptionsBuilder } from '@zeta/api';
 import { I18nService } from '@zeta/i18n';
 import { XcDialogComponent, XcDialogService } from '@zeta/xc';
 
-import { throwError } from 'rxjs/';
+import { throwError } from 'rxjs';
 import { catchError, filter, finalize, tap } from 'rxjs/operators';
 
 import { FM_RTC } from '../../../const';

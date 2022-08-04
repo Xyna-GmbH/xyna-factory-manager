@@ -23,7 +23,7 @@ import { I18nService } from '@zeta/i18n';
 import { RouteComponent } from '@zeta/nav';
 import { XcDialogService, XcRemoteDataSource, XcRemoteTableDataSource, XcSelectionDataSource } from '@zeta/xc';
 
-import { Observable, Subject } from 'rxjs/';
+import { Observable, Subject } from 'rxjs';
 
 import { FactoryManagerSettingsService } from './misc/services/factory-manager-settings.service';
 

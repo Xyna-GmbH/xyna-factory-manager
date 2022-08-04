@@ -20,7 +20,7 @@ import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Outpu
 import { I18nService } from '@zeta/i18n';
 import { XcAutocompleteDataWrapper, XcFormDirective } from '@zeta/xc';
 
-import { Subscription } from 'rxjs/';
+import { Subscription } from 'rxjs';
 
 import { ExecutionTimeBehaviorOnError } from '../../../cronlike-orders/components/execution-time/execution-time.constant';
 import { XoTCOExecutionRestriction } from '../../xo/xo-tcoexecution-restriction.model';

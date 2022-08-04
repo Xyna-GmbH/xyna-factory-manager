@@ -20,7 +20,7 @@ import { Component, Injector } from '@angular/core';
 import { I18nService } from '@zeta/i18n';
 import { XcDialogComponent, XcRichListItem } from '@zeta/xc';
 
-import { Subject } from 'rxjs/';
+import { Subject } from 'rxjs';
 
 import { DeleteDeploymentItemResolution } from '../../restorable-deployment-items.component';
 import { XoDeleteDeploymentItemParam, XoDeleteDeploymentItemParamArray } from '../../xo/xo-delete-deployment-item-param.model';

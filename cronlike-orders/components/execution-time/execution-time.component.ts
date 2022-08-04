@@ -583,7 +583,7 @@ export class ExecutionTimeComponent {
     private _updateBoundObject() {
         this._writeStartTimeToObject();
         this._writeIntervalAndItsValuesToObject();
-        this.executionTimeChange.next(this.executionTime);
+        this.executionTimeChange.emit(this.executionTime);
     }
 
     updateBoundObject() {
@@ -1290,11 +1290,11 @@ export class ExecutionTimeComponent {
     }
 
     validityChange(formDir: XcFormDirective) {
-        this.invalidChange.next(formDir.invalid);
+        this.invalidChange.emit(formDir.invalid);
     }
 
     validityChangeBoolean(value: boolean) {
-        this.invalidChange.next(value);
+        this.invalidChange.emit(value);
     }
 
     // used in reading

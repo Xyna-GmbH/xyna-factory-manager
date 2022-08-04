@@ -22,7 +22,7 @@ import { ApiService, StartOrderOptionsBuilder } from '@zeta/api';
 import { I18nService } from '@zeta/i18n';
 import { XcDialogComponent, XcDialogService, XcLocalTableDataSource, XcRemoteTableDataSource } from '@zeta/xc';
 
-import { Observable, Subscription, throwError } from 'rxjs/';
+import { Observable, Subscription, throwError } from 'rxjs';
 import { catchError, filter, finalize, first, map, skip, switchMap } from 'rxjs/operators';
 
 import { FM_RTC } from '../../../const';

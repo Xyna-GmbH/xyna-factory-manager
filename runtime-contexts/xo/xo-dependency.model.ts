@@ -17,7 +17,7 @@
  */
 import { XoArray, XoArrayClass, XoEnumerated, XoObject, XoObjectClass, XoProperty, XoTransient, XoUnique } from '@zeta/api';
 import { XcCheckboxTemplate, XcComponentTemplate, XcIdentityDataWrapper, XcTemplate } from '@zeta/xc';
-import { Observable, Subject } from 'rxjs/';
+import { Observable, Subject } from 'rxjs';
 
 import { ChangeTemplateComponent } from '../shared/change-template.component';
 import { RuntimeContextNameComponent } from '../shared/runtime-context-name.component';

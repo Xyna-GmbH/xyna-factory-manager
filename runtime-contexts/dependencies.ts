@@ -18,7 +18,7 @@
 import { XoObjectClassInterface } from '@zeta/api';
 import { I18nService } from '@zeta/i18n';
 import { XcOptionItem, XoRemappingTableInfoClass, XoSplicingTableInfoClass, XoTableInfo } from '@zeta/xc';
-import { Observable, of } from 'rxjs/';
+import { Observable, of } from 'rxjs';
 
 import { XoDependency } from './xo/xo-dependency.model';
 import { XoGetDependentRTCsRequest } from './xo/xo-get-dependent-rtcs-request.model';

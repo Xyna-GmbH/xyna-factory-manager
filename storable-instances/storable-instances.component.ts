@@ -23,7 +23,7 @@ import { Comparable, isObject } from '@zeta/base';
 import { I18nService } from '@zeta/i18n';
 import { XcAutocompleteDataWrapper, XcDialogService, XcLocalTableDataSource, XcOptionItem, XcSelectionModel, XcStructureTreeDataSource, XcTableColumn } from '@zeta/xc';
 
-import { concat, Observable, of, Subject } from 'rxjs/';
+import { concat, Observable, of, Subject } from 'rxjs';
 import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { FM_RTC } from '../const';

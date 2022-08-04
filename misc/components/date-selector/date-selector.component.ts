@@ -21,7 +21,7 @@ import { ApiService, RuntimeContext, StartOrderOptionsBuilder } from '@zeta/api'
 import { I18nService } from '@zeta/i18n';
 import { XcAutocompleteDataWrapper, XcDialogService, XcFormDirective, XcOptionItem, XcStringIntegerDataWrapper } from '@zeta/xc';
 
-import { Subscription } from 'rxjs/';
+import { Subscription } from 'rxjs';
 
 import { XoTimezoneArray } from '../../../xo/xo-timezone.model';
 

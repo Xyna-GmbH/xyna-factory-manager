@@ -38,8 +38,8 @@ export class RuntimeContextButtonComponent {
     @Input()
     selected = false;
 
-    // eslint-disable-next-line @angular-eslint/no-output-native
     @Output()
+    // eslint-disable-next-line @angular-eslint/no-output-native
     readonly select = new EventEmitter<XoRuntimeContext>();
 
 

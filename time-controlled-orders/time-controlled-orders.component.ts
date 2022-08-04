@@ -22,7 +22,7 @@ import { ApiService, StartOrderOptionsBuilder } from '@zeta/api';
 import { I18nService } from '@zeta/i18n';
 import { XcDialogService, XcOptionItem, XoRemappingTableInfoClass, XoTableInfo } from '@zeta/xc';
 
-import { of } from 'rxjs/';
+import { of } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
 import { FM_RTC } from '../const';
