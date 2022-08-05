@@ -20,7 +20,7 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } 
 import { ApiService, StartOrderOptionsBuilder } from '@zeta/api';
 import { XcDialogService, XcFormDirective, XcSelectionModel } from '@zeta/xc';
 
-import { Observable, Subscription } from 'rxjs/';
+import { Observable, Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
 import { FM_RTC } from '../../../const';

@@ -22,7 +22,7 @@ import { ApiService, StartOrderOptionsBuilder, XoApplication, XoArray, XoDescrib
 import { I18nService } from '@zeta/i18n';
 import { XcDialogService } from '@zeta/xc';
 
-import { Subject } from 'rxjs/';
+import { Subject } from 'rxjs';
 import { filter, skip } from 'rxjs/operators';
 
 import { FM_RTC } from '../const';

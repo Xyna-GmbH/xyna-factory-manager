@@ -23,7 +23,7 @@ import { I18nService } from '@zeta/i18n';
 import { RouteComponent } from '@zeta/nav';
 import { XcDialogService } from '@zeta/xc';
 
-import { Subscription } from 'rxjs/';
+import { Subscription } from 'rxjs';
 
 import { FM_RTC } from '../../const';
 import { CreateRuntimeApplicationDialogComponent } from '../dialog/create-runtime-application/create-runtime-application-dialog.component';

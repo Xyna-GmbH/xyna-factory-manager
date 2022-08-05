@@ -23,7 +23,7 @@ import { I18nService } from '@zeta/i18n';
 import { RouteComponent } from '@zeta/nav';
 import { XcDialogService, XcRemoteDataSource, XcSortDirection, XcSortPredicate } from '@zeta/xc';
 
-import { Subscription } from 'rxjs/';
+import { Subscription } from 'rxjs';
 
 import { FM_RTC } from '../../const';
 import { CreateWorkspaceDialogComponent } from '../dialog/create-workspace/create-workspace-dialog.component';

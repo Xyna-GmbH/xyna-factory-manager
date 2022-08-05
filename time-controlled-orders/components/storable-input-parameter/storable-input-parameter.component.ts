@@ -22,7 +22,7 @@ import { isArray } from '@zeta/base';
 import { I18nService } from '@zeta/i18n';
 import { XcStructureTreeDataSource } from '@zeta/xc';
 
-import { Observable } from 'rxjs/';
+import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 
 import { XoStorable } from '../../../storable-instances/xo/xo-storable.model';

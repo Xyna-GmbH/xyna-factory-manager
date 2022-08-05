@@ -25,7 +25,7 @@ import { ApiService, FullQualifiedName, StartOrderOptionsBuilder } from '@zeta/a
 import { I18nService } from '@zeta/i18n';
 import { XcAutocompleteDataWrapper, XcDialogService, XcFormDirective, XcRemoteTableDataSource, XcRichListItem, XcStringIntegerDataWrapper } from '@zeta/xc';
 
-import { Subscription } from 'rxjs/';
+import { Subscription } from 'rxjs';
 
 import { XoCapacityInformation, XoCapacityInformationArray } from '../capacities/xo/xo-capacity-information.model';
 import { FM_RTC } from '../const';

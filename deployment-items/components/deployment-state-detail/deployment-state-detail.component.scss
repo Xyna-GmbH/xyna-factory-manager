@@ -43,10 +43,6 @@
             > span:first-child::after {
                 content: ':';
             }
-
-            > &:nth-child(2n + 1) {
-                margin-bottom: 6px;
-            }
         }
 
         margin-bottom: 4px;

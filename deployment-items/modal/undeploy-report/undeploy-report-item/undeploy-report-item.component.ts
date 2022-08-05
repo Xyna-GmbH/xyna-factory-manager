@@ -19,7 +19,7 @@ import { Component, HostBinding, HostListener, Injector } from '@angular/core';
 
 import { XcAutocompleteDataWrapper, XcRichListItemComponent } from '@zeta/xc';
 
-import { Subject } from 'rxjs/';
+import { Subject } from 'rxjs';
 
 import { DeployResolution } from '../../../restorable-deployment-items.component';
 import { XoUndeployDeploymentItemResult } from '../../../xo/xo-undeploy-deployment-item-result.model';

@@ -17,7 +17,7 @@
  */
 import { RuntimeContext, Xo, XoArray } from '@zeta/api';
 
-import { Observable, Subject, Subscription } from 'rxjs/';
+import { Observable, Subject, Subscription } from 'rxjs';
 
 import { InputParameterComponent } from './input-parameter.component';
 

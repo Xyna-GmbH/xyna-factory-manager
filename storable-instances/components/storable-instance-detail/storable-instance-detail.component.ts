@@ -21,7 +21,7 @@ import { ApiService, FullQualifiedName, RuntimeContext, StartOrderOptionsBuilder
 import { I18nService } from '@zeta/i18n';
 import { XcDialogService, XcStructureTreeDataSource } from '@zeta/xc';
 
-import { Subject, Subscription } from 'rxjs/';
+import { Subject, Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
 import { XoStoreParameter } from '../../xo/xo-storeparameter.model';
