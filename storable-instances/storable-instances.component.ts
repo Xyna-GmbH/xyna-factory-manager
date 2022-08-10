@@ -21,9 +21,9 @@ import { ApiService, FullQualifiedName, RuntimeContext, RuntimeContextType, Star
 import { XoXynaProperty, XoXynaPropertyKey } from '@zeta/auth/xo/xyna-property.model';
 import { Comparable, isObject } from '@zeta/base';
 import { I18nService } from '@zeta/i18n';
-import { XcAutocompleteDataWrapper, XcDialogService, XcLocalTableDataSource, XcOptionItem, XcSelectionModel, XcStructureTreeDataSource, XcTableColumn } from '@zeta/xc';
+import { XcAutocompleteDataWrapper, XcDialogService, XcLocalTableDataSource, XcOptionItem, XcSelectionModel, XcStructureTreeDataSource, XcTableColumn, XoTableColumn, XoTableColumnArray, XoTableInfo } from '@zeta/xc';
 
-import { concat, Observable, of, Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { FM_RTC } from '../const';
@@ -41,6 +41,13 @@ import { XoStorable } from './xo/xo-storable.model';
 import { XoStoreParameter } from './xo/xo-storeparameter.model';
 
 
+interface QueryInput {
+    selectionMask: XoSelectionMask;
+    filterCondition: XoFilterCondition;
+    parameters: XoQueryParameter;
+}
+
+
 @Component({
     selector: 'storable-instances',
     templateUrl: './storable-instances.component.html',
@@ -56,6 +63,7 @@ export class StorableInstancesComponent implements OnInit {
     selectedStorable: XoObject;
 
     localTableSource: XcLocalTableDataSource = new XcLocalTableDataSource<any>();
+    tableInfo: XoTableInfo;
     structureTreeDataSource: XcStructureTreeDataSource;
     editSubject: Subject<void> = new Subject<void>();
     loadedStorables: XoObject[] = [];
@@ -65,6 +73,7 @@ export class StorableInstancesComponent implements OnInit {
 
     readonly NO_STORABLE_FOUND = 'No storable found...';
     readonly SELECT_STORABLE = 'Select a storable...';
+
 
     constructor(
         private readonly apiService: ApiService,
@@ -198,16 +207,83 @@ export class StorableInstancesComponent implements OnInit {
                         path: child.complex ? `complexTemplate_${child.name}` : child.name
                     }))
                 ),
-                tap(columns =>
-                    this.localTableSource.localTableData.columns = columns
-                )
+                tap(columns => {
+                    this.localTableSource.localTableData.columns = columns;
+                    this.tableInfo = this.buildTableInfo(columns);
+                })
             );
+    }
+
+    /**
+     * @description Builds tableInfo-xo based on columns
+     */
+    private buildTableInfo(columns: XcTableColumn[]): XoTableInfo {
+        const xoColumns = columns.map(child => {
+            const column = new XoTableColumn();
+            column.name = child.name;
+            column.path = child.path;
+            return column;
+        });
+        const tableInfo = new XoTableInfo();
+        tableInfo.columns = new XoTableColumnArray();
+        tableInfo.columns.append(...xoColumns);
+        tableInfo.rootType = `${this.selectedFQN.path}.${this.selectedFQN.name}`;
+        tableInfo.bootstrap = false;
+        return tableInfo;
+    }
+
+    /**
+     * @description Querys input for Query-service based on the tableInfo-xo
+     */
+    private queryQueryInput(tableInfo: XoTableInfo): Observable<QueryInput> {
+          // DEBUG - replace RTC with GuiHttp-app
+        return this.apiService.startOrder(RuntimeContext.fromWorkspace('GuiHttp for FMAN-518'), 'xmcp.tables.BuildQueryInput', tableInfo).pipe(
+            map(response => (<QueryInput>{
+                  // TODO - assert
+                selectionMask: response.output[0],
+                filterCondition: response.output[1],
+                parameters: response[2]
+            }))
+        );
     }
 
     /**
      * @description Returns the observable querying the rows for the localTableSource
      */
     private queryStorableRows(): Observable<StartOrderResult> {
+        /*
+            query zeta.table.limit | buildTableInfo
+
+            buildQueryParametersFromTableInfo
+
+            call query service
+
+            TBD:
+            use local or remote tds?
+            filters and sortings have to be filled by tds.
+            remote
+                + already XoTableInfo
+                - "refresh" has to be aborted after constructing tableInfo
+            
+            local
+                - does not use XoTableInfo
+                + doesn't make a "refresh"
+
+            leave evrth as it was, just insert "buildQueryParametersFromTableInfo"
+                for that, construct XoTI from filters and sortings out of localTDS
+        */
+
+        // transfer filters and sortings from table into tableInfo
+        this.tableInfo.columns.data.forEach(column => {
+            column.filter = this.localTableSource.getFilter(column.path);
+            column.sort = column.path === this.localTableSource.getSortPath()
+                ? this.localTableSource.getSortDirection().toString()
+                : undefined;
+        });
+
+        let tableLimit: number;
+
+            // todo - who sets zeta.table.limit from property?
         return this.apiService
             .startOrder(
                 FM_RTC,
@@ -215,20 +291,27 @@ export class StorableInstancesComponent implements OnInit {
                 XoXynaPropertyKey.withKey('zeta.table.limit')
             ).pipe(
                 map(result => result.output[0] as XoXynaProperty),
-                filter(xynaProperty => !!xynaProperty),
-                switchMap(xynaProperty =>
-                    this.apiService.startOrder(
+                filter(xynaProperty =>
+                    !!xynaProperty
+                ),
+                switchMap(xynaProperty => {
+                    tableLimit = +(xynaProperty.value || xynaProperty.defaultValue);
+                    return this.queryQueryInput(this.tableInfo);
+                }),
+                switchMap(queryInput => {
+                    // queryInput.selectionMask.rootType = `${this.selectedFQN.path}.${this.selectedFQN.name}`;
+                    return this.apiService.startOrder(
                         this.selectedRTC.toRuntimeContext(),
                         'xnwh.persistence.Query',
                         [
-                            new XoSelectionMask(undefined, `${this.selectedFQN.path}.${this.selectedFQN.name}`),
-                            new XoFilterCondition(),
-                            new XoQueryParameter(undefined, +(xynaProperty.value || xynaProperty.defaultValue))
+                            queryInput.selectionMask,
+                            queryInput.filterCondition,
+                            queryInput.parameters ?? new XoQueryParameter(undefined, tableLimit)
                         ]
                     ).pipe(catchError(() =>
                         of(<StartOrderResult<Xo>>{orderId: 'error'})
-                    ))
-                ),
+                    ));
+                }),
                 tap(result => {
                     this.loadedStorables = result.output?.[0]?.data ?? [];
                     this.localTableSource.localTableData.rows = this.getTableRows();
@@ -241,9 +324,8 @@ export class StorableInstancesComponent implements OnInit {
      * @description Querys the database and builds the localTableSource
      */
     private buildLocalTableSource() {
-        concat(
-            this.queryStorableColumns(),
-            this.queryStorableRows()
+        this.queryStorableColumns().pipe(
+            switchMap(() => this.queryStorableRows())
         ).subscribe();
     }
 
