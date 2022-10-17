@@ -23,6 +23,8 @@ import { XC_COMPONENT_DATA, XcDynamicComponent } from '@zeta/xc';
 import { XoComplexStorableTemplateData } from '../../xo/xo-complex-storable.model';
 
 
+// FIXME: Must be named "XcComplex..." instead of "XoComplex..."
+
 @Component({
     selector: 'xo-complex-storable-template',
     templateUrl: './xo-complex-storable-template.component.html',
@@ -37,7 +39,10 @@ export class XoComplexStorableTemplateComponent extends XcDynamicComponent<XoCom
         if (Array.isArray(this.obj)) {
             return this.obj.length;
         }
-        return (this.obj.data as XoObject[]).length;
+        if (Array.isArray(this.obj.data)) {
+            return this.obj.data.length;
+        }
+        return -1;
     }
 
     protected getToken(): InjectionToken<string> {
