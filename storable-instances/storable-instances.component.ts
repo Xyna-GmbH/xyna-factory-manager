@@ -96,12 +96,9 @@ class StorableTableDataSource extends XcLocalTableDataSource<XoObject> {
                     children.map(child => (<StorableTableColumn>{
                         name: child.label,
                         complex: child.complex,
-                        path: /*child.complex ? `complexTemplate_${child.name}` : */child.name
+                        path: child.name
                     }))
-                )/*,
-                tap(columns => {
-                    this.localTableData.columns = columns;
-                })*/
+                )
             );
     }
 
