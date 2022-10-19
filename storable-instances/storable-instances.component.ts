@@ -137,16 +137,14 @@ class StorableTableDataSource extends XcLocalTableDataSource<XoObject> {
      * Querys input for Query-service based on the tableInfo-xo
      */
     private queryQueryInput(tableInfo: XoTableInfo): Observable<QueryInput> {
-          // DEBUG - replace RTC with GuiHttp-app
-        return this.apiService.startOrder(RuntimeContext.fromWorkspace('GuiHttp for FMAN-518'), 'xmcp.tables.BuildQueryInput', tableInfo).pipe(
+        return this.apiService.startOrder(RuntimeContext.guiHttpApplication, 'xmcp.tables.BuildQueryInput', tableInfo).pipe(
             map(response => (<QueryInput>{
-                  // TODO - assert
                 selectionMask: response.output[0],
                 filterCondition: response.output[1],
                 parameters: response.output[2]
             })),
             tap(queryInput => {
-                // FIXME: Don't restrict columns because for flat list "members", selected column must be "%0%.members.*"
+                // FIXME: Don't restrict columns because for a flat list (e. g. "members"), selected column must be "%0%.members.*"
                 // instead of only "%0%.members" to get all data
                 queryInput.selectionMask.columns = [];
             })
