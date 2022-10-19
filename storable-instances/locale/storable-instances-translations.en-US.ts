@@ -27,7 +27,19 @@ export const storable_instances_translations_en_US: I18nTranslation[] = [
     },
     {
         key: 'fman.storable-instances.runtime-context-placeholder',
-        value: 'Select a Workspace/Application...'
+        value: 'Select Workspace/Application...'
+    },
+    {
+        key: 'fman.storable-instances.storable-selection-placeholder',
+        value: 'Select Storable...'
+    },
+    {
+        key: 'fman.storable-instances.no-storables-found-message',
+        value: 'No Storables found'
+    },
+    {
+        key: 'fman.storable-instances.query-storable-error',
+        value: 'There have been problems while querying for Storables:\n\n$0'
     },
     {
         key: 'fman.storable-instances.icon-refresh',
@@ -68,11 +80,11 @@ export const storable_instances_translations_en_US: I18nTranslation[] = [
 
     // XoComplexStorableTemplateComponent
     {
-        key: 'fman.storable-instances.xo-complex-storable-template.span-complex-datatypes',
-        value: 'Complex Datatypes'
+        key: 'fman.storable-instances.complex-datatypes',
+        value: 'Complex Datatypes ($0)'
     },
     {
-        key: 'fman.storable-instances.xo-complex-storable-template.span-complex-datatype',
+        key: 'fman.storable-instances.complex-datatype',
         value: 'Complex Datatype'
     }
 ];
