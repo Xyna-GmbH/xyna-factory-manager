@@ -17,7 +17,7 @@
  */
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { ApiService, FullQualifiedName, OrderTypeVariable, RuntimeContext, Xo, XoArray, XoClassInterfaceFrom, XoJson, XoObject, XoRuntimeContext, XoStructureType } from '@zeta/api';
+import { ApiService, FullQualifiedName, OrderTypeVariable, RuntimeContext, Xo, XoArray, XoClassInterfaceFrom, XoJson, XoObject, XoRuntimeContext, XoStorable, XoStructureType } from '@zeta/api';
 import { isArray } from '@zeta/base';
 import { I18nService } from '@zeta/i18n';
 import { XcStructureTreeDataSource } from '@zeta/xc';
@@ -25,7 +25,6 @@ import { XcStructureTreeDataSource } from '@zeta/xc';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 
-import { XoStorable } from '../../../storable-instances/xo/xo-storable.model';
 import { XoOrderDestination } from '../../../xo/xo-orderdestination.model';
 
 
