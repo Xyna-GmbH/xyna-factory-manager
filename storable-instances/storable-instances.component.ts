@@ -17,7 +17,7 @@
  */
 import { Component, OnInit } from '@angular/core';
 
-import { ApiService, FullQualifiedName, RuntimeContext, RuntimeContextType, StartOrderResult, XoDescriber, XoObject, XoRuntimeContext, Xo, XoStructureMethod, XoWorkspace, StartOrderOptionsBuilder } from '@zeta/api';
+import { ApiService, FullQualifiedName, RuntimeContext, RuntimeContextType, StartOrderResult, XoDescriber, XoObject, XoRuntimeContext, Xo, XoStructureMethod, XoWorkspace, StartOrderOptionsBuilder, XoStorable } from '@zeta/api';
 import { XoXynaProperty, XoXynaPropertyKey } from '@zeta/auth/xo/xyna-property.model';
 import { Comparable, isObject } from '@zeta/base';
 import { I18nService } from '@zeta/i18n';
@@ -37,7 +37,6 @@ import { XoDeleteParameter } from './xo/xo-deleteparameter.model';
 import { XoFilterCondition } from './xo/xo-filtercondition.model';
 import { XoQueryParameter } from './xo/xo-queryparamterer.model';
 import { XoSelectionMask } from './xo/xo-selectionmask.model';
-import { XoStorable } from './xo/xo-storable.model';
 import { XoStoreParameter } from './xo/xo-storeparameter.model';
 
 
