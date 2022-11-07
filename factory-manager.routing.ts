@@ -28,6 +28,7 @@ import { DeploymentItemsComponent } from './deployment-items/deployment-items.co
 import { FactoryManagerComponent } from './factory-manager.component';
 import { OrderInputSourcesComponent } from './order-input-sources/order-input-sources.component';
 import { OrderTypesComponent } from './order-types/order-types.component';
+import { PluginComponent } from './plugin/plugin.component';
 import { ApplicationsComponent } from './runtime-contexts/applications/applications.component';
 import { WorkspacesComponent } from './runtime-contexts/workspaces/workspaces.component';
 import { StorableInstancesComponent } from './storable-instances/storable-instances.component';
@@ -149,6 +150,13 @@ export const FactoryManagerRoutes: XynaRoutes = [
                 canDeactivate: [RedirectGuard],
                 pathMatch: 'full',
                 data : {right: RIGHT_FACTORY_MANAGER_XYNA_PROPERTIES, reuse: FACTORY_MANAGER.XYNA_PROPERTIES + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.XYNA_PROPERTIES}
+            },
+            {
+                path: FACTORY_MANAGER.PLUGIN_00,
+                component: PluginComponent,
+                canDeactivate: [RedirectGuard],
+                pathMatch: 'full',
+                data : {reuse: FACTORY_MANAGER.PLUGIN_00 + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.PLUGIN_00}
             }
         ]
     }
