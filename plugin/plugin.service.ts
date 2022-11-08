@@ -17,15 +17,68 @@
  */
 
 import { Injectable } from '@angular/core';
-import { ApiService } from '@zeta/api';
-
+import { environment } from '@environments/environment';
+import { FACTORY_MANAGER } from '@fman/const';
+import { XoFilterCondition } from '@fman/storable-instances/xo/xo-filtercondition.model';
+import { XoQueryParameter } from '@fman/storable-instances/xo/xo-queryparamterer.model';
+import { XoSelectionMask } from '@fman/storable-instances/xo/xo-selectionmask.model';
+import { ApiService, StartOrderOptionsBuilder, StartOrderResult, Xo } from '@zeta/api';
+import { XoPlugin, XoPluginArray } from '@zeta/xc';
+import { BehaviorSubject, catchError, finalize, map, Observable, of } from 'rxjs';
 
 @Injectable()
 export class PluginService {
 
-    private readonly plugins = new Map<string, >
+    private readonly _plugins = new BehaviorSubject<Map<string, XoPlugin>>(null);
+    private pending = false;
 
-    constructor(api: ApiService) {
-        
+    PLUGIN_TITLES = [
+        FACTORY_MANAGER.PLUGIN_00, FACTORY_MANAGER.PLUGIN_01, FACTORY_MANAGER.PLUGIN_02, FACTORY_MANAGER.PLUGIN_03,
+        FACTORY_MANAGER.PLUGIN_04, FACTORY_MANAGER.PLUGIN_05, FACTORY_MANAGER.PLUGIN_06, FACTORY_MANAGER.PLUGIN_07,
+        FACTORY_MANAGER.PLUGIN_08, FACTORY_MANAGER.PLUGIN_09
+    ];
+
+    constructor(private readonly api: ApiService) {
+    }
+
+
+    get plugins(): Observable<Map<string, XoPlugin>> {
+
+        // request plugins
+        if (!this._plugins.getValue() && !this.pending) {
+            this.pending = true;
+
+            const selectionMask = new XoSelectionMask();
+            selectionMask.rootType = 'xmcp.forms.plugin.Plugin';
+
+            this.api.startOrder(
+                environment.zeta.xo.runtimeContext,
+                'xnwh.persistence.Query',
+                [
+                    selectionMask,
+                    new XoFilterCondition(),
+                    new XoQueryParameter()
+                ],
+                undefined,
+                StartOrderOptionsBuilder.defaultOptionsWithErrorMessage
+            ).pipe(
+                catchError(() =>
+                    of(<StartOrderResult<Xo>>{orderId: 'error'})
+                ),
+                map(response => {
+                    const pluginList = response.output[0] as XoPluginArray;
+                    if (pluginList.length > this.PLUGIN_TITLES.length) {
+                        console.warn('Not supporting more than ' + this.PLUGIN_TITLES.length + ' plugins at the moment but got ' + pluginList.length);
+                    }
+
+                    const pluginMap = new Map<string, XoPlugin>();
+                    pluginList.data.forEach((plugin: XoPlugin, index) => pluginMap.set(this.PLUGIN_TITLES[index], plugin));
+                    this._plugins.next(pluginMap);
+                }),
+                finalize(() => this.pending = false)
+            ).subscribe();
+        }
+
+        return this._plugins.asObservable();
     }
 }

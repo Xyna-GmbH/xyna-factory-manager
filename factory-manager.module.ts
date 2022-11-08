@@ -53,6 +53,8 @@ import { OrderInputSourcesComponent } from './order-input-sources/order-input-so
 import { ChildOrderInheritanceRuleComponent } from './order-types/items/child-order-inheritance-rule/child-order-inheritance-rule.component';
 import { AddNewOrderTypeModalComponent } from './order-types/modal/add-new-order-type-modal/add-new-order-type-modal.component';
 import { OrderTypesComponent } from './order-types/order-types.component';
+import { PluginComponent } from './plugin/plugin.component';
+import { PluginService } from './plugin/plugin.service';
 import { CustomInformationFormComponent } from './reuseable-components/forms/custom-information-form/custom-information-form.component';
 import { OrderTypeFormComponent } from './reuseable-components/forms/order-type-form/order-type-form.component';
 import { ApplicationTileComponent } from './runtime-contexts/applications/application-tile/application-tile.component';
@@ -147,6 +149,7 @@ import { XynaPropertiesComponent } from './xyna-properties/xyna-properties.compo
         OrderInputSourceDetailsModalComponent,
         OrderInputSourcesComponent,
         OrderTypesComponent,
+        PluginComponent,
         RuntimeContextButtonComponent,
         RuntimeContextIconComponent,
         RuntimeContextNameComponent,
@@ -173,7 +176,8 @@ import { XynaPropertiesComponent } from './xyna-properties/xyna-properties.compo
         WorkflowTesterDialogComponent
     ],
     providers: [
-        FactoryManagerSettingsService
+        FactoryManagerSettingsService,
+        PluginService
     ],
     exports: [
         ApplicationTileComponent,
