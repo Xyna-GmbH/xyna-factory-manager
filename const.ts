@@ -54,6 +54,16 @@ export const FACTORY_MANAGER = {
     DEPLOYMENT_ITEMS: 'deployment-items',
     STORABLE_INSTANCES: 'storable-instances',
     DATA_MODELS: 'data-models',
-    XYNA_PROPERTIES: 'xyna-properties'
+    XYNA_PROPERTIES: 'xyna-properties',
+    PLUGIN_00: 'plugin-00',
+    PLUGIN_01: 'plugin-01',
+    PLUGIN_02: 'plugin-02',
+    PLUGIN_03: 'plugin-03',
+    PLUGIN_04: 'plugin-04',
+    PLUGIN_05: 'plugin-05',
+    PLUGIN_06: 'plugin-06',
+    PLUGIN_07: 'plugin-07',
+    PLUGIN_08: 'plugin-08',
+    PLUGIN_09: 'plugin-09'
 };
 

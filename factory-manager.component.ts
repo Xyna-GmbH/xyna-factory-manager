@@ -21,12 +21,14 @@ import { AuthService } from '@zeta/auth';
 import { I18nService } from '@zeta/i18n';
 import { RouteComponent } from '@zeta/nav';
 import { XcNavListItem, XcNavListOrientation } from '@zeta/xc';
+import { filter } from 'rxjs';
 
 import { RIGHT_FACTORY_MANAGER_ADMINISTRATIVE_VETOES, RIGHT_FACTORY_MANAGER_CAPACITIES, RIGHT_FACTORY_MANAGER_DEPLOYMENT_ITEMS, RIGHT_FACTORY_MANAGER_ORDER_INPUT_SOURCES, RIGHT_FACTORY_MANAGER_ORDER_TYPES, RIGHT_FACTORY_MANAGER_STORABLE_INSTANCES, RIGHT_FACTORY_MANAGER_TIME_CONTROLLED_ORDERS, RIGHT_FACTORY_MANAGER_WORKSPACES_AND_APPLICATIONS, RIGHT_FACTORY_MANAGER_XYNA_PROPERTIES } from './const';
 import { fman_error_code_translations_de_DE } from './locale/fman-error-code-translations.de-DE';
 import { fman_error_code_translations_en_US } from './locale/fman-error-code-translations.en-US';
 import { fman_translations_de_DE } from './locale/fman-translations.de-DE';
 import { fman_translations_en_US } from './locale/fman-translations.en-US';
+import { PluginService } from './plugin/plugin.service';
 
 
 interface XcRighteousNavListItem extends XcNavListItem {
@@ -72,7 +74,7 @@ export class FactoryManagerComponent extends RouteComponent {
 
     navListOrientation = XcNavListOrientation.LEFT;
 
-    constructor(private readonly i18n: I18nService, authService: AuthService) {
+    constructor(private readonly i18n: I18nService, authService: AuthService, pluginService: PluginService) {
         super();
 
         this.i18n.contextDismantlingSearch = true;
@@ -85,6 +87,24 @@ export class FactoryManagerComponent extends RouteComponent {
         this.navListItems.forEach(item => {
             item.disabled = item.disabled || !!item.right && !authService.hasRight(item.right);
             item.name = i18n.translate(item.name);
+        });
+
+
+        // add items for plugins
+        pluginService.plugins.pipe(filter(plugins => !!plugins)).subscribe(plugins => {
+
+            for (const [link, plugin] of plugins) {
+                this.navListItems.push(
+                    { name: plugin.navigationEntryLabel, link: link }
+                );
+            }
+            // let entry = plugins.entries().next();
+            // while (entry) {
+            //     this.navListItems.push(
+            //         { name: (entry.value[0] as XoPlugin).navigationEntryLabel, link: entry.value[1] }
+            //     );
+            //     entry = plugins.entries().next();
+            // }
         });
     }
 }
