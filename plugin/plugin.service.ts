@@ -24,7 +24,7 @@ import { XoQueryParameter } from '@fman/storable-instances/xo/xo-queryparamterer
 import { XoSelectionMask } from '@fman/storable-instances/xo/xo-selectionmask.model';
 import { ApiService, StartOrderOptionsBuilder, StartOrderResult, Xo } from '@zeta/api';
 import { XoPlugin, XoPluginArray } from '@zeta/xc';
-import { BehaviorSubject, catchError, finalize, map, Observable, of } from 'rxjs';
+import { BehaviorSubject, catchError, filter, finalize, map, Observable, of } from 'rxjs';
 
 @Injectable()
 export class PluginService {
@@ -65,6 +65,7 @@ export class PluginService {
                 catchError(() =>
                     of(<StartOrderResult<Xo>>{orderId: 'error'})
                 ),
+                filter(response => !!response.output),
                 map(response => {
                     const pluginList = response.output[0] as XoPluginArray;
                     if (pluginList.length > this.PLUGIN_TITLES.length) {
