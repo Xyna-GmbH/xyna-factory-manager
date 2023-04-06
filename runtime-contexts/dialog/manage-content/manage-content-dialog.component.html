@@ -18,11 +18,11 @@
     </section>
     <ng-container footer>
         <ng-container *ngIf="readonly">
-            <xc-button (click)="dismiss()" xc-focus-initial xc-i18n>view-content-ok</xc-button>
+            <xc-button (click)="dismiss()" xc-i18n>view-content-ok</xc-button>
         </ng-container>
         <ng-container *ngIf="!readonly">
-            <xc-button (click)="dismiss()" xc-focus-initial xc-i18n>manage-content-cancel</xc-button>
-            <xc-button (click)="apply()" [busy]="loading" [disabled]="loading" xc-i18n>manage-content-apply</xc-button>
+            <xc-button (click)="dismiss()" xc-i18n>manage-content-cancel</xc-button>
+            <xc-button (click)="apply()" color="primary" [busy]="loading" [disabled]="loading" xc-i18n>manage-content-apply</xc-button>
         </ng-container>
     </ng-container>
 </xc-dialog-wrapper>

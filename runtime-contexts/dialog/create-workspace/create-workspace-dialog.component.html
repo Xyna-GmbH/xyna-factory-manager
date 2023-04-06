@@ -68,7 +68,7 @@
         </xc-panel>
     </section>
     <ng-container footer>
-        <xc-button (click)="dismiss()" xc-focus-initial xc-i18n>create-workspace-cancel</xc-button>
-        <xc-button (click)="create()" [busy]="loading" [disabled]="form.invalid || loading" xc-i18n>create-workspace-create</xc-button>
+        <xc-button (click)="dismiss()" xc-i18n>create-workspace-cancel</xc-button>
+        <xc-button color="primary" (click)="create()" [busy]="loading" [disabled]="form.invalid || loading" xc-i18n>create-workspace-create</xc-button>
     </ng-container>
 </xc-dialog-wrapper>

@@ -59,7 +59,7 @@
         </xc-panel>
     </section>
     <ng-container footer>
-        <xc-button (click)="dismiss()" xc-focus-initial xc-i18n>button-cancel</xc-button>
-        <xc-button (click)="import()" [busy]="importing" [disabled]="importing || loadingFile || !importRequest.managedFileId" xc-i18n>button-import</xc-button>
+        <xc-button (click)="dismiss()" xc-i18n>button-cancel</xc-button>
+        <xc-button color="primary" (click)="import()" [busy]="importing" [disabled]="importing || loadingFile || !importRequest.managedFileId" xc-i18n>button-import</xc-button>
     </ng-container>
 </xc-dialog-wrapper>

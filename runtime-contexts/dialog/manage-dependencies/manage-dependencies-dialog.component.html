@@ -16,7 +16,7 @@
         </div>
     </section>
     <ng-container footer>
-        <xc-button (click)="dismiss()" xc-focus-initial xc-i18n>manage-dependencies-cancel</xc-button>
-        <xc-button (click)="apply().subscribe()" [busy]="loading" [disabled]="loading" xc-i18n>manage-dependencies-apply</xc-button>
+        <xc-button (click)="dismiss()" xc-i18n>manage-dependencies-cancel</xc-button>
+        <xc-button (click)="apply().subscribe()" color="primary" [busy]="loading" [disabled]="loading" xc-i18n>manage-dependencies-apply</xc-button>
     </ng-container>
 </xc-dialog-wrapper>

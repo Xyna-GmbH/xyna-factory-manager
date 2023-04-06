@@ -25,7 +25,7 @@
         ></xc-form-input>
     </section>
     <ng-container footer>
-        <xc-button (click)="dismiss()" xc-focus-initial xc-i18n>create-application-definition-cancel</xc-button>
-        <xc-button (click)="create()" [disabled]="form.invalid" xc-i18n>create-application-definition-create</xc-button>
+        <xc-button (click)="dismiss()" xc-i18n>create-application-definition-cancel</xc-button>
+        <xc-button color="primary" (click)="create()" [disabled]="form.invalid" xc-i18n>create-application-definition-create</xc-button>
     </ng-container>
 </xc-dialog-wrapper>

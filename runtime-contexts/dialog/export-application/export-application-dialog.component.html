@@ -8,7 +8,7 @@
         ></xc-checkbox>
     </section>
     <ng-container footer>
-        <xc-button (click)="dismiss()" xc-focus-initial xc-i18n>cancel</xc-button>
-        <xc-button (click)="export()" [busy]="pending" [disabled]="pending" xc-i18n>export</xc-button>
+        <xc-button (click)="dismiss()" xc-i18n>cancel</xc-button>
+        <xc-button color="primary" (click)="export()" [busy]="pending" [disabled]="pending" xc-i18n>export</xc-button>
     </ng-container>
 </xc-dialog-wrapper>

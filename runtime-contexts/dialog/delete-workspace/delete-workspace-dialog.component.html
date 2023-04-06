@@ -17,7 +17,7 @@
         ></xc-checkbox>
     </section>
     <ng-container footer>
-        <xc-button (click)="dismiss()" xc-focus-initial xc-i18n>delete-workspace-cancel</xc-button>
+        <xc-button (click)="dismiss()" xc-i18n>delete-workspace-cancel</xc-button>
         <xc-button (click)="delete()" [busy]="loading" [disabled]="!insurancePolicy || loading" xc-i18n>delete-workspace-delete</xc-button>
     </ng-container>
 </xc-dialog-wrapper>

@@ -36,7 +36,7 @@
         ></xc-checkbox>
     </section>
     <ng-container footer>
-        <xc-button (click)="dismiss()" xc-focus-initial xc-i18n>load-runtime-application-cancel</xc-button>
-        <xc-button (click)="load()" [busy]="loading" [disabled]="form.invalid || !this.runtimeApplication || loading" xc-i18n>load-runtime-application-load</xc-button>
+        <xc-button (click)="dismiss()" xc-i18n>load-runtime-application-cancel</xc-button>
+        <xc-button (click)="load()" color="primary" [busy]="loading" [disabled]="form.invalid || !this.runtimeApplication || loading" xc-i18n>load-runtime-application-load</xc-button>
     </ng-container>
 </xc-dialog-wrapper>
