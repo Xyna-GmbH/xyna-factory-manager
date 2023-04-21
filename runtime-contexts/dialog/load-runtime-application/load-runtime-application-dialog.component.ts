@@ -18,7 +18,7 @@
 import { Component, Injector } from '@angular/core';
 
 import { ApiService, StartOrderOptionsBuilder } from '@zeta/api';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcAutocompleteDataWrapper, XcDialogComponent, XcDialogService, XcOptionItem, XcRemoteTableDataSource, XoRemappingTableInfoClass, XoTableInfo } from '@zeta/xc';
 
 import { throwError } from 'rxjs';
@@ -63,8 +63,8 @@ export class LoadRuntimeApplicationDialogComponent extends XcDialogComponent<boo
     constructor(injector: Injector, private readonly apiService: ApiService, private readonly dialogService: XcDialogService, private readonly i18n: I18nService, private readonly settings: FactoryManagerSettingsService) {
         super(injector);
 
-        this.i18n.setTranslations(I18nService.DE_DE, loadRuntimeApplication_translations_de_DE);
-        this.i18n.setTranslations(I18nService.EN_US, loadRuntimeApplication_translations_en_US);
+        this.i18n.setTranslations(LocaleService.DE_DE, loadRuntimeApplication_translations_de_DE);
+        this.i18n.setTranslations(LocaleService.EN_US, loadRuntimeApplication_translations_en_US);
 
         const remappingTableInfoClass = XoRemappingTableInfoClass(
             RuntimeApplicationsTableInfo,

@@ -22,7 +22,7 @@ import { XoRTCName } from '@fman/runtime-contexts/xo/xo-rtcname.model';
 import { XoRuntimeContextTableEntry, XoRuntimeContextTableEntryArray } from '@fman/runtime-contexts/xo/xo-runtime-context-table-entry.model';
 import { ApiService, RuntimeContext, StartOrderOptionsBuilder, Xo, XoObject } from '@zeta/api';
 import { Comparable } from '@zeta/base';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcDialogComponent, XcLocalTableDataSource, XcRemoteTableDataSource, XcTableDataSource, XDSIconName, XoRemappingTableInfoClass, XoTableColumn, XoTableInfo } from '@zeta/xc';
 
 import { filter, finalize } from 'rxjs/operators';
@@ -220,8 +220,8 @@ export class MigrateWizardComponent extends XcDialogComponent<boolean, Migration
     constructor(injector: Injector, private readonly settings: FactoryManagerSettingsService) {
         super(injector);
 
-        this.injectedData.i18n.setTranslations(I18nService.DE_DE, migrateWizard_translations_de_DE);
-        this.injectedData.i18n.setTranslations(I18nService.EN_US, migrateWizard_translations_en_US);
+        this.injectedData.i18n.setTranslations(LocaleService.DE_DE, migrateWizard_translations_de_DE);
+        this.injectedData.i18n.setTranslations(LocaleService.EN_US, migrateWizard_translations_en_US);
 
         // If a source is provided
         if (this.injectedData.presetSource) {

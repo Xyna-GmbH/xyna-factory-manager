@@ -19,7 +19,7 @@ import { Component, Injector } from '@angular/core';
 
 import { XoGetWorkspaceContentRequest } from '@fman/runtime-contexts/xo/xo-get-workspace-content-request.model';
 import { ApiService } from '@zeta/api';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcDialogComponent, XcRemoteTableDataSource } from '@zeta/xc';
 
 import { FM_RTC } from '../../../const';
@@ -45,8 +45,8 @@ export class ShowWorkspaceContentDialogComponent extends XcDialogComponent<boole
     constructor(injector: Injector, private readonly apiService: ApiService, private readonly i18n: I18nService, private readonly settings: FactoryManagerSettingsService) {
         super(injector);
 
-        this.i18n.setTranslations(I18nService.EN_US, showWorkspaceContent_translations_en_US);
-        this.i18n.setTranslations(I18nService.DE_DE, showWorkspaceContent_translations_de_DE);
+        this.i18n.setTranslations(LocaleService.EN_US, showWorkspaceContent_translations_en_US);
+        this.i18n.setTranslations(LocaleService.DE_DE, showWorkspaceContent_translations_de_DE);
 
         // create data source
         this.dataSource = new XcRemoteTableDataSource(this.apiService, undefined, FM_RTC, ORDER_TYPES.GET_WORKSPACE_CONTENT, createContentTableInfoClass(false));

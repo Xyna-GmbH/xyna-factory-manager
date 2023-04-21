@@ -18,7 +18,7 @@
 import { Component, ElementRef, Injector, ViewChild } from '@angular/core';
 
 import { ApiService, StartOrderOptionsBuilder, XoRuntimeContext } from '@zeta/api';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcDialogComponent, XcFormDirective } from '@zeta/xc';
 
 import { finalize } from 'rxjs/operators';
@@ -95,8 +95,8 @@ export class CreateTimeControlledOrderComponent extends XcDialogComponent<boolea
         super(injector);
         this.apiService = injector.get(ApiService);
 
-        this.i18nService.setTranslations(I18nService.DE_DE, createTimeControlledOrder_translations_de_DE);
-        this.i18nService.setTranslations(I18nService.EN_US, createTimeControlledOrder_translations_en_US);
+        this.i18nService.setTranslations(LocaleService.DE_DE, createTimeControlledOrder_translations_de_DE);
+        this.i18nService.setTranslations(LocaleService.EN_US, createTimeControlledOrder_translations_en_US);
 
         if (this.injectedData.default) {
             this.duplicateFromTCO(this.injectedData.default);

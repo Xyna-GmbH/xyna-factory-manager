@@ -20,7 +20,7 @@ import { Component, Injector, OnDestroy } from '@angular/core';
 import { XoDependencyType } from '@fman/runtime-contexts/xo/xo-dependency.model';
 import { XoGetApplicationContentRequest } from '@fman/runtime-contexts/xo/xo-get-application-content-request.model';
 import { ApiService, StartOrderOptionsBuilder } from '@zeta/api';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcDialogComponent, XcDialogService, XcLocalTableDataSource, XcRemoteTableDataSource } from '@zeta/xc';
 
 import { Subscription, throwError } from 'rxjs';
@@ -58,8 +58,8 @@ export class ManageContentDialogComponent extends XcDialogComponent<boolean, XoR
     constructor(injector: Injector, private readonly apiService: ApiService, private readonly dialogService: XcDialogService, private readonly i18n: I18nService, private readonly settings: FactoryManagerSettingsService) {
         super(injector);
 
-        this.i18n.setTranslations(I18nService.DE_DE, manageContent_translations_de_DE);
-        this.i18n.setTranslations(I18nService.EN_US, manageContent_translations_en_US);
+        this.i18n.setTranslations(LocaleService.DE_DE, manageContent_translations_de_DE);
+        this.i18n.setTranslations(LocaleService.EN_US, manageContent_translations_en_US);
 
         // create data source
         this.dataSource = new XcRemoteTableDataSource(this.apiService, undefined, FM_RTC, ORDER_TYPES.GET_APPLICATION_CONTENT, createContentTableInfoClass(!this.readonly));

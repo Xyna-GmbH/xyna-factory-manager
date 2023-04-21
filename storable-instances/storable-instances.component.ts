@@ -20,7 +20,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService, FullQualifiedName, RuntimeContext, RuntimeContextType, StartOrderResult, XoDescriber, XoObject, XoRuntimeContext, Xo, XoStructureMethod, XoWorkspace, StartOrderOptionsBuilder, XoStorable } from '@zeta/api';
 import { XoXynaProperty, XoXynaPropertyKey } from '@zeta/auth/xo/xyna-property.model';
 import { Comparable, isObject } from '@zeta/base';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcAutocompleteDataWrapper, XcDialogService, XcLocalTableDataSource, XcOptionItem, XcSelectionModel, XcSortDirection, XcStructureTreeDataSource, XcTableColumn, XoTableColumn, XoTableColumnArray, XoTableInfo } from '@zeta/xc';
 
 import { Observable, of, Subject } from 'rxjs';
@@ -283,8 +283,8 @@ export class StorableInstancesComponent implements OnInit {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const mask = new XoSelectionMask();
 
-        this.i18nService.setTranslations(I18nService.DE_DE, storable_instances_translations_de_DE);
-        this.i18nService.setTranslations(I18nService.EN_US, storable_instances_translations_en_US);
+        this.i18nService.setTranslations(LocaleService.DE_DE, storable_instances_translations_de_DE);
+        this.i18nService.setTranslations(LocaleService.EN_US, storable_instances_translations_en_US);
 
         this.storableTableSource = new StorableTableDataSource(i18nService);
         this.storableTableSource.apiService = apiService;

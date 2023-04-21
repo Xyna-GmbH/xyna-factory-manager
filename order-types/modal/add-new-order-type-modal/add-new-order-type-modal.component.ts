@@ -18,7 +18,7 @@
 import { Component, Injector, ViewChild } from '@angular/core';
 
 import { ApiService, RuntimeContext, StartOrderOptionsBuilder, XoRuntimeContext } from '@zeta/api';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcAutocompleteDataWrapper, XcDialogComponent, XcFormDirective, XcRemoteTableDataSource, XcRichListItem, XcStringIntegerDataWrapper } from '@zeta/xc';
 
 import { XoCapacityInformation, XoCapacityInformationArray } from '../../../capacities/xo/xo-capacity-information.model';
@@ -153,8 +153,8 @@ export class AddNewOrderTypeModalComponent extends XcDialogComponent<boolean, Ad
     constructor(injector: Injector, private readonly i18n: I18nService, private readonly apiService: ApiService, private readonly settings: FactoryManagerSettingsService) {
         super(injector);
 
-        this.i18n.setTranslations(I18nService.DE_DE, addNewOrderTypeModal_translations_de_DE);
-        this.i18n.setTranslations(I18nService.EN_US, addNewOrderTypeModal_translations_en_US);
+        this.i18n.setTranslations(LocaleService.DE_DE, addNewOrderTypeModal_translations_de_DE);
+        this.i18n.setTranslations(LocaleService.EN_US, addNewOrderTypeModal_translations_en_US);
 
         if (this.injectedData.duplicate) {
             this._useDuplicate(this.injectedData.duplicate.clone());

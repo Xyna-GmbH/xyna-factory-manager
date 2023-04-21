@@ -17,7 +17,7 @@
  */
 import { Component, Injector } from '@angular/core';
 
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcDialogComponent, XcRichListItem } from '@zeta/xc';
 
 import { Subject } from 'rxjs';
@@ -53,8 +53,8 @@ export class DeleteReportComponent extends XcDialogComponent<XoDeleteDeploymentI
     constructor(injector: Injector, private readonly i18n: I18nService) {
         super(injector);
 
-        this.i18n.setTranslations(I18nService.DE_DE, deleteReport_translations_de_DE);
-        this.i18n.setTranslations(I18nService.EN_US, deleteReport_translations_en_US);
+        this.i18n.setTranslations(LocaleService.DE_DE, deleteReport_translations_de_DE);
+        this.i18n.setTranslations(LocaleService.EN_US, deleteReport_translations_en_US);
 
         this.updateItems();
 

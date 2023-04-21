@@ -18,7 +18,7 @@
 import { Component, Injector, ViewChild } from '@angular/core';
 
 import { ApiService, RuntimeContext, StartOrderOptionsBuilder } from '@zeta/api';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcDialogComponent, XcFormDirective } from '@zeta/xc';
 
 import { FMFocusCandidateRef } from '../../../misc/directives/fm-focus-candidate.directive';
@@ -67,8 +67,8 @@ export class AddNewAdministrativeVetoModalComponent extends XcDialogComponent<bo
     constructor(injector: Injector, i18nService: I18nService) {
         super(injector);
 
-        i18nService.setTranslations(I18nService.DE_DE, addNewAdministrativeVetoModal_translations_de_DE);
-        i18nService.setTranslations(I18nService.EN_US, addNewAdministrativeVetoModal_translations_en_US);
+        i18nService.setTranslations(LocaleService.DE_DE, addNewAdministrativeVetoModal_translations_de_DE);
+        i18nService.setTranslations(LocaleService.EN_US, addNewAdministrativeVetoModal_translations_en_US);
 
         this.administrativeVeto = new XoAdministrativeVeto();
 

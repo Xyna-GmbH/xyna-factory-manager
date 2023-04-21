@@ -18,7 +18,7 @@
 import { ChangeDetectorRef, Component, Injector, ViewChild } from '@angular/core';
 
 import { ApiService, RuntimeContext, StartOrderOptionsBuilder, XoApplication, XoRuntimeContext, XoWorkspace } from '@zeta/api';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcAutocompleteDataWrapper, XcDialogComponent, XcFormDirective, XcOptionItemString } from '@zeta/xc';
 
 import { finalize } from 'rxjs/operators';
@@ -220,8 +220,8 @@ export class AddNewOrderInputSourceModalComponent extends XcDialogComponent<bool
     constructor(injector: Injector, private readonly i18n: I18nService, private readonly cdr: ChangeDetectorRef, private readonly apiService: ApiService) {
         super(injector);
 
-        this.i18n.setTranslations(I18nService.DE_DE, addNewOrderInputSourceModal_translations_de_DE);
-        this.i18n.setTranslations(I18nService.EN_US, addNewOrderInputSourceModal_translations_en_US);
+        this.i18n.setTranslations(LocaleService.DE_DE, addNewOrderInputSourceModal_translations_de_DE);
+        this.i18n.setTranslations(LocaleService.EN_US, addNewOrderInputSourceModal_translations_en_US);
 
         this.runtimeContextsDataWrapper = new XcAutocompleteDataWrapper(
             ()    => this.selectedServerRuntimeContext,

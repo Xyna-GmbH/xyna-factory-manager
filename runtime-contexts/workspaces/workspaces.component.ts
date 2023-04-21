@@ -19,7 +19,7 @@ import { AfterViewInit, Component, OnDestroy, QueryList, ViewChildren } from '@a
 
 import { FactoryManagerSettingsService } from '@fman/misc/services/factory-manager-settings.service';
 import { ApiService } from '@zeta/api';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { RouteComponent } from '@zeta/nav';
 import { XcDialogService, XcRemoteDataSource, XcSortDirection, XcSortPredicate } from '@zeta/xc';
 
@@ -70,8 +70,8 @@ export class WorkspacesComponent extends RouteComponent implements AfterViewInit
         this.remoteDataSource.dataChange.subscribe(() => this.filter());
         this.refresh();
 
-        this.i18n.setTranslations(I18nService.DE_DE, runtime_contexts_translations_de_DE);
-        this.i18n.setTranslations(I18nService.EN_US, runtime_contexts_translations_en_US);
+        this.i18n.setTranslations(LocaleService.DE_DE, runtime_contexts_translations_de_DE);
+        this.i18n.setTranslations(LocaleService.EN_US, runtime_contexts_translations_en_US);
     }
 
 

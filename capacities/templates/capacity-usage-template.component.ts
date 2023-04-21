@@ -17,7 +17,7 @@
  */
 import { Component, InjectionToken, Injector } from '@angular/core';
 
-import { I18nParam, I18nService } from '@zeta/i18n';
+import { I18nParam, I18nService, LocaleService } from '@zeta/i18n';
 import { XC_COMPONENT_DATA, XcDynamicComponent, XcStringIntegerDataWrapper } from '@zeta/xc';
 
 import { capacities_translations_de_DE } from '../locale/capacities-translations.de-DE';
@@ -56,8 +56,8 @@ export class CapacityUsageTemplateComponent extends XcDynamicComponent<CapacityU
     constructor(readonly injector: Injector, readonly i18n: I18nService) {
         super(injector);
 
-        this.i18n.setTranslations(I18nService.DE_DE, capacities_translations_de_DE);
-        this.i18n.setTranslations(I18nService.EN_US, capacities_translations_en_US);
+        this.i18n.setTranslations(LocaleService.DE_DE, capacities_translations_de_DE);
+        this.i18n.setTranslations(LocaleService.EN_US, capacities_translations_en_US);
 
         const values: I18nParam[] = [
             {

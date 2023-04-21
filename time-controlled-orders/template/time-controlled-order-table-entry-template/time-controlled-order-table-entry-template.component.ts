@@ -18,7 +18,7 @@
 import { Component, InjectionToken, Injector } from '@angular/core';
 
 import { tco_translations_de_DE } from '@fman/time-controlled-orders/locale/tco-translations.de-DE';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XC_COMPONENT_DATA, XcDynamicComponent } from '@zeta/xc';
 
 import { tco_translations_en_US } from '../../locale/tco-translations.en-US';
@@ -45,8 +45,8 @@ export class TimeControlledOrderTableEntryTemplateComponent extends XcDynamicCom
     constructor(readonly injector: Injector, readonly i18n: I18nService) {
         super(injector);
 
-        this.i18n.setTranslations(I18nService.DE_DE, tco_translations_de_DE);
-        this.i18n.setTranslations(I18nService.EN_US, tco_translations_en_US);
+        this.i18n.setTranslations(LocaleService.DE_DE, tco_translations_de_DE);
+        this.i18n.setTranslations(LocaleService.EN_US, tco_translations_en_US);
     }
 
     protected getToken(): InjectionToken<string> {

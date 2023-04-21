@@ -20,7 +20,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { FactoryManagerSettingsService } from '@fman/misc/services/factory-manager-settings.service';
 import { ApiService } from '@zeta/api';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcDialogService } from '@zeta/xc';
 
 import { InputScreenWorkflowPackage, RestorableRouteComponent } from '../restorable-route.component';
@@ -50,8 +50,8 @@ export class RestorableAdministrativeVetoComponent extends RestorableRouteCompon
     ) {
         super(apiService, dialogService, route, router, i18nService, injector, settings);
 
-        this.i18nService.setTranslations(I18nService.DE_DE, administrativeVetoes_translations_de_DE);
-        this.i18nService.setTranslations(I18nService.EN_US, administrativeVetoes_translations_en_US);
+        this.i18nService.setTranslations(LocaleService.DE_DE, administrativeVetoes_translations_de_DE);
+        this.i18nService.setTranslations(LocaleService.EN_US, administrativeVetoes_translations_en_US);
     }
 
     private translateConstants() {
