@@ -18,7 +18,7 @@
 import { Component, Injector } from '@angular/core';
 
 import { ApiService, RuntimeContext, StartOrderOptionsBuilder, StartOrderResult } from '@zeta/api';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcDialogComponent, XcStructureTreeDataSource } from '@zeta/xc';
 
 import { finalize } from 'rxjs/operators';
@@ -65,8 +65,8 @@ export class StorableInstanceCreationComponent extends XcDialogComponent<any, an
     constructor(injector: Injector) {
         super(injector);
 
-        this.i18nService.setTranslations(I18nService.DE_DE, storableInstanceCreation_translations_de_DE);
-        this.i18nService.setTranslations(I18nService.EN_US, storableInstanceCreation_translations_en_US);
+        this.i18nService.setTranslations(LocaleService.DE_DE, storableInstanceCreation_translations_de_DE);
+        this.i18nService.setTranslations(LocaleService.EN_US, storableInstanceCreation_translations_en_US);
     }
 
     submit() {

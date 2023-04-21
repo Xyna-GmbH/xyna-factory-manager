@@ -21,7 +21,7 @@ import { XoFactoryNode, XoFactoryNodeArray } from '@fman/runtime-contexts/xo/xo-
 import { XoImportRTARequest } from '@fman/runtime-contexts/xo/xo-import-rta-request.model';
 import { XoManagedFileId } from '@fman/runtime-contexts/xo/xo-managed-file-id.model';
 import { ApiService, StartOrderOptionsBuilder } from '@zeta/api';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcDialogComponent, XcDialogService } from '@zeta/xc';
 
 import { throwError } from 'rxjs';
@@ -58,8 +58,8 @@ export class ImportRuntimeApplicationDialogComponent extends XcDialogComponent<b
     constructor(injector: Injector, private readonly apiService: ApiService, private readonly dialogService: XcDialogService, private readonly i18n: I18nService, private readonly cdr: ChangeDetectorRef) {
         super(injector);
 
-        this.i18n.setTranslations(I18nService.DE_DE, importRuntimeApplication_translations_de_DE);
-        this.i18n.setTranslations(I18nService.EN_US, importRuntimeApplication_translations_en_US);
+        this.i18n.setTranslations(LocaleService.DE_DE, importRuntimeApplication_translations_de_DE);
+        this.i18n.setTranslations(LocaleService.EN_US, importRuntimeApplication_translations_en_US);
 
         this.apiService.startOrderAssert<XoFactoryNodeArray>(FM_RTC, ORDER_TYPES.GET_FACTORY_NODES, [], XoFactoryNodeArray).subscribe(
             nodes => {

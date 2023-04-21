@@ -18,7 +18,7 @@
 import { Component, Injector } from '@angular/core';
 
 import { ApiService, RuntimeContext, StartOrderOptionsBuilder, XoRuntimeContext } from '@zeta/api';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcDialogComponent } from '@zeta/xc';
 
 import { FMFocusCandidateRef } from '../../../misc/directives/fm-focus-candidate.directive';
@@ -62,8 +62,8 @@ export class DeployModalComponent extends XcDialogComponent<boolean, DeployModal
     constructor(injector: Injector) {
         super(injector);
 
-        this.injectedData.i18nService.setTranslations(I18nService.DE_DE, deployModal_translations_de_DE);
-        this.injectedData.i18nService.setTranslations(I18nService.EN_US, deployModal_translations_en_US);
+        this.injectedData.i18nService.setTranslations(LocaleService.DE_DE, deployModal_translations_de_DE);
+        this.injectedData.i18nService.setTranslations(LocaleService.EN_US, deployModal_translations_en_US);
     }
 
     deploy() {

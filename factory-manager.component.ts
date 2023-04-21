@@ -18,7 +18,7 @@
 import { Component } from '@angular/core';
 
 import { AuthService } from '@zeta/auth';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { RouteComponent } from '@zeta/nav';
 import { XcNavListItem, XcNavListOrientation } from '@zeta/xc';
 import { filter } from 'rxjs';
@@ -78,10 +78,10 @@ export class FactoryManagerComponent extends RouteComponent {
         super();
 
         this.i18n.contextDismantlingSearch = true;
-        this.i18n.setTranslations(I18nService.DE_DE, fman_translations_de_DE);
-        this.i18n.setTranslations(I18nService.DE_DE, fman_error_code_translations_de_DE);
-        this.i18n.setTranslations(I18nService.EN_US, fman_translations_en_US);
-        this.i18n.setTranslations(I18nService.EN_US, fman_error_code_translations_en_US);
+        this.i18n.setTranslations(LocaleService.DE_DE, fman_translations_de_DE);
+        this.i18n.setTranslations(LocaleService.DE_DE, fman_error_code_translations_de_DE);
+        this.i18n.setTranslations(LocaleService.EN_US, fman_translations_en_US);
+        this.i18n.setTranslations(LocaleService.EN_US, fman_error_code_translations_en_US);
 
 
         this.navListItems.forEach(item => {

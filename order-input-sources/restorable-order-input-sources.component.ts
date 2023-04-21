@@ -20,7 +20,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { FactoryManagerSettingsService } from '@fman/misc/services/factory-manager-settings.service';
 import { ApiService, XoRuntimeContext } from '@zeta/api';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcDialogService } from '@zeta/xc';
 
 import { InputScreenWorkflowPackage, RestorableRouteComponent } from '../restorable-route.component';
@@ -55,8 +55,8 @@ export class RestorableOrderInputSourcesComponent extends RestorableRouteCompone
     ) {
         super(apiService, dialogService, route, router, i18nService, injector, settings);
 
-        this.i18nService.setTranslations(I18nService.DE_DE, order_input_sources_translations_de_DE);
-        this.i18nService.setTranslations(I18nService.EN_US, order_input_sources_translations_en_US);
+        this.i18nService.setTranslations(LocaleService.DE_DE, order_input_sources_translations_de_DE);
+        this.i18nService.setTranslations(LocaleService.EN_US, order_input_sources_translations_en_US);
     }
 
     ngOnInit() {

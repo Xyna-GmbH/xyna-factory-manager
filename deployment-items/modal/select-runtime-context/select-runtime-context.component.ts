@@ -18,7 +18,7 @@
 import { Component, Injector } from '@angular/core';
 
 import { XoRuntimeContext } from '@zeta/api';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcAutocompleteDataWrapper, XcDialogComponent } from '@zeta/xc';
 
 import { FMFocusCandidateRef } from '../../../misc/directives/fm-focus-candidate.directive';
@@ -60,8 +60,8 @@ export class SelectRuntimeContextComponent extends XcDialogComponent<boolean, Se
     constructor(injector: Injector, private readonly i18n: I18nService) {
         super(injector);
 
-        this.i18n.setTranslations(I18nService.DE_DE, selectRuntimeContext_translations_de_DE);
-        this.i18n.setTranslations(I18nService.EN_US, selectRuntimeContext_translations_en_US);
+        this.i18n.setTranslations(LocaleService.DE_DE, selectRuntimeContext_translations_de_DE);
+        this.i18n.setTranslations(LocaleService.EN_US, selectRuntimeContext_translations_en_US);
 
         this.runtimeContextsDataWrapper = new XcAutocompleteDataWrapper(
             () => this.selectedServerRuntimeContext,

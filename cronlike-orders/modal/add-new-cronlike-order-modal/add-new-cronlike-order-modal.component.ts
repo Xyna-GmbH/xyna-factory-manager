@@ -19,7 +19,7 @@ import { Component, Injector, ViewChild } from '@angular/core';
 
 import { ApiService, FullQualifiedName, RuntimeContext, StartOrderOptionsBuilder, XoApplication, XoRuntimeContext, XoWorkspace } from '@zeta/api';
 import { isString } from '@zeta/base';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcAutocompleteDataWrapper, XcDialogComponent, XcFormDirective } from '@zeta/xc';
 
 import { InputParameterRef } from '../../../misc/components/input-parameter/input-parameter-ref.class';
@@ -161,8 +161,8 @@ export class AddNewCronlikeOrderModalComponent extends XcDialogComponent<boolean
     constructor(injector: Injector, private readonly apiService: ApiService, private readonly i18n: I18nService) {
         super(injector);
 
-        this.i18n.setTranslations(I18nService.DE_DE, addNewCronlikeOrderModal_translations_de_DE);
-        this.i18n.setTranslations(I18nService.EN_US, addNewCronlikeOrderModal_translations_en_US);
+        this.i18n.setTranslations(LocaleService.DE_DE, addNewCronlikeOrderModal_translations_de_DE);
+        this.i18n.setTranslations(LocaleService.EN_US, addNewCronlikeOrderModal_translations_en_US);
 
         this.inputParameterRef.referenceIsEstablished.subscribe(ref => this.updateInputParameterTree());
 

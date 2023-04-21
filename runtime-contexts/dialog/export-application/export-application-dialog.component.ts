@@ -21,7 +21,7 @@ import { XoManagedFileId } from '@fman/runtime-contexts/xo/xo-managed-file-id.mo
 import { XoRuntimeApplication } from '@fman/runtime-contexts/xo/xo-runtime-application.model';
 
 import { ApiService, StartOrderOptionsBuilder } from '@zeta/api';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcDialogComponent, XcDialogService } from '@zeta/xc';
 
 import { filter, finalize } from 'rxjs/operators';
@@ -46,8 +46,8 @@ export class ExportApplicationDialogComponent extends XcDialogComponent<boolean,
 
         this.application = this.injectedData.proxy();
 
-        this.i18n.setTranslations(I18nService.DE_DE, exportapplication_translations_de_DE);
-        this.i18n.setTranslations(I18nService.EN_US, exportapplication_translations_en_US);
+        this.i18n.setTranslations(LocaleService.DE_DE, exportapplication_translations_de_DE);
+        this.i18n.setTranslations(LocaleService.EN_US, exportapplication_translations_en_US);
     }
 
 

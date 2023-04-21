@@ -19,7 +19,7 @@ import { Component, Injector } from '@angular/core';
 
 import { XoDeleteDuplicatesResponse } from '@fman/runtime-contexts/xo/xo-delete-duplicates-response.model';
 import { ApiService, StartOrderOptionsBuilder } from '@zeta/api';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcDialogComponent, XcDialogService } from '@zeta/xc';
 
 import { throwError } from 'rxjs';
@@ -43,8 +43,8 @@ export class DeleteDuplicatesDialogComponent extends XcDialogComponent<boolean, 
     constructor(injector: Injector, private readonly apiService: ApiService, private readonly dialogService: XcDialogService, private readonly i18n: I18nService) {
         super(injector);
 
-        this.i18n.setTranslations(I18nService.DE_DE, deleteDuplicates_translations_de_DE);
-        this.i18n.setTranslations(I18nService.EN_US, deleteDuplicates_translations_en_US);
+        this.i18n.setTranslations(LocaleService.DE_DE, deleteDuplicates_translations_de_DE);
+        this.i18n.setTranslations(LocaleService.EN_US, deleteDuplicates_translations_en_US);
     }
 
 

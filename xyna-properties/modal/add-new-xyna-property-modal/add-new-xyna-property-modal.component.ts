@@ -19,7 +19,7 @@ import { Component, Injector, ViewChild } from '@angular/core';
 
 import { ApiService, RuntimeContext, StartOrderOptionsBuilder } from '@zeta/api';
 import { XoDocumentation, XoDocumentationLanguage, XoXynaProperty } from '@zeta/auth/xo/xyna-property.model';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcDialogComponent, XcFormDirective } from '@zeta/xc';
 
 import { FMFocusCandidateRef } from '../../../misc/directives/fm-focus-candidate.directive';
@@ -81,8 +81,8 @@ export class AddNewXynaPropertyModalComponent extends XcDialogComponent<boolean,
     constructor(injector: Injector, private readonly i18n: I18nService) {
         super(injector);
 
-        this.i18n.setTranslations(I18nService.DE_DE, addNewXynaProperty_translations_de_DE);
-        this.i18n.setTranslations(I18nService.EN_US, addNewXynaProperty_translations_en_US);
+        this.i18n.setTranslations(LocaleService.DE_DE, addNewXynaProperty_translations_de_DE);
+        this.i18n.setTranslations(LocaleService.EN_US, addNewXynaProperty_translations_en_US);
 
         const addXoDocumentation = () => {
             const doc = new XoDocumentation();

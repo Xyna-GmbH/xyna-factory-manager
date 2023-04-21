@@ -20,7 +20,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { FactoryManagerSettingsService } from '@fman/misc/services/factory-manager-settings.service';
 import { ApiService } from '@zeta/api/api.service';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcDialogService } from '@zeta/xc';
 
 import { RestorableRouteComponent } from '../restorable-route.component';
@@ -51,8 +51,8 @@ export class RestorableTimeControlledOrderComponent extends RestorableRouteCompo
     ) {
         super(apiService, dialogService, route, router, i18nService, injector, settings);
 
-        this.i18nService.setTranslations(I18nService.DE_DE, tco_translations_de_DE);
-        this.i18nService.setTranslations(I18nService.EN_US, tco_translations_en_US);
+        this.i18nService.setTranslations(LocaleService.DE_DE, tco_translations_de_DE);
+        this.i18nService.setTranslations(LocaleService.EN_US, tco_translations_en_US);
     }
 
     ngOnInit() {

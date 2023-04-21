@@ -18,7 +18,7 @@
 import { Component, Injector } from '@angular/core';
 
 import { RuntimeContext, Xo } from '@zeta/api';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcDialogComponent } from '@zeta/xc';
 
 import { workflowTester_translations_de_DE } from './locale/workflow-tester-translations.de-DE';
@@ -41,7 +41,7 @@ export class WorkflowTesterDialogComponent extends XcDialogComponent<void, Workf
     constructor(injector: Injector, private readonly i18nService: I18nService) {
         super(injector);
 
-        this.i18nService.setTranslations(I18nService.DE_DE, workflowTester_translations_de_DE);
-        this.i18nService.setTranslations(I18nService.EN_US, workflowTester_translations_en_US);
+        this.i18nService.setTranslations(LocaleService.DE_DE, workflowTester_translations_de_DE);
+        this.i18nService.setTranslations(LocaleService.EN_US, workflowTester_translations_en_US);
     }
 }
