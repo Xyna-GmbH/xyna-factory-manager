@@ -1,6 +1,6 @@
 ## XYNA FACTOPY MANAGER
 
-The [Xyna Factory Manager](https://github.com/GIP-SmartMercial/xyna-factory-manager/wiki) bundles the management of Order Types, scheduled Orders (Cron-like Orders and Time-Controlled Orders), resources (e.g. Capacities and Administrative Vetoes) and Xyna Properties.
+The [Xyna Factory Manager](https://github.com/Xyna-GmbH/xyna-factory-manager/wiki) bundles the management of Order Types, scheduled Orders (Cron-like Orders and Time-Controlled Orders), resources (e.g. Capacities and Administrative Vetoes) and Xyna Properties.
 
 ### Wiki and Build
-* [Xyna Factory Manager](https://github.com/GIP-SmartMercial/xyna-factory-manager/wiki)
+* [Xyna Factory Manager](https://github.com/Xyna-GmbH/xyna-factory-manager/wiki)
