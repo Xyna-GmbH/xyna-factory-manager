@@ -1,10 +1,10 @@
 <div class="rule grid-12">
     <div class="rule-item col-4">{{injectedData.rule.filter}}</div>
-    <div class="rule-item col-4">{{injectedData.rule.value}}</div>
+    <div class="rule-item col-4" xc-tooltip={{injectedData.rule.value}}>{{injectedData.rule.value}}</div>
     <div class="rule-item col-0"></div>
     <div class="rule-item col-3">{{injectedData.rule.precedence}}</div>
     <xc-icon-button class="delete col-1" xc-icon-name="delete"
-        xc-tooltip="tooltip-delete" 
+        xc-tooltip="tooltip-delete"
         xc-i18n
         (click)="dismiss()"
     ></xc-icon-button>

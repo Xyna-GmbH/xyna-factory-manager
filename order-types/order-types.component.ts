@@ -112,7 +112,7 @@ export class OrderTypesComponent extends RestorableOrderTypesComponent implement
     }
 
     childOrderInheritanceRulesFilter: string;
-    childOrderInheritanceRulesMonitoringLevel = 20;
+    childOrderInheritanceRulesMonitoringLevel = '20';
     childOrderInheritanceRulesMonitoringLevelDataWrapper: XcAutocompleteDataWrapper;
 
     childOrderInheritanceRulesPrecedence: number;
@@ -180,26 +180,26 @@ export class OrderTypesComponent extends RestorableOrderTypesComponent implement
 
         this.monitoringLevelDataWrapper = new XcAutocompleteDataWrapper(
             () => this.detailsObject ? this.detailsObject.monitoringLevel : null,
-            (value: number) => {
+            (value: string) => {
                 if (this.detailsObject) {
                     this.detailsObject.monitoringLevel = value;
                 }
             },
             [
-                { name: this.i18nService.translate(this.USE_DEFAULT), value: -1 },
-                { name: '0', value: 0 },
-                { name: '5', value: 5 },
-                { name: '10', value: 10 },
-                { name: '15', value: 15 },
-                { name: '17', value: 17 },
-                { name: '18', value: 18 },
-                { name: '20', value: 20 }
+                { name: this.i18nService.translate(this.USE_DEFAULT), value: '-1' },
+                { name: '0', value: '0' },
+                { name: '5', value: '5' },
+                { name: '10', value: '10' },
+                { name: '15', value: '15' },
+                { name: '17', value: '17' },
+                { name: '18', value: '18' },
+                { name: '20', value: '20' }
             ]
         );
 
         this.childOrderInheritanceRulesMonitoringLevelDataWrapper = new XcAutocompleteDataWrapper(
             () => this.childOrderInheritanceRulesMonitoringLevel,
-            (value: number) => this.childOrderInheritanceRulesMonitoringLevel = value,
+            (value: string) => this.childOrderInheritanceRulesMonitoringLevel = value,
             this.monitoringLevelDataWrapper.values
         );
 
@@ -266,7 +266,16 @@ export class OrderTypesComponent extends RestorableOrderTypesComponent implement
         this.handleStartOrderResult(obs, output => {
 
             this.detailsObject = (output[0] || null) as XoOrderType;
-            this.detailsObject.monitoringLevel = (this.detailsObject.monitoringLevel >= 0) ? this.detailsObject.monitoringLevel : -1;
+            if (this.detailsObject.monitoringLevel) {
+                const negativnumber = new RegExp('^-\\d+$');
+                if (negativnumber.test(this.detailsObject.monitoringLevel)) {
+                    this.detailsObject.monitoringLevel = '-1';
+                } else if (!this.monitoringLevelDataWrapper.values.find(item => item.value === this.detailsObject.monitoringLevel)) {
+                    this.monitoringLevelDataWrapper.values.push({name: this.detailsObject.monitoringLevel, value: this.detailsObject.monitoringLevel});
+                }
+            } else {
+                this.detailsObject.monitoringLevel = '-1';
+            }
             this._getDestinations();
 
             // #region - TODO - this logic may belong to the server ?!
@@ -282,7 +291,6 @@ export class OrderTypesComponent extends RestorableOrderTypesComponent implement
             this.monitoringLevelDataWrapper.update();
             this.updateChildOrderInheritanceRules();
             // default values;
-            this.childOrderInheritanceRulesMonitoringLevel = 20;
             this.childOrderInheritanceRulesFilter = '*';
             this.childOrderInheritanceRulesPrecedence = 0;
 
