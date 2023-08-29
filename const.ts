@@ -41,6 +41,7 @@ export const RIGHT_FACTORY_MANAGER_DEPLOYMENT_ITEMS = 'xfmg.xfctrl.deploymentIte
 export const RIGHT_FACTORY_MANAGER_STORABLE_INSTANCES = 'xnwh.persistence.Storables';
 export const RIGHT_FACTORY_MANAGER_DATA_MODELS = 'xfmg.xfctrl.dataModels';
 export const RIGHT_FACTORY_MANAGER_XYNA_PROPERTIES = 'xfmg.xfctrl.XynaProperties';
+export const PROCESS_MODELLER_TAB_URL = '/xfm/Process-Modeller?tab=';
 
 export const FACTORY_MANAGER = {
     WORKSPACES: 'workspaces',

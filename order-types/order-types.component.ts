@@ -28,7 +28,7 @@ import { XcAutocompleteDataWrapper, XcDialogService, XcFormDirective, XcRemoteTa
 import { Subscription } from 'rxjs';
 
 import { XoCapacityInformation, XoCapacityInformationArray } from '../capacities/xo/xo-capacity-information.model';
-import { FM_RTC } from '../const';
+import { FM_RTC, PROCESS_MODELLER_TAB_URL } from '../const';
 import { FactoryManagerSettingsService } from '../misc/services/factory-manager-settings.service';
 import { XoDestinationTypeArray } from '../xo/xo-destination-type.model';
 import { XoParameterInheritanceRule } from '../xo/xo-parameter-inheritance-rule.model';
@@ -43,7 +43,6 @@ import { XoOrderType, XoOrderTypeArray } from './xo/xo-order-type.model';
 
 
 export const EXECUTION_DESTINATION_DOCUMENT_TYPE = 'workflow';
-export const PROCESS_MODELLER_TAB_URL = '/xfm/Process-Modeller?tab=';
 
 // FIXME: build from constants in factory-manager.routing
 export const ORDER_TYPES_URL = '/xfm/Factory-Manager/ordertypes';
@@ -530,7 +529,7 @@ export class OrderTypesComponent extends RestorableOrderTypesComponent implement
             return;
         }
 
-        const url: string = PROCESS_MODELLER_TAB_URL + QueryParamService.createQueryValue(this.runtimeContextString, this.executionDestinationDataWrapper.value.name, EXECUTION_DESTINATION_DOCUMENT_TYPE);
+        const url = PROCESS_MODELLER_TAB_URL + QueryParamService.createQueryValue(this.runtimeContextString, this.executionDestinationDataWrapper.value.name, EXECUTION_DESTINATION_DOCUMENT_TYPE);
         void this.router.navigateByUrl(url);
     }
 

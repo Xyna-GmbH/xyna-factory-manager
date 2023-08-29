@@ -25,7 +25,7 @@ import { XcAutocompleteDataWrapper, XcDialogService, XcOptionItem, XoRemappingTa
 
 import { filter, map } from 'rxjs/operators';
 
-import { FM_RTC } from '../const';
+import { FM_RTC, PROCESS_MODELLER_TAB_URL } from '../const';
 import { FactoryManagerSettingsService } from '../misc/services/factory-manager-settings.service';
 import { WorkflowTesterDialogComponent } from '../workflow-tester/workflow-tester-dialog.component';
 import { DeleteReportComponent, DeleteReportComponentData } from './modal/delete-report/delete-report.component';
@@ -40,7 +40,7 @@ import { XoUndeployDeploymentItemParam, XoUndeployDeploymentItemParamArray } fro
 import { QueryParamService } from '@fman/misc/services/query-param.service';
 
 
-export const PROCESS_MODELLER_TAB_URL = '/xfm/Process-Modeller?tab=';
+
 const ISWP = DEPLOYMENT_ITEMS_ISWP;
 
 
@@ -372,14 +372,14 @@ export class DeploymentItemsComponent extends RestorableDeploymentItemsComponent
         }).afterDismiss().subscribe();
     }
 
-    open(type:string) {
+    open(type: string) {
         const item = this.selection[0]
         const rtc = this.selectedRuntimeContext.toString();
-        const url: string = PROCESS_MODELLER_TAB_URL + QueryParamService.createQueryValue(rtc, item.id.name, type);
+        const url = PROCESS_MODELLER_TAB_URL + QueryParamService.createQueryValue(rtc, item.id.name, type);
         void this.router.navigateByUrl(url);
     }
 
-    singleObject(type:string): boolean {
+    singleObject(type: string): boolean {
         return this.selection.length === 1 && this.selection[0].id.type === type;
     }
 
