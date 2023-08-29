@@ -37,8 +37,10 @@ import { XoDeleteDeploymentItemResultArray } from './xo/xo-delete-deployment-ite
 import { XoDeploymentItem, XoDeploymentItemArray } from './xo/xo-deployment-item.model';
 import { XoUndeployDeploymentItemResultArray } from './xo/xo-undeploy-deployment-item-result.model';
 import { XoUndeployDeploymentItemParam, XoUndeployDeploymentItemParamArray } from './xo/xo-undeployment-deployment-item-param.model';
+import { QueryParamService } from '@fman/misc/services/query-param.service';
 
 
+export const PROCESS_MODELLER_TAB_URL = '/xfm/Process-Modeller?tab=';
 const ISWP = DEPLOYMENT_ITEMS_ISWP;
 
 
@@ -370,6 +372,16 @@ export class DeploymentItemsComponent extends RestorableDeploymentItemsComponent
         }).afterDismiss().subscribe();
     }
 
+    open(type:string) {
+        const item = this.selection[0]
+        const rtc = this.selectedRuntimeContext.toString();
+        const url: string = PROCESS_MODELLER_TAB_URL + QueryParamService.createQueryValue(rtc, item.id.name, type);
+        void this.router.navigateByUrl(url);
+    }
+
+    singleObject(type:string): boolean {
+        return this.selection.length === 1 && this.selection[0].id.type === type;
+    }
 
     get testButtonDisabled(): boolean {
         return this.selection.length !== 1 || this.selection[0].id.type !== 'WORKFLOW';
