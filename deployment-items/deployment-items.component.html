@@ -55,6 +55,28 @@
                     [disabled]="remoteTableDataSource.selectionModel.isEmpty()"
                     xc-i18n
                 >undeploy-button</xc-button>
+                <ng-container *ngIf="singleObject('WORKFLOW')">
+                    <xc-button
+                        (click)="open('workflow')"
+                        xc-i18n
+                    >open-workflow-button</xc-button>
+                </ng-container>
+                <ng-container *ngIf="singleObject('DATATYPE')">
+                    <xc-button
+                        (click)="open('dataType')"
+                        xc-i18n
+                    >open-datatype-button</xc-button>
+                    <xc-button
+                        (click)="open('serviceGroup')"
+                        xc-i18n
+                    >open-servicegroup-button</xc-button>
+                </ng-container>
+                <ng-container *ngIf="singleObject('EXCEPTION')">
+                    <xc-button
+                        (click)="open('exceptionType')"
+                        xc-i18n
+                    >open-exception-button</xc-button>
+                </ng-container>
                 <xc-button
                     (click)="test()"
                     [disabled]="testButtonDisabled"

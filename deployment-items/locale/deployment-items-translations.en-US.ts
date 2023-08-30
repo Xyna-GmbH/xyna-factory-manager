@@ -50,6 +50,22 @@ export const deployment_items_translations_en_US: I18nTranslation[] = [
         value: 'Undeploy'
     },
     {
+        key: 'fman.deployment-items.open-workflow-button',
+        value: 'Open Workflow'
+    },
+    {
+        key: 'fman.deployment-items.open-datatype-button',
+        value: 'Open Datatype'
+    },
+    {
+        key: 'fman.deployment-items.open-servicegroup-button',
+        value: 'Open Service Group'
+    },
+    {
+        key: 'fman.deployment-items.open-exception-button',
+        value: 'Open Exception'
+    },
+    {
         key: 'fman.deployment-items.test-button',
         value: 'Test...'
     },
