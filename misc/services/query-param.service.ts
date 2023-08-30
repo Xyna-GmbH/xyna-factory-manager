@@ -20,20 +20,36 @@ import { Injectable } from '@angular/core';
 import { encodeURIComponentRFC1738 } from '@zeta/base';
 
 
+/**
+ * @deprecated
+ * Use UrlQueryParam from zeta/nav, instead
+ */
 export interface UrlQueryParam {
     key?: string;
     value?: string;
 }
 
+/**
+ * @deprecated
+ * Use UrlQueryParamDecode from zeta/nav, instead
+ */
 export function UrlQueryParamDecode(rawString: string): UrlQueryParam {
     const index = rawString.indexOf('=');
     return index > -1 ? { key: rawString.substr(0, index), value: rawString.substr(index + 1)} : {};
 }
 
+/**
+ * @deprecated
+ * Use UrlQueryParamConflictResolutionMethod from zeta/nav, instead
+ */
 export enum UrlQueryParamConflictResolutionMethod {
     Replace = 1, None
 }
 
+/**
+ * @deprecated
+ * Use QueryParameterService from zeta/nav, instead
+ */
 @Injectable()
 export class QueryParamService {
 
