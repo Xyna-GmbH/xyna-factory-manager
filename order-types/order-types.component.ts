@@ -18,7 +18,6 @@
 import { Component, Injector, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { QueryParamService } from '@fman/misc/services/query-param.service';
 import { XmomObjectType } from '@pmod/api/xmom-types';
 import { XoRuntimeContext } from '@pmod/xo/runtime-context.model';
 import { ApiService, FullQualifiedName, StartOrderOptionsBuilder } from '@zeta/api';
@@ -40,6 +39,7 @@ import { XoExecutionDestinationFilter } from './xo/xo-execution-destination-filt
 import { XoOrderTypeCapacitiesTableInfo } from './xo/xo-order-type-capacities-table-info.model';
 import { XoOrderTypeName } from './xo/xo-order-type-name.model';
 import { XoOrderType, XoOrderTypeArray } from './xo/xo-order-type.model';
+import { QueryParameterService } from '@zeta/nav/query-parameter.service';
 
 
 export const EXECUTION_DESTINATION_DOCUMENT_TYPE = 'workflow';
@@ -55,7 +55,7 @@ const ISWP = ORDER_TYPE_ISWP;
 })
 export class OrderTypesComponent extends RestorableOrderTypesComponent implements OnDestroy {
 
-    private readonly queryParamService: QueryParamService;
+    private readonly queryParamService: QueryParameterService;
 
     @ViewChild(XcFormDirective, { static: false })
     xcFormDirective: XcFormDirective;
@@ -529,7 +529,7 @@ export class OrderTypesComponent extends RestorableOrderTypesComponent implement
             return;
         }
 
-        const url = PROCESS_MODELLER_TAB_URL + QueryParamService.createQueryValue(this.runtimeContextString, this.executionDestinationDataWrapper.value.name, EXECUTION_DESTINATION_DOCUMENT_TYPE);
+        const url = PROCESS_MODELLER_TAB_URL + QueryParameterService.createQueryValue(this.runtimeContextString, this.executionDestinationDataWrapper.value.name, EXECUTION_DESTINATION_DOCUMENT_TYPE);
         void this.router.navigateByUrl(url);
     }
 
