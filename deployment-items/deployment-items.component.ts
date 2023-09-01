@@ -373,7 +373,7 @@ export class DeploymentItemsComponent extends RestorableDeploymentItemsComponent
     }
 
     open(type: string) {
-        const item = this.selection[0]
+        const item = this.selection[0];
         const rtc = this.selectedRuntimeContext.toString();
         const url = PROCESS_MODELLER_TAB_URL + QueryParamService.createQueryValue(rtc, item.id.name, type);
         void this.router.navigateByUrl(url);
