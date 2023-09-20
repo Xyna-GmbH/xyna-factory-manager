@@ -28,7 +28,7 @@ export class XoParameterInheritanceRule extends XoObject {
 
 
     @XoProperty()
-    value: number;
+    value: string;
 
 
     @XoProperty()

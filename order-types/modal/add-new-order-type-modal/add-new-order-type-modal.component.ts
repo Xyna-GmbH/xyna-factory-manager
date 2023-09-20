@@ -137,7 +137,7 @@ export class AddNewOrderTypeModalComponent extends XcDialogComponent<boolean, Ad
     }
 
     childOrderInheritanceRulesFilter: string;
-    childOrderInheritanceRulesMonitoringLevel = 20;
+    childOrderInheritanceRulesMonitoringLevel = '20';
     childOrderInheritanceRulesMonitoringLevelDataWrapper: XcAutocompleteDataWrapper;
 
     childOrderInheritanceRulesPrecedence: number;
@@ -160,7 +160,7 @@ export class AddNewOrderTypeModalComponent extends XcDialogComponent<boolean, Ad
             this._useDuplicate(this.injectedData.duplicate.clone());
         } else {
             this.orderType = new XoOrderType();
-            this.orderType.monitoringLevel = -1;
+            this.orderType.monitoringLevel = '-1';
             this.orderType.monitoringLevelIsCustom = true;
         }
 
@@ -183,22 +183,22 @@ export class AddNewOrderTypeModalComponent extends XcDialogComponent<boolean, Ad
 
         this.monitoringLevelDataWrapper = new XcAutocompleteDataWrapper(
             () => this.orderType.monitoringLevel,
-            (value: number) => this.orderType.monitoringLevel = value,
+            (value: string) => this.orderType.monitoringLevel = value,
             [
-                {name: this.injectedData.USE_DEFAULT, value: -1},
-                {name: '0', value: 0},
-                {name: '5', value: 5},
-                {name: '10', value: 10},
-                {name: '15', value: 15},
-                {name: '17', value: 17},
-                {name: '18', value: 18},
-                {name: '20', value: 20}
+                {name: this.injectedData.USE_DEFAULT, value: '-1'},
+                {name: '0', value: '0'},
+                {name: '5', value: '5'},
+                {name: '10', value: '10'},
+                {name: '15', value: '15'},
+                {name: '17', value: '17'},
+                {name: '18', value: '18'},
+                {name: '20', value: '20'}
             ]
         );
 
         this.childOrderInheritanceRulesMonitoringLevelDataWrapper = new XcAutocompleteDataWrapper(
             () => this.childOrderInheritanceRulesMonitoringLevel,
-            (value: number) => this.childOrderInheritanceRulesMonitoringLevel = value,
+            (value: string) => this.childOrderInheritanceRulesMonitoringLevel = value,
             this.monitoringLevelDataWrapper.values
         );
 
@@ -220,7 +220,7 @@ export class AddNewOrderTypeModalComponent extends XcDialogComponent<boolean, Ad
         this.monitoringLevelDataWrapper.update();
         this.updateChildOrderInheritanceRules();
         // default values;
-        this.childOrderInheritanceRulesMonitoringLevel = 20;
+        this.childOrderInheritanceRulesMonitoringLevel = '20';
         this.childOrderInheritanceRulesFilter = '*';
         this.childOrderInheritanceRulesPrecedence = 0;
 

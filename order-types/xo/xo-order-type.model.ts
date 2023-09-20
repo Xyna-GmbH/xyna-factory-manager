@@ -64,7 +64,11 @@ export class XoOrderType extends XoObject {
 
 
     @XoProperty()
-    monitoringLevel: number;
+    evaluatedMonitoringLevel: number;
+
+
+    @XoProperty()
+    monitoringLevel: string;
 
 
     @XoProperty()
