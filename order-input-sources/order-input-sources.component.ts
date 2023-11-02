@@ -189,11 +189,9 @@ export class OrderInputSourcesComponent extends RestorableOrderInputSourcesCompo
             UNSPECIFIED_GET_RUNTIME_CONTEXTS_ERROR: this.UNSPECIFIED_GET_RUNTIME_CONTEXTS_ERROR
         };
 
-        this.dialogService.custom<boolean, AddNewOrderInputSourceModalComponentData>(AddNewOrderInputSourceModalComponent, data).afterDismissResult().subscribe(
-            result => {
-                if (result) { this.refresh(); }
-            }
-        );
+        this.dialogService.custom<boolean, AddNewOrderInputSourceModalComponentData>(AddNewOrderInputSourceModalComponent, data).afterDismissResult()
+            .pipe(filter(result => !!result))
+            .subscribe(() => this.refresh());
     }
 
 

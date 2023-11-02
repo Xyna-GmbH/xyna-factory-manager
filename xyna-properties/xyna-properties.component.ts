@@ -28,6 +28,7 @@ import { FactoryManagerSettingsService } from '../misc/services/factory-manager-
 import { AddNewXynaPropertyModalComponent, AddNewXynaPropertyModalComponentData } from './modal/add-new-xyna-property-modal/add-new-xyna-property-modal.component';
 import { RestorableXynaPropertiesComponent, XYNA_PROPERTY_ISWP } from './restorable-xyna-properties.component';
 import { XynaPropertyTableValueTemplateComponent, XynaPropertyTableValueTemplateData } from './templates/xyna-property-table-value-template.model';
+import { filter } from 'rxjs';
 
 
 const ISWP = XYNA_PROPERTY_ISWP;
@@ -155,9 +156,9 @@ export class XynaPropertiesComponent extends RestorableXynaPropertiesComponent {
         };
 
         this.dialogService.custom<boolean, AddNewXynaPropertyModalComponentData>
-        (AddNewXynaPropertyModalComponent, data).afterDismissResult().subscribe(result => {
-            if (result) { this.refresh(); }
-        });
+        (AddNewXynaPropertyModalComponent, data).afterDismissResult()
+            .pipe(filter(result => !!result))
+            .subscribe(() => this.refresh());
     }
 
     duplicate(entry: XoXynaProperty) {

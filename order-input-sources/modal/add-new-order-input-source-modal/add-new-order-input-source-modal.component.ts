@@ -443,7 +443,9 @@ export class AddNewOrderInputSourceModalComponent extends XcDialogComponent<bool
                 switch (parameter.key) {
                     case OrderInputSourceParameterKey.ConstantMonitoringLevel
                         : this.monitoringLevel = parameter.value;
-                        if (this.monitoringLevelDataWrapper) { this.monitoringLevelDataWrapper.update(); } break;
+                        if (this.monitoringLevelDataWrapper) {
+                            this.monitoringLevelDataWrapper.update();
+                        } break;
                     case OrderInputSourceParameterKey.ConstantCustomField1
                         : this.customField1 = parameter.value; break;
                     case OrderInputSourceParameterKey.ConstantCustomField2
