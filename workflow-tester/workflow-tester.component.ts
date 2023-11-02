@@ -228,8 +228,7 @@ export class WorkflowTesterComponent {
                     this.test.orderType = this.orderType;
                     this.test.signatureKey = signatureKey;
                     WorkflowTesterComponent.history.set(testkey, this.test);
-                }
-                else if (!this.input) {
+                } else if (!this.input) {
                     if (this.test.input) {
                         this.input = this.test.input;
                     }

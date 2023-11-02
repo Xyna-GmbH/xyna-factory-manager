@@ -139,7 +139,9 @@ export class RestorableRouteComponent<T extends XoObject = XoObject, D = T> exte
         uniqueKeys.forEach(key => {
             const val = qParams[key];
             tmpInstance[key] = val;
-            if (val) { uniqueValues.push(val); }
+            if (val) {
+                uniqueValues.push(val);
+            }
         });
         return tmpInstance.uniqueKey;
     }
@@ -195,7 +197,7 @@ export class RestorableRouteComponent<T extends XoObject = XoObject, D = T> exte
                 console.error(error);
             },
             () => {
-                if (finalizer) { finalizer(); }
+                finalizer?.();
             }
         );
     }

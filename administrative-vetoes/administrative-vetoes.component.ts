@@ -28,6 +28,7 @@ import { AddNewAdministrativeVetoModalComponent, AddNewAdministrativeVetoModalDa
 import { ADMINISTRATIVE_VETOES_ISWP, RestorableAdministrativeVetoComponent } from './restorable-administrative-vetoes.component';
 import { XoAdministrativeVetoName } from './xo/xo-administrative-veto-name.mode';
 import { XoAdministrativeVeto, XoAdministrativeVetoArray } from './xo/xo-administrative-veto.model';
+import { filter } from 'rxjs';
 
 
 const ISWP = ADMINISTRATIVE_VETOES_ISWP;
@@ -98,9 +99,8 @@ export class AdministrativeVetoesComponent extends RestorableAdministrativeVetoC
         };
 
         this.dialogService.custom<boolean, AddNewAdministrativeVetoModalData>(AddNewAdministrativeVetoModalComponent, data).afterDismissResult()
-            .subscribe(result => {
-                if (result) { this.refresh(); }
-            });
+            .pipe(filter(result => !!result))
+            .subscribe(() => this.refresh());
     }
 
     delete(entry: XoAdministrativeVeto) {

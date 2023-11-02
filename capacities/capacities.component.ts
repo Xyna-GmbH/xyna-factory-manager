@@ -28,6 +28,7 @@ import { AddNewCapacityModalComponent, AddNewCapacityModalComponentData } from '
 import { CAPACITY_ISWP, RestorableCapacitiesComponent } from './restorable-capacities.component';
 import { XoCapacityInformation, XoCapacityInformationArray } from './xo/xo-capacity-information.model';
 import { XoCapacityName } from './xo/xo-capacity-name.model';
+import { filter } from 'rxjs';
 
 
 const ISWP = CAPACITY_ISWP;
@@ -117,9 +118,8 @@ export class CapacitiesComponent extends RestorableCapacitiesComponent {
         };
 
         this.dialogService.custom<boolean, AddNewCapacityModalComponentData>(AddNewCapacityModalComponent, data).afterDismissResult()
-            .subscribe(result => {
-                if (result) { this.refresh(); }
-            });
+            .pipe(filter(result => !!result))
+            .subscribe(() => this.refresh());
     }
 
     duplicate(entry: XoCapacityInformation) {
