@@ -391,45 +391,31 @@ export class StorableInstancesComponent implements OnInit {
      * @description Deletes a storable and decycles its children if it contains some complex types
      */
     private deleteStorable(storableRow: any): void {
-        const tableHasComplexTypes = this.storableTableSource.localTableData.columns.some((col: any) => col.complex);
-
         this.dialogService
             .confirm(this.i18nService.translate('fman.storable-instances.delete'), this.i18nService.translate('fman.storable-instances.delete-confirm-message'))
-            .afterDismiss()
-            .subscribe((isConfirmed: boolean) => {
-                if (isConfirmed) {
-                    if (tableHasComplexTypes) {
-                        // Decycles the object so the apiService can build a JSON string
-                        for (const key of Object.keys(storableRow.data)) {
-                            if (typeof storableRow.data[key] === 'object') {
-                                storableRow.data[key] = null;
-                            }
-                        }
-                        this.apiService
-                            .startOrder(this.selectedRTC.toRuntimeContext(), 'xnwh.persistence.Delete', [storableRow.proxy(), new XoDeleteParameter()])
-                            .subscribe({
-                                error: error => {
-                                    console.error(error);
-                                    this.dialogService.error(error);
-                                },
-                                complete: () => {
-                                    this.refreshRows();
-                                }
-                            });
-                    } else {
-                        this.apiService
-                            .startOrder(this.selectedRTC.toRuntimeContext(), 'xnwh.persistence.Delete', [storableRow, new XoDeleteParameter()])
-                            .subscribe({
-                                error: error => {
-                                    console.error(error);
-                                    this.dialogService.error(error);
-                                },
-                                complete: () => {
-                                    this.refreshRows();
-                                }
-                            });
+            .afterDismiss().pipe(filter(isConfirmed => isConfirmed))
+            .subscribe(() => {
+                const deleteProxy = storableRow.proxy();
+
+                // decycles (i. e. deletes all complex members) the object so the apiService can build a JSON string
+                for (const key of Object.keys(deleteProxy.data)) {
+                    if (typeof deleteProxy.data[key] === 'object') {
+                        deleteProxy.data[key] = null;
                     }
                 }
+                this.apiService.startOrder(
+                    this.selectedRTC.toRuntimeContext(),
+                    'xnwh.persistence.Delete',
+                    [deleteProxy, new XoDeleteParameter()]
+                ).subscribe({
+                    error: error => {
+                        console.error(error);
+                        this.dialogService.error(error);
+                    },
+                    complete: () => {
+                        this.refreshRows();
+                    }
+                });
             });
     }
 
