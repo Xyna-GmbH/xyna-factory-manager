@@ -15,20 +15,19 @@
  * limitations under the License.
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
-import { Component, Injector } from '@angular/core';
+import { ChangeDetectorRef, Component, Injector } from '@angular/core';
 
 import { ApiService, StartOrderOptionsBuilder } from '@zeta/api';
 import { I18nService } from '@zeta/i18n';
-import { XcDialogComponent, XcDialogService } from '@zeta/xc';
+import { XcAutocompleteDataWrapper, XcDialogComponent, XcDialogService, XcOptionItem, XcOptionItemString } from '@zeta/xc';
 
 import { FM_RTC } from '../../../const';
 import { ORDER_TYPES } from '../../order-types';
 import { XoFilterInstance } from '@fman/trigger-and-filter/xo/xo-filter-instance.model';
 import { XoDeployFilterRequest } from '@fman/trigger-and-filter/xo/xo-deploy-filter-request.model';
-import { FactoryService } from '@pmod/navigation/factory.service';
-import { XoWorkspace } from '@fman/runtime-contexts/xo/xo-workspace.model';
-import { XoRuntimeApplication } from '@fman/runtime-contexts/xo/xo-runtime-application.model';
 import { XoFilter } from '@fman/trigger-and-filter/xo/xo-filter.model';
+import { XoRuntimeContext, XoRuntimeContextArray } from '@fman/runtime-contexts/xo/xo-runtime-context.model';
+import { XoTriggerInstance, XoTriggerInstanceArray } from '@fman/trigger-and-filter/xo/xo-trigger-instance.model';
 
 
 
@@ -39,37 +38,78 @@ import { XoFilter } from '@fman/trigger-and-filter/xo/xo-filter.model';
 export class DeployFilterDialogComponent extends XcDialogComponent<XoFilterInstance, XoFilter> {
 
     instance: string;
-    triggerInstance: string;
     parameter: string;
     documentation: string;
     optional: boolean;
+
+    context: XoRuntimeContext;
+    triggerInstance: string;
+
+    runtimeContextDataWrapper: XcAutocompleteDataWrapper<XoRuntimeContext> = new XcAutocompleteDataWrapper<XoRuntimeContext>(
+        () => this.context,
+        value => {
+            this.context = value;
+            this.fillTriggerInstanceWrapper();
+        });
+
+    triggerInstanceDataWrapper: XcAutocompleteDataWrapper<string> = new XcAutocompleteDataWrapper<string>(
+        () => this.triggerInstance,
+        value => {
+            this.triggerInstance = value;
+        });
 
     constructor(injector: Injector,
         private readonly apiService: ApiService,
         private readonly dialogService: XcDialogService,
         private readonly i18n: I18nService,
-        public factoryService: FactoryService) {
+        private readonly cdr: ChangeDetectorRef) {
         super(injector);
+
+        this.fillContextWrapper();
+        this.runtimeContextDataWrapper.valuesChange.subscribe({
+            next: () => this.fillTriggerInstanceWrapper()
+        });
+    }
+
+    fillContextWrapper() {
+        this.apiService.startOrderAssertFlat<XoRuntimeContext>(FM_RTC, ORDER_TYPES.POSSIBLE_CONTEXT_FILTER, this.injectedData, XoRuntimeContextArray)
+            .subscribe({
+                next: result => {
+                    this.runtimeContextDataWrapper.values = result.map(rtc => <XcOptionItem<XoRuntimeContext>>{ name: rtc.label, value: rtc });
+                },
+                error: err => {
+                    this.dialogService.error(err);
+                },
+                complete: () => {
+                    this.cdr.markForCheck();
+                }
+            });
+    }
+
+    fillTriggerInstanceWrapper() {
+        this.apiService.startOrderAssertFlat<XoTriggerInstance>(FM_RTC, ORDER_TYPES.POSSIBLE_TRIGGER_INSTANCES, [this.injectedData, this.context], XoTriggerInstanceArray)
+            .subscribe({
+                next: result => {
+                    this.triggerInstanceDataWrapper.values = result.map(triggerInstance => XcOptionItemString(triggerInstance.triggerInstance));
+                },
+                error: err => {
+                    this.dialogService.error(err);
+                },
+                complete: () => {
+                    this.cdr.markForCheck();
+                }
+            });
     }
 
     deploy() {
         const request: XoDeployFilterRequest = new XoDeployFilterRequest();
         request.filterName = this.injectedData.name;
         request.filterInstanceName = this.instance;
+        request.runtimeContext = this.context;
         request.triggerInstanceName = this.triggerInstance;
         request.configurationParameter = this.parameter;
         request.documentation = this.documentation;
         request.optional = this.optional;
-        if (this.factoryService.runtimeContext.ws) {
-            const workspace: XoWorkspace =  new XoWorkspace();
-            workspace.name = this.factoryService.runtimeContext.ws.workspace;
-            request.runtimeContext = workspace;
-        } else if (this.factoryService.runtimeContext.av) {
-            const application: XoRuntimeApplication =  new XoRuntimeApplication();
-            application.name = this.factoryService.runtimeContext.av.application;
-            application.version = this.factoryService.runtimeContext.av.version;
-            request.runtimeContext = application;
-        }
 
         this.apiService.startOrder(FM_RTC, ORDER_TYPES.DEPLOY_FILTER, request, null, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage)
             .subscribe({

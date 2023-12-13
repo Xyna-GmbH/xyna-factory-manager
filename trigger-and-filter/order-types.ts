@@ -29,5 +29,8 @@ export const ORDER_TYPES = {
     FILTER_OVERVIEW: 'xmcp.factorymanager.filtermanager.GetFilterOverview',
     TRIGGER_OVERVIEW: 'xmcp.factorymanager.filtermanager.GetTriggerOverview',
     UNDEPLOY_FILTER: 'xmcp.factorymanager.filtermanager.UndeployFilterInstance',
-    UNDEPLOY_TRIGGER: 'xmcp.factorymanager.filtermanager.UndeployTriggerInstance'
+    UNDEPLOY_TRIGGER: 'xmcp.factorymanager.filtermanager.UndeployTriggerInstance',
+    POSSIBLE_TRIGGER_INSTANCES: 'xmcp.factorymanager.filtermanager.GetPossibleTriggerInstanceForFilterDeployment',
+    POSSIBLE_CONTEXT_TRIGGER: 'xmcp.factorymanager.filtermanager.GetPossibleRTCForTriggerDeployment',
+    POSSIBLE_CONTEXT_FILTER: 'xmcp.factorymanager.filtermanager.GetPossibleRTCForFilterDeployment'
 };

@@ -9,8 +9,8 @@
         ></xc-form-input>
         <xc-form-autocomplete
             xc-form-validator-required
-            [xc-form-autocomplete-option]="factoryService.runtimeContextDataWrapper.value"
-            [xc-form-autocomplete-options]="factoryService.runtimeContextDataWrapper.values"
+            [(xc-form-autocomplete-option)]="runtimeContextDataWrapper.value"
+            [xc-form-autocomplete-options]="runtimeContextDataWrapper.values"
             xc-form-autocomplete-sortdirection="asc"
             xc-form-field-suffix="clear"
             xc-form-autocomplete-fulltextsearch

@@ -37,24 +37,24 @@ export const trigger_and_filter_translations_de_DE: I18nTranslation[] = [
     { key: 'fman.taf.filter.tile.enable', value: 'Enable' },
     { key: 'fman.taf.filter.tile.disable', value: 'Disable' },
     { key: 'fman.taf.filter.tile.undeploy', value: 'Undeploy' },
-    { key: 'fman.taf.filter.tile.tooltip-enable', value: 'Schaltet die Filterinstance ein.' },
-    { key: 'fman.taf.filter.tile.tooltip-disable', value: 'Schaltet die Filterinstance aus.' },
-    { key: 'fman.taf.filter.tile.tooltip-undeploy', value: 'Löscht die Filterinstance.' },
+    { key: 'fman.taf.filter.tile.tooltip-enable', value: 'Schaltet die Filterinstanz ein.' },
+    { key: 'fman.taf.filter.tile.tooltip-disable', value: 'Schaltet die Filterinstanz aus.' },
+    { key: 'fman.taf.filter.tile.tooltip-undeploy', value: 'Löscht die Filterinstanz.' },
 
     // TriggerInstanceDetailComponent
 
     { key: 'fman.taf.trigger.tile.enable', value: 'Enable' },
     { key: 'fman.taf.trigger.tile.disable', value: 'Disable' },
     { key: 'fman.taf.trigger.tile.undeploy', value: 'Undeploy' },
-    { key: 'fman.taf.trigger.tile.tooltip-enable', value: 'Schaltet die Triggerinstance ein.' },
-    { key: 'fman.taf.trigger.tile.tooltip-disable', value: 'Schaltet die Triggerinstance aus.' },
-    { key: 'fman.taf.trigger.tile.tooltip-undeploy', value: 'Löscht die Triggerinstance.' },
+    { key: 'fman.taf.trigger.tile.tooltip-enable', value: 'Schaltet die Triggerinstanz ein.' },
+    { key: 'fman.taf.trigger.tile.tooltip-disable', value: 'Schaltet die Triggerinstanz aus.' },
+    { key: 'fman.taf.trigger.tile.tooltip-undeploy', value: 'Löscht die Triggerinstanz.' },
 
     // DeployFilterDialogComponent
 
     { key: 'fman.deploy-filter-dialog.title', value: 'Deploy Filter' },
-    { key: 'fman.deploy-filter-dialog.instance-name', value: 'Filterinstancename' },
-    { key: 'fman.deploy-filter-dialog.trigger-instance-name', value: 'Triggerinstancename' },
+    { key: 'fman.deploy-filter-dialog.instance-name', value: 'Filterinstanzname' },
+    { key: 'fman.deploy-filter-dialog.trigger-instance-name', value: 'Triggerinstanzname' },
     { key: 'fman.deploy-filter-dialog.parameter', value: 'Konfigurationsparameter' },
     { key: 'fman.deploy-filter-dialog.context', value: 'Runtime Context' },
     { key: 'fman.deploy-filter-dialog.documentation', value: 'Beschreibung' },
@@ -65,7 +65,7 @@ export const trigger_and_filter_translations_de_DE: I18nTranslation[] = [
     // DeployTriggerDialogComponent
 
     { key: 'fman.deploy-trigger-dialog.title', value: 'Deploy Trigger' },
-    { key: 'fman.deploy-trigger-dialog.instance-name', value: 'Triggerinstancename' },
+    { key: 'fman.deploy-trigger-dialog.instance-name', value: 'Triggerinstanzname' },
     { key: 'fman.deploy-trigger-dialog.parameter', value: 'Startparameter' },
     { key: 'fman.deploy-trigger-dialog.context', value: 'Runtime Context' },
     { key: 'fman.deploy-trigger-dialog.documentation', value: 'Beschreibung' },
@@ -75,14 +75,14 @@ export const trigger_and_filter_translations_de_DE: I18nTranslation[] = [
 
 
     { key: 'fman.taf.filter.tile.name', value: 'Name' },
-    { key: 'fman.taf.filter.tile.instance.name', value: 'Instancename' },
+    { key: 'fman.taf.filter.tile.instance.name', value: 'Instanzname' },
     { key: 'fman.taf.filter.tile.context', value: 'Runtime Context' },
     { key: 'fman.taf.filter.tile.description', value: 'Beschreibung' },
     { key: 'fman.taf.filter.tile.start.parameter', value: 'Startparameter' },
     { key: 'fman.taf.filter.tile.configuration.parameter', value: 'Konfigurationsparameter' },
 
     { key: 'fman.taf.trigger.tile.name', value: 'Name' },
-    { key: 'fman.taf.trigger.tile.instance.name', value: 'Instancename' },
+    { key: 'fman.taf.trigger.tile.instance.name', value: 'Instanzname' },
     { key: 'fman.taf.trigger.tile.context', value: 'Runtime Context' },
     { key: 'fman.taf.trigger.tile.description', value: 'Beschreibung' },
     { key: 'fman.taf.trigger.tile.start.parameter', value: 'Startparameter' }
