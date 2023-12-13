@@ -23,7 +23,7 @@ import { RouteComponent } from '@zeta/nav';
 import { XcNavListItem, XcNavListOrientation } from '@zeta/xc';
 import { filter } from 'rxjs';
 
-import { RIGHT_FACTORY_MANAGER_ADMINISTRATIVE_VETOES, RIGHT_FACTORY_MANAGER_CAPACITIES, RIGHT_FACTORY_MANAGER_DEPLOYMENT_ITEMS, RIGHT_FACTORY_MANAGER_ORDER_INPUT_SOURCES, RIGHT_FACTORY_MANAGER_ORDER_TYPES, RIGHT_FACTORY_MANAGER_STORABLE_INSTANCES, RIGHT_FACTORY_MANAGER_TIME_CONTROLLED_ORDERS, RIGHT_FACTORY_MANAGER_WORKSPACES_AND_APPLICATIONS, RIGHT_FACTORY_MANAGER_XYNA_PROPERTIES } from './const';
+import { RIGHT_FACTORY_MANAGER_ADMINISTRATIVE_VETOES, RIGHT_FACTORY_MANAGER_CAPACITIES, RIGHT_FACTORY_MANAGER_DEPLOYMENT_ITEMS, RIGHT_FACTORY_MANAGER_FILTER, RIGHT_FACTORY_MANAGER_ORDER_INPUT_SOURCES, RIGHT_FACTORY_MANAGER_ORDER_TYPES, RIGHT_FACTORY_MANAGER_STORABLE_INSTANCES, RIGHT_FACTORY_MANAGER_TIME_CONTROLLED_ORDERS, RIGHT_FACTORY_MANAGER_TRIGGER, RIGHT_FACTORY_MANAGER_WORKSPACES_AND_APPLICATIONS, RIGHT_FACTORY_MANAGER_XYNA_PROPERTIES } from './const';
 import { fman_error_code_translations_de_DE } from './locale/fman-error-code-translations.de-DE';
 import { fman_error_code_translations_en_US } from './locale/fman-error-code-translations.en-US';
 import { fman_translations_de_DE } from './locale/fman-translations.de-DE';
@@ -45,6 +45,8 @@ export class FactoryManagerComponent extends RouteComponent {
     private readonly _fmNames = {
         WORKSPACES: 'Workspaces',
         APPLICATIONS: 'Applications',
+        TRIGGER: 'Trigger',
+        FILTER: 'Filter',
         ORDERTYPES: 'Order Types',
         CRONLIKE_ORDRES: 'Cron-like Orders',
         TIMECONTROLLED_ORDERS: 'Time-Controlled Orders',
@@ -60,6 +62,8 @@ export class FactoryManagerComponent extends RouteComponent {
     navListItems: XcRighteousNavListItem[] = [
         { name: this._fmNames.WORKSPACES, link: 'workspaces', right: RIGHT_FACTORY_MANAGER_WORKSPACES_AND_APPLICATIONS },
         { name: this._fmNames.APPLICATIONS, link: 'applications', right: RIGHT_FACTORY_MANAGER_WORKSPACES_AND_APPLICATIONS },
+        { name: this._fmNames.TRIGGER, link: 'trigger', right: RIGHT_FACTORY_MANAGER_TRIGGER },
+        { name: this._fmNames.FILTER, link: 'filter', right: RIGHT_FACTORY_MANAGER_FILTER },
         { name: this._fmNames.ORDERTYPES, link: 'ordertypes', right: RIGHT_FACTORY_MANAGER_ORDER_TYPES },
         { name: this._fmNames.CRONLIKE_ORDRES, link: 'cron-like-orders', right: RIGHT_FACTORY_MANAGER_WORKSPACES_AND_APPLICATIONS },
         { name: this._fmNames.TIMECONTROLLED_ORDERS, link: 'time-controlled-orders', right: RIGHT_FACTORY_MANAGER_TIME_CONTROLLED_ORDERS },

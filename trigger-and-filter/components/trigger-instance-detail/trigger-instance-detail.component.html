@@ -1,0 +1,34 @@
+<xc-panel class="panel">
+    <header>
+        <div class="actions">
+            <xc-button (click)="enable()" [disabled]="busy" xc-i18n xc-tooltip="tooltip-enable">
+                <xc-icon xc-icon-material xc-i18n xc-icon-name="play_arrow">enable</xc-icon>
+            </xc-button>
+            <xc-button (click)="disable()" [disabled]="busy" xc-i18n xc-tooltip="tooltip-disable">
+                <xc-icon xc-icon-material xc-i18n xc-icon-name="stop">disable</xc-icon>
+            </xc-button>
+            <xc-button (click)="undeploy()" [disabled]="busy" xc-i18n xc-tooltip="tooltip-undeploy">
+                <xc-icon xc-i18n [xc-icon-name]="XDSIconName.DELETE">undeploy</xc-icon>
+            </xc-button>
+        </div>
+    </header>
+    <section class="section" *ngIf="detail">
+        <dl class="trigger-side">Trigger
+            <dt xc-i18n>name</dt>
+            <dd>{{triggerName}}</dd>
+            <dt xc-i18n>instance.name</dt>
+            <dd>{{triggerInstanceName}}</dd>
+            <dt *ngIf="triggerDescription" xc-i18n>description</dt>
+            <dd *ngIf="triggerDescription">{{triggerDescription}}</dd>
+            <dt xc-i18n>context</dt>
+            <dd>{{triggerRuntimeContext}}</dd>
+            <dt *ngIf="triggerStartParameter" xc-i18n>start.parameter</dt>
+            <dd *ngIf="triggerStartParameter">{{triggerStartParameter}}</dd>
+        </dl>
+        <xc-table class="filter-side" [xc-table-datasource]="datasource"
+            xc-table-allowsort
+            xc-table-allowfilter
+            xc-table-lazyupdate
+        ></xc-table>
+    </section>
+</xc-panel>
