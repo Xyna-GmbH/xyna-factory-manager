@@ -103,7 +103,7 @@ export class TriggerInstanceDetailComponent extends XcDynamicComponent<TriggerIn
     }
 
     undeploy() {
-        this.dialogService.confirm('Undeploy', 'Do you really want to undeploy trigger.').afterDismiss()
+        this.dialogService.confirm(this.i18nService.translate('fman.taf.trigger.tile.undeploy.confirm-title'), this.i18nService.translate('fman.taf.trigger.tile.undeploy.confirm-message')).afterDismiss()
             .pipe(filter(res => !!res)).subscribe({
                 next: () => {
                     this.busy = true;

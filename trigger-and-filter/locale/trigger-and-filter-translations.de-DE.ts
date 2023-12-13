@@ -40,6 +40,8 @@ export const trigger_and_filter_translations_de_DE: I18nTranslation[] = [
     { key: 'fman.taf.filter.tile.tooltip-enable', value: 'Schaltet die Filterinstanz ein.' },
     { key: 'fman.taf.filter.tile.tooltip-disable', value: 'Schaltet die Filterinstanz aus.' },
     { key: 'fman.taf.filter.tile.tooltip-undeploy', value: 'Löscht die Filterinstanz.' },
+    { key: 'fman.taf.filter.tile.undeploy.confirm-title', value: 'Undeploy' },
+    { key: 'fman.taf.filter.tile.undeploy.confirm-message', value: 'Wollen Sie den Filter undeployen.' },
 
     // TriggerInstanceDetailComponent
 
@@ -49,6 +51,8 @@ export const trigger_and_filter_translations_de_DE: I18nTranslation[] = [
     { key: 'fman.taf.trigger.tile.tooltip-enable', value: 'Schaltet die Triggerinstanz ein.' },
     { key: 'fman.taf.trigger.tile.tooltip-disable', value: 'Schaltet die Triggerinstanz aus.' },
     { key: 'fman.taf.trigger.tile.tooltip-undeploy', value: 'Löscht die Triggerinstanz.' },
+    { key: 'fman.taf.trigger.tile.undeploy.confirm-title', value: 'Undeploy' },
+    { key: 'fman.taf.trigger.tile.undeploy.confirm-message', value: 'Wollen Sie den Trigger undeployen.' },
 
     // DeployFilterDialogComponent
 
