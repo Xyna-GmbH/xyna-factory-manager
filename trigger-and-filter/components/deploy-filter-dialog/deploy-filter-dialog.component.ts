@@ -15,10 +15,9 @@
  * limitations under the License.
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
-import { ChangeDetectorRef, Component, Injector } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector } from '@angular/core';
 
 import { ApiService, StartOrderOptionsBuilder } from '@zeta/api';
-import { I18nService } from '@zeta/i18n';
 import { XcAutocompleteDataWrapper, XcDialogComponent, XcDialogService, XcOptionItem, XcOptionItemString } from '@zeta/xc';
 
 import { FM_RTC } from '../../../const';
@@ -33,7 +32,8 @@ import { XoTriggerInstance, XoTriggerInstanceArray } from '@fman/trigger-and-fil
 
 @Component({
     templateUrl: './deploy-filter-dialog.component.html',
-    styleUrls: ['./deploy-filter-dialog.component.scss']
+    styleUrls: ['./deploy-filter-dialog.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DeployFilterDialogComponent extends XcDialogComponent<XoFilterInstance, XoFilter> {
 
@@ -61,15 +61,11 @@ export class DeployFilterDialogComponent extends XcDialogComponent<XoFilterInsta
 
     constructor(injector: Injector,
         private readonly apiService: ApiService,
-        private readonly dialogService: XcDialogService,
-        private readonly i18n: I18nService,
-        private readonly cdr: ChangeDetectorRef) {
+        private readonly dialogService: XcDialogService) {
         super(injector);
 
         this.fillContextWrapper();
-        this.runtimeContextDataWrapper.valuesChange.subscribe({
-            next: () => this.fillTriggerInstanceWrapper()
-        });
+        this.fillTriggerInstanceWrapper();
     }
 
     fillContextWrapper() {
@@ -80,9 +76,6 @@ export class DeployFilterDialogComponent extends XcDialogComponent<XoFilterInsta
                 },
                 error: err => {
                     this.dialogService.error(err);
-                },
-                complete: () => {
-                    this.cdr.markForCheck();
                 }
             });
     }
@@ -95,9 +88,6 @@ export class DeployFilterDialogComponent extends XcDialogComponent<XoFilterInsta
                 },
                 error: err => {
                     this.dialogService.error(err);
-                },
-                complete: () => {
-                    this.cdr.markForCheck();
                 }
             });
     }
@@ -125,6 +115,9 @@ export class DeployFilterDialogComponent extends XcDialogComponent<XoFilterInsta
                     } else {
                         this.dialogService.error(result.errorMessage);
                     }
+                },
+                error: err => {
+                    this.dialogService.error(err);
                 },
                 complete: () => {
                     this.busy = false;

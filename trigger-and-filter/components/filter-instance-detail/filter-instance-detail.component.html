@@ -13,29 +13,36 @@
         </div>
     </header>
     <section class="section" *ngIf="detail">
-        <dl class="trigger-side">Trigger
-            <dt xc-i18n>name</dt>
-            <dd>{{triggerName}}</dd>
-            <dt xc-i18n>instance.name</dt>
-            <dd>{{triggerInstanceName}}</dd>
-            <dt *ngIf="triggerDescription" xc-i18n>description</dt>
-            <dd *ngIf="triggerDescription">{{triggerDescription}}</dd>
-            <dt xc-i18n>context</dt>
-            <dd>{{triggerRuntimeContext}}</dd>
-            <dt *ngIf="triggerStartParameter"xc-i18n>start.parameter</dt>
-            <dd *ngIf="triggerStartParameter">{{triggerStartParameter}}</dd>
-        </dl>
-        <dl class="trigger-side">Filter
-            <dt xc-i18n>name</dt>
-            <dd>{{filterName}}</dd>
-            <dt xc-i18n>instance.name</dt>
-            <dd>{{instanceName}}</dd>
-            <dt *ngIf="description" xc-i18n>description</dt>
-            <dd *ngIf="description">{{description}}</dd>
-            <dt xc-i18n>context</dt>
-            <dd>{{runtimeContext}}</dd>
-            <dt *ngIf="configParameter" xc-i18n>configuration.parameter</dt>
-            <dd *ngIf="configParameter">{{configParameter}}</dd>
-        </dl>
+        <div class="side">
+            <h1>Trigger</h1>
+            <dl>
+                <dt xc-i18n>name</dt>
+                <dd>{{triggerName}}</dd>
+                <dt xc-i18n>instance.name</dt>
+                <dd>{{triggerInstanceName}}</dd>
+                <dt *ngIf="triggerDescription" xc-i18n>description</dt>
+                <dd *ngIf="triggerDescription">{{triggerDescription}}</dd>
+                <dt xc-i18n>context</dt>
+                <dd>{{triggerRuntimeContext}}</dd>
+                <dt *ngIf="triggerStartParameter" xc-i18n>start.parameter</dt>
+                <dd *ngIf="triggerStartParameter">{{triggerStartParameter}}</dd>
+            </dl>
+        </div>
+        <div class="side">
+            <h1>Filter</h1>
+            <dl>
+                <dt xc-i18n>name</dt>
+                <dd>{{filterName}}</dd>
+                <dt xc-i18n>instance.name</dt>
+                <dd>{{instanceName}}</dd>
+                <dt *ngIf="description" xc-i18n>description</dt>
+                <dd *ngIf="description">{{description}}</dd>
+                <dt xc-i18n>context</dt>
+                <dd>{{runtimeContext}}</dd>
+                <dt *ngIf="configParameter" xc-i18n>configuration.parameter</dt>
+                <dd *ngIf="configParameter">{{configParameter}}</dd>
+            </dl>
+        </div>
+        <xc-spinner *ngIf="busy"></xc-spinner>
     </section>
 </xc-panel>

@@ -18,7 +18,7 @@
 import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 
 import { XcColor } from '@zeta/xc/shared/xc-themeable.component';
-import { TileItemInterface } from '../tile-data-source';
+import { TileItem } from '../tile-data-source';
 
 @Component({
     selector: 'tile-button',
@@ -28,14 +28,14 @@ import { TileItemInterface } from '../tile-data-source';
 export class TileButtonComponent {
 
     @Input()
-    item: TileItemInterface;
+    item: TileItem;
 
     @HostBinding('class.selected')
     @Input()
     selected = false;
 
     @Output('select-item')
-    readonly selectItem = new EventEmitter<TileItemInterface>();
+    readonly selectItem = new EventEmitter<TileItem>();
 
 
     click() {

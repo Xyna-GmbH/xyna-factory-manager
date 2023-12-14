@@ -53,11 +53,14 @@ export class FilterDetailComponent extends XcDynamicComponent<XoFilter> {
         this.apiService.startOrder(FM_RTC, ORDER_TYPES.FILTER_DETAIL, this.buildRequest(this.injectedData), XoFilterDetails, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage)
             .subscribe({
                 next: result => {
-                    if (result && !result.errorMessage) {
+                    if (!result.errorMessage) {
                         this.detail = result.output[0] as XoFilterDetails;
                     } else {
                         this.dialogService.error(result.errorMessage);
                     }
+                },
+                error: err => {
+                    this.dialogService.error(err);
                 },
                 complete: () => {
                     this.busy = false;

@@ -15,10 +15,9 @@
  * limitations under the License.
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
-import { ChangeDetectorRef, Component, Injector } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 
 import { ApiService, StartOrderOptionsBuilder } from '@zeta/api';
-import { I18nService } from '@zeta/i18n';
 import { XcAutocompleteDataWrapper, XcDialogComponent, XcDialogService, XcOptionItem } from '@zeta/xc';
 
 import { FM_RTC } from '../../../const';
@@ -39,6 +38,7 @@ export class DeployTriggerDialogComponent extends XcDialogComponent<XoTriggerIns
     instance: string;
     parameter: string;
     documentation: string;
+    busy: boolean;
 
     context: XoRuntimeContext = this.injectedData.runtimeContext;
 
@@ -50,9 +50,7 @@ export class DeployTriggerDialogComponent extends XcDialogComponent<XoTriggerIns
 
     constructor(injector: Injector,
         private readonly apiService: ApiService,
-        private readonly dialogService: XcDialogService,
-        private readonly i18n: I18nService,
-        private readonly cdr: ChangeDetectorRef) {
+        private readonly dialogService: XcDialogService) {
         super(injector);
 
         this.fillContextWrapper();
@@ -66,14 +64,14 @@ export class DeployTriggerDialogComponent extends XcDialogComponent<XoTriggerIns
                 },
                 error: err => {
                     this.dialogService.error(err);
-                },
-                complete: () => {
-                    this.cdr.markForCheck();
                 }
             });
     }
 
     deploy() {
+
+        this.busy = true;
+
         const request: XoDeployTriggerRequest = new XoDeployTriggerRequest();
         request.triggerName = this.injectedData.name;
         request.triggerInstanceName = this.instance;
@@ -84,7 +82,7 @@ export class DeployTriggerDialogComponent extends XcDialogComponent<XoTriggerIns
         this.apiService.startOrder(FM_RTC, ORDER_TYPES.DEPLOY_TRIGGER, request, null, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage)
             .subscribe({
                 next: result => {
-                    if (result && !result.errorMessage) {
+                    if (!result.errorMessage) {
                         const res: XoTriggerInstance = new XoTriggerInstance();
                         res.triggerInstance = this.instance;
                         res.trigger = this.injectedData.name;
@@ -92,6 +90,12 @@ export class DeployTriggerDialogComponent extends XcDialogComponent<XoTriggerIns
                     } else {
                         this.dialogService.error(result.errorMessage);
                     }
+                },
+                error: err => {
+                    this.dialogService.error(err);
+                },
+                complete: () => {
+                    this.busy = false;
                 }
             });
     }

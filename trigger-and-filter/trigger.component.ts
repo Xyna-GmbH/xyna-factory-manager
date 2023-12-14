@@ -15,8 +15,8 @@
  * limitations under the License.
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
-import { ChangeDetectorRef, Component } from '@angular/core';
-import { TileDataSource, TileItemInterface } from '@fman/runtime-contexts/shared/tile/tile-data-source';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import { TileDataSource, TileItem } from '@fman/runtime-contexts/shared/tile/tile-data-source';
 
 import { ApiService, StartOrderOptionsBuilder } from '@zeta/api';
 import { I18nService, LocaleService } from '@zeta/i18n';
@@ -35,7 +35,7 @@ import { trigger_and_filter_translations_de_DE } from './locale/trigger-and-filt
 import { trigger_and_filter_translations_en_US } from './locale/trigger-and-filter-translations.en-US';
 import { RouteComponent } from '@zeta/nav';
 
-class TriggerTile extends Comparable implements TileItemInterface {
+class TriggerTile extends Comparable implements TileItem {
 
     private template: XcTemplate;
 
@@ -63,7 +63,7 @@ class TriggerTile extends Comparable implements TileItemInterface {
     }
 }
 
-class TriggerInstanceTile extends Comparable implements TileItemInterface {
+class TriggerInstanceTile extends Comparable implements TileItem {
 
     private template: XcTemplate;
 
@@ -93,7 +93,8 @@ class TriggerInstanceTile extends Comparable implements TileItemInterface {
 
 @Component({
     templateUrl: './trigger.component.html',
-    styleUrls: ['./trigger.component.scss']
+    styleUrls: ['./trigger.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TriggerComponent extends RouteComponent {
 
@@ -101,7 +102,7 @@ export class TriggerComponent extends RouteComponent {
     datasources: TileDataSource[];
     private subscription: Subscription[] = [];
     deployButton: ActionButtonData = {  iconName: 'add', tooltip: 'deploy'  };
-    selectionModel: XcSelectionModel<TileItemInterface> = new XcSelectionModel<TileItemInterface>();
+    selectionModel: XcSelectionModel<TileItem> = new XcSelectionModel<TileItem>();
 
     constructor(
         private readonly apiService: ApiService,
@@ -129,6 +130,9 @@ export class TriggerComponent extends RouteComponent {
                     } else {
                         this.dialogService.error(result.errorMessage);
                     }
+                },
+                error: err => {
+                    this.dialogService.error(err);
                 },
                 complete: () => {
                     this.refreshing = false;

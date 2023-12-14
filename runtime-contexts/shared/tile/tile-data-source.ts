@@ -20,7 +20,7 @@ import { Comparable } from '@zeta/base';
 import { XcSelectionDataSource, XcSelectionModel, XcSortDirection, XcSortPredicate, XcTemplate } from '@zeta/xc';
 import { Observable, Subject } from 'rxjs';
 
-export interface TileItemInterface extends Comparable {
+export interface TileItem extends Comparable {
     getDetailTemplate(): XcTemplate;
     getLabel(): string;
     getCursiveLabel?(): string;
@@ -28,44 +28,44 @@ export interface TileItemInterface extends Comparable {
     getIcon?(): XcTemplate;
 }
 
-export class TileDataSource extends XcSelectionDataSource<TileItemInterface> {
+export class TileDataSource extends XcSelectionDataSource<TileItem> {
 
-    private left: TileItemInterface[];
-    private right: TileItemInterface[];
+    private left: TileItem[];
+    private right: TileItem[];
     private _isSelected = true;
     private leftSelected = true;
 
-    constructor(selectionModel: XcSelectionModel<TileItemInterface>, leftItems: TileItemInterface[], rightItems: TileItemInterface[], public label: string = '') {
+    constructor(selectionModel: XcSelectionModel<TileItem>, leftItems: TileItem[], rightItems: TileItem[], public label: string = '') {
         super(selectionModel);
         this.leftItems = leftItems;
         this.rightItems = rightItems;
     }
 
-    set leftItems(leftItems: TileItemInterface[]) {
+    set leftItems(leftItems: TileItem[]) {
         this.left = leftItems;
         this.left.sort(XcSortPredicate(XcSortDirection.asc, t => t.uniqueKey));
     }
 
-    get leftItems(): TileItemInterface[] {
+    get leftItems(): TileItem[] {
         return this.left;
     }
 
-    set rightItems(rightItems: TileItemInterface[]) {
+    set rightItems(rightItems: TileItem[]) {
         this.right = rightItems;
         this.right.sort(XcSortPredicate(XcSortDirection.asc, t => t.uniqueKey));
     }
 
-    get rightItems(): TileItemInterface[] {
+    get rightItems(): TileItem[] {
         return this.right;
     }
 
     private readonly actionButton = new Subject<(void)>();
 
-    get detailItem(): TileItemInterface {
+    get detailItem(): TileItem {
         return this.hasDetail() ? this.selectionModel.selection[0] : undefined;
     }
 
-    set detailItem(value: TileItemInterface)  {
+    set detailItem(value: TileItem)  {
         let selected = this.leftItems.find(item => item.equals(value));
         if (selected) {
             this.leftSelected = true;
@@ -115,7 +115,7 @@ export class TileDataSource extends XcSelectionDataSource<TileItemInterface> {
         return this.hasDetail() && !this.leftSelected;
     }
 
-    isSelected(item: TileItemInterface): boolean {
+    isSelected(item: TileItem): boolean {
         return this.hasDetail() && this.detailItem.equals(item);
     }
 

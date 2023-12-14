@@ -15,7 +15,7 @@
  * limitations under the License.
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
-import { ChangeDetectorRef, Component, InjectionToken, Injector } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, InjectionToken, Injector } from '@angular/core';
 import { FM_RTC } from '@fman/const';
 import { ORDER_TYPES } from '@fman/trigger-and-filter/order-types';
 import { XoFilterInstanceDetails } from '@fman/trigger-and-filter/xo/xo-filter-instance-details.model';
@@ -34,7 +34,8 @@ export interface FilterInstanceDetailsData{
 
 @Component({
     templateUrl: './filter-instance-detail.component.html',
-    styleUrls: ['./filter-instance-detail.component.scss']
+    styleUrls: ['./filter-instance-detail.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FilterInstanceDetailComponent extends XcDynamicComponent<FilterInstanceDetailsData> {
 
@@ -47,7 +48,11 @@ export class FilterInstanceDetailComponent extends XcDynamicComponent<FilterInst
     detail: XoFilterInstanceDetails = new XoFilterInstanceDetails();
     busy = false;
 
-    constructor(injector: Injector, private readonly apiService: ApiService, private readonly i18nService: I18nService, private readonly dialogService: XcDialogService, private readonly cdr: ChangeDetectorRef) {
+    constructor(injector: Injector,
+        private readonly apiService: ApiService,
+        private readonly i18nService: I18nService,
+        private readonly dialogService: XcDialogService,
+        private readonly cdr: ChangeDetectorRef) {
         super(injector);
         this.refresh();
     }
@@ -57,11 +62,14 @@ export class FilterInstanceDetailComponent extends XcDynamicComponent<FilterInst
         this.apiService.startOrder(FM_RTC, ORDER_TYPES.FILTER_INSTANCE_DETAIL, this.injectedData.filterinstance, XoFilterInstanceDetails, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage)
             .subscribe({
                 next: result => {
-                    if (result && !result.errorMessage) {
+                    if (!result.errorMessage) {
                         this.detail = result.output[0] as XoFilterInstanceDetails;
                     } else {
                         this.dialogService.error(result.errorMessage);
                     }
+                },
+                error: err => {
+                    this.dialogService.error(err);
                 },
                 complete: () => {
                     this.busy = false;
@@ -75,13 +83,19 @@ export class FilterInstanceDetailComponent extends XcDynamicComponent<FilterInst
         this.apiService.startOrder(FM_RTC, ORDER_TYPES.ENABLE_FILTER, this.injectedData.filterinstance, null, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage)
             .subscribe({
                 next: result => {
-                    if (result && !result.errorMessage) {
+                    if (!result.errorMessage) {
                         this.injectedData.refresh();
                     } else {
                         this.dialogService.error(result.errorMessage);
                     }
                 },
-                complete: () => this.busy = false
+                error: err => {
+                    this.dialogService.error(err);
+                },
+                complete: () => {
+                    this.busy = false;
+                    this.cdr.markForCheck();
+                }
             });
     }
 
@@ -90,13 +104,19 @@ export class FilterInstanceDetailComponent extends XcDynamicComponent<FilterInst
         this.apiService.startOrder(FM_RTC, ORDER_TYPES.DISABLE_FILTER, this.injectedData.filterinstance, null, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage)
             .subscribe({
                 next: result => {
-                    if (result && !result.errorMessage) {
+                    if (!result.errorMessage) {
                         this.injectedData.refresh();
                     } else {
                         this.dialogService.error(result.errorMessage);
                     }
                 },
-                complete: () => this.busy = false
+                error: err => {
+                    this.dialogService.error(err);
+                },
+                complete: () => {
+                    this.busy = false;
+                    this.cdr.markForCheck();
+                }
             });
     }
 
@@ -108,13 +128,19 @@ export class FilterInstanceDetailComponent extends XcDynamicComponent<FilterInst
                     this.apiService.startOrder(FM_RTC, ORDER_TYPES.UNDEPLOY_FILTER, this.injectedData.filterinstance, null, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage)
                         .subscribe({
                             next: result => {
-                                if (result && !result.errorMessage) {
+                                if (!result.errorMessage) {
                                     this.injectedData.refresh();
                                 } else {
                                     this.dialogService.error(result.errorMessage);
                                 }
                             },
-                            complete: () => this.busy = false
+                            error: err => {
+                                this.dialogService.error(err);
+                            },
+                            complete: () => {
+                                this.busy = false;
+                                this.cdr.markForCheck();
+                            }
                         });
                 }
             });

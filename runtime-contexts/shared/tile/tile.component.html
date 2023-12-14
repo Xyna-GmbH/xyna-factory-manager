@@ -1,7 +1,7 @@
 <div class="header" #header>
     <div>
         <tile-button
-            *ngFor="let item of dataSource.leftitems"
+            *ngFor="let item of dataSource.leftItems"
             [item]="item"
             [selected]="dataSource.isSelected(item)"
             (select-item)="select($event)">
@@ -10,7 +10,7 @@
     <div class="label"><span *ngIf="hasLabel()" xc-i18n>{{label}}</span></div>
     <div class="aside">
         <tile-button
-            *ngFor="let item of dataSource.rightitems"
+            *ngFor="let item of dataSource.rightItems"
             [item]="item"
             [selected]="dataSource.isSelected(item)"
             (select-item)="select($event)">

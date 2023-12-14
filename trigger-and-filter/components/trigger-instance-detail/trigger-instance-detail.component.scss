@@ -29,25 +29,28 @@
         flex-direction: row;
     }
 
-    .trigger-side {
-        display: flex;
-        flex-direction: column;
-        flex: 0 1 50%;
-    }
-
-    dl.trigger-side {
-        font-weight: bold;
-        font-size: medium;
-        dt {
-            font-weight: normal;
-            font-size: small;
-            margin-top: 15px;
-        }
-    }
-
-    .filter-side {
+    .side {
         display: flex;
         flex-direction: column;
         flex: 0 0 50%;
+    }
+
+    .trigger.side {
+        flex: 0 1 50%;
+    }
+
+    h1 {
+        font-weight: bold;
+    }
+
+    dt {
+        font-weight: normal;
+        font-size: small;
+        margin-top: 15px;
+    }
+
+    dd {
+        font-weight: bold;
+        font-size: medium;
     }
 }

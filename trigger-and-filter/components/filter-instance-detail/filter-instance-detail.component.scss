@@ -14,8 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- */
-@import 'const';
+ */@import 'const';
 
 :host {
     .actions {
@@ -29,33 +28,24 @@
         flex-direction: row;
     }
 
-    .trigger-side {
+    .side {
         display: flex;
         flex-direction: column;
         flex: 0 0 50%;
-    }
-    dl.trigger-side {
-        font-weight: bold;
-        font-size: medium;
-        dt {
-            font-weight: normal;
-            font-size: small;
-            margin-top: 15px;
-        }
     }
 
-    .filter-side {
-        display: flex;
-        flex-direction: column;
-        flex: 0 0 50%;
+    h1 {
+        font-weight: bold;
     }
-    dl.filter-side {
+
+    dt {
+        font-weight: normal;
+        font-size: small;
+        margin-top: 15px;
+    }
+
+    dd {
         font-weight: bold;
         font-size: medium;
-        dt {
-            font-weight: normal;
-            font-size: small;
-            margin-top: 15px;
-        }
     }
 }

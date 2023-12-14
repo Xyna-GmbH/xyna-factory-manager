@@ -21,7 +21,7 @@ import { I18nService } from '@zeta/i18n';
 
 import { XDSIconName, XcDialogService } from '@zeta/xc';
 import { ApiService } from '@zeta/api';
-import { TileDataSource, TileItemInterface } from './tile-data-source';
+import { TileDataSource, TileItem } from './tile-data-source';
 import { debounceTime, first, skip } from 'rxjs';
 
 export interface ActionButtonData {
@@ -82,7 +82,7 @@ export class TileComponent  implements OnInit {
     }
 
 
-    select(item: TileItemInterface) {
+    select(item: TileItem) {
         if (item) {
             this.dataSource.detailItem = item;
             this.scrollTo();

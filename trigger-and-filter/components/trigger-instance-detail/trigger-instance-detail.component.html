@@ -13,22 +13,26 @@
         </div>
     </header>
     <section class="section" *ngIf="detail">
-        <dl class="trigger-side">Trigger
-            <dt xc-i18n>name</dt>
-            <dd>{{triggerName}}</dd>
-            <dt xc-i18n>instance.name</dt>
-            <dd>{{triggerInstanceName}}</dd>
-            <dt *ngIf="triggerDescription" xc-i18n>description</dt>
-            <dd *ngIf="triggerDescription">{{triggerDescription}}</dd>
-            <dt xc-i18n>context</dt>
-            <dd>{{triggerRuntimeContext}}</dd>
-            <dt *ngIf="triggerStartParameter" xc-i18n>start.parameter</dt>
-            <dd *ngIf="triggerStartParameter">{{triggerStartParameter}}</dd>
-        </dl>
-        <xc-table class="filter-side" [xc-table-datasource]="datasource"
+        <div class="trigger side">
+            <h1>Trigger</h1>
+            <dl>
+                <dt xc-i18n>name</dt>
+                <dd>{{triggerName}}</dd>
+                <dt xc-i18n>instance.name</dt>
+                <dd>{{triggerInstanceName}}</dd>
+                <dt *ngIf="triggerDescription" xc-i18n>description</dt>
+                <dd *ngIf="triggerDescription">{{triggerDescription}}</dd>
+                <dt xc-i18n>context</dt>
+                <dd>{{triggerRuntimeContext}}</dd>
+                <dt *ngIf="triggerStartParameter" xc-i18n>start.parameter</dt>
+                <dd *ngIf="triggerStartParameter">{{triggerStartParameter}}</dd>
+            </dl>
+        </div>
+        <xc-table class="side" [xc-table-datasource]="datasource"
             xc-table-allowsort
             xc-table-allowfilter
             xc-table-lazyupdate
         ></xc-table>
+        <xc-spinner *ngIf="busy"></xc-spinner>
     </section>
 </xc-panel>

@@ -15,7 +15,7 @@
  * limitations under the License.
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
-import { ChangeDetectorRef, Component, InjectionToken, Injector } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, InjectionToken, Injector } from '@angular/core';
 import { FM_RTC } from '@fman/const';
 import { ORDER_TYPES } from '@fman/trigger-and-filter/order-types';
 import { XoFilterInstance } from '@fman/trigger-and-filter/xo/xo-filter-instance.model';
@@ -46,7 +46,8 @@ class FilterInstanceData extends Comparable {
 
 @Component({
     templateUrl: './trigger-instance-detail.component.html',
-    styleUrls: ['./trigger-instance-detail.component.scss']
+    styleUrls: ['./trigger-instance-detail.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TriggerInstanceDetailComponent extends XcDynamicComponent<TriggerInstanceDetailsData> {
 
@@ -60,7 +61,11 @@ export class TriggerInstanceDetailComponent extends XcDynamicComponent<TriggerIn
     datasource: XcLocalTableDataSource<FilterInstanceData> = new XcLocalTableDataSource<FilterInstanceData>(this.i18nService);
     busy = false;
 
-    constructor(injector: Injector, private readonly apiService: ApiService, private readonly i18nService: I18nService, private readonly dialogService: XcDialogService, private readonly cdr: ChangeDetectorRef) {
+    constructor(injector: Injector,
+        private readonly apiService: ApiService,
+        private readonly i18nService: I18nService,
+        private readonly dialogService: XcDialogService,
+        private readonly cdr: ChangeDetectorRef) {
         super(injector);
         this.refresh();
     }
@@ -70,12 +75,15 @@ export class TriggerInstanceDetailComponent extends XcDynamicComponent<TriggerIn
         this.apiService.startOrder(FM_RTC, ORDER_TYPES.TRIGGER_INSTANCE_DETAIL, this.injectedData.triggerinstance, XoTriggerInstanceDetail, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage)
             .subscribe({
                 next: result => {
-                    if (result && !result.errorMessage) {
+                    if (!result.errorMessage) {
                         this.detail = result.output[0] as XoTriggerInstanceDetail;
                         this.fillDatasource(this.detail.filterInstance.data);
                     } else {
                         this.dialogService.error(result.errorMessage);
                     }
+                },
+                error: err => {
+                    this.dialogService.error(err);
                 },
                 complete: () => {
                     this.busy = false;
@@ -89,11 +97,14 @@ export class TriggerInstanceDetailComponent extends XcDynamicComponent<TriggerIn
         this.apiService.startOrder(FM_RTC, ORDER_TYPES.ENABLE_TRIGGER, this.injectedData.triggerinstance, null, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage)
             .subscribe({
                 next: result => {
-                    if (result && !result.errorMessage) {
+                    if (!result.errorMessage) {
                         this.injectedData.refresh();
                     } else {
                         this.dialogService.error(result.errorMessage);
                     }
+                },
+                error: err => {
+                    this.dialogService.error(err);
                 },
                 complete: () => this.busy = false
             });
@@ -104,11 +115,14 @@ export class TriggerInstanceDetailComponent extends XcDynamicComponent<TriggerIn
         this.apiService.startOrder(FM_RTC, ORDER_TYPES.DISABLE_TRIGGER, this.injectedData.triggerinstance, null, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage)
             .subscribe({
                 next: result => {
-                    if (result && !result.errorMessage) {
+                    if (!result.errorMessage) {
                         this.injectedData.refresh();
                     } else {
                         this.dialogService.error(result.errorMessage);
                     }
+                },
+                error: err => {
+                    this.dialogService.error(err);
                 },
                 complete: () => this.busy = false
             });
@@ -122,11 +136,14 @@ export class TriggerInstanceDetailComponent extends XcDynamicComponent<TriggerIn
                     this.apiService.startOrder(FM_RTC, ORDER_TYPES.UNDEPLOY_TRIGGER, this.injectedData.triggerinstance, null, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage)
                         .subscribe({
                             next: result => {
-                                if (result && !result.errorMessage) {
+                                if (!result.errorMessage) {
                                     this.injectedData.refresh();
                                 } else {
                                     this.dialogService.error(result.errorMessage);
                                 }
+                            },
+                            error: err => {
+                                this.dialogService.error(err);
                             },
                             complete: () => this.busy = false
                         });
@@ -144,6 +161,7 @@ export class TriggerInstanceDetailComponent extends XcDynamicComponent<TriggerIn
             rows: data.map(xo => new FilterInstanceData(xo.filter, xo.filterInstance, xo.runtimeContext.label))
         };
         this.datasource.refresh();
+        this.cdr.markForCheck();
     }
 
     get triggerName(): string {

@@ -15,7 +15,7 @@
  * limitations under the License.
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
-import { ChangeDetectorRef, Component, InjectionToken, Injector } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, InjectionToken, Injector } from '@angular/core';
 import { FM_RTC } from '@fman/const';
 import { XoRuntimeApplication } from '@fman/runtime-contexts/xo/xo-runtime-application.model';
 import { XoWorkspace } from '@fman/runtime-contexts/xo/xo-workspace.model';
@@ -25,13 +25,13 @@ import { XoTriggerDetail } from '@fman/trigger-and-filter/xo/xo-trigger-detail.m
 import { XoTrigger } from '@fman/trigger-and-filter/xo/xo-trigger.model';
 import { ApiService, StartOrderOptionsBuilder } from '@zeta/api';
 
-import { I18nService } from '@zeta/i18n';
 import { XC_COMPONENT_DATA, XcDialogService, XcDynamicComponent } from '@zeta/xc';
 
 
 @Component({
     templateUrl: './trigger-detail.component.html',
-    styleUrls: ['./trigger-detail.component.scss']
+    styleUrls: ['./trigger-detail.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TriggerDetailComponent extends XcDynamicComponent<XoTrigger> {
 
@@ -43,7 +43,10 @@ export class TriggerDetailComponent extends XcDynamicComponent<XoTrigger> {
     detail: XoTriggerDetail;
     busy = false;
 
-    constructor(injector: Injector, private readonly apiService: ApiService, private readonly i18nService: I18nService, private readonly dialogService: XcDialogService, private readonly cdr: ChangeDetectorRef) {
+    constructor(injector: Injector,
+        private readonly apiService: ApiService,
+        private readonly dialogService: XcDialogService,
+        private readonly cdr: ChangeDetectorRef) {
         super(injector);
         this.refresh();
     }
@@ -53,11 +56,14 @@ export class TriggerDetailComponent extends XcDynamicComponent<XoTrigger> {
         this.apiService.startOrder(FM_RTC, ORDER_TYPES.TRIGGER_DETAIL, this.buildRequest(this.injectedData), XoTriggerDetail, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage)
             .subscribe({
                 next: result => {
-                    if (result && !result.errorMessage) {
+                    if (!result.errorMessage) {
                         this.detail = result.output[0] as XoTriggerDetail;
                     } else {
                         this.dialogService.error(result.errorMessage);
                     }
+                },
+                error: err => {
+                    this.dialogService.error(err);
                 },
                 complete: () => {
                     this.busy = false;
