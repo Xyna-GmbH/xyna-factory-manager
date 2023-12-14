@@ -22,7 +22,7 @@ import { RightGuard } from '@zeta/nav/right.guard';
 
 import { AdministrativeVetoesComponent } from './administrative-vetoes/administrative-vetoes.component';
 import { CapacitiesComponent } from './capacities/capacities.component';
-import { FACTORY_MANAGER, RIGHT_FACTORY_MANAGER, RIGHT_FACTORY_MANAGER_ADMINISTRATIVE_VETOES, RIGHT_FACTORY_MANAGER_CAPACITIES, RIGHT_FACTORY_MANAGER_CRON_LIKE_ORDERS, RIGHT_FACTORY_MANAGER_DEPLOYMENT_ITEMS, RIGHT_FACTORY_MANAGER_ORDER_INPUT_SOURCES, RIGHT_FACTORY_MANAGER_ORDER_TYPES, RIGHT_FACTORY_MANAGER_STORABLE_INSTANCES, RIGHT_FACTORY_MANAGER_TIME_CONTROLLED_ORDERS, RIGHT_FACTORY_MANAGER_WORKSPACES_AND_APPLICATIONS, RIGHT_FACTORY_MANAGER_XYNA_PROPERTIES } from './const';
+import { FACTORY_MANAGER, RIGHT_FACTORY_MANAGER, RIGHT_FACTORY_MANAGER_ADMINISTRATIVE_VETOES, RIGHT_FACTORY_MANAGER_CAPACITIES, RIGHT_FACTORY_MANAGER_CRON_LIKE_ORDERS, RIGHT_FACTORY_MANAGER_DEPLOYMENT_ITEMS, RIGHT_FACTORY_MANAGER_FILTER, RIGHT_FACTORY_MANAGER_ORDER_INPUT_SOURCES, RIGHT_FACTORY_MANAGER_ORDER_TYPES, RIGHT_FACTORY_MANAGER_STORABLE_INSTANCES, RIGHT_FACTORY_MANAGER_TIME_CONTROLLED_ORDERS, RIGHT_FACTORY_MANAGER_TRIGGER, RIGHT_FACTORY_MANAGER_WORKSPACES_AND_APPLICATIONS, RIGHT_FACTORY_MANAGER_XYNA_PROPERTIES } from './const';
 import { CronlikeOrdersComponent } from './cronlike-orders/cronlike-orders.component';
 import { DeploymentItemsComponent } from './deployment-items/deployment-items.component';
 import { FactoryManagerComponent } from './factory-manager.component';
@@ -34,6 +34,8 @@ import { WorkspacesComponent } from './runtime-contexts/workspaces/workspaces.co
 import { StorableInstancesComponent } from './storable-instances/storable-instances.component';
 import { TimeControlledOrdersComponent } from './time-controlled-orders/time-controlled-orders.component';
 import { XynaPropertiesComponent } from './xyna-properties/xyna-properties.component';
+import { FilterComponent } from './trigger-and-filter/filter.component';
+import { TriggerComponent } from './trigger-and-filter/trigger.component';
 
 
 const ROOT = 'Factory-Manager';
@@ -73,6 +75,22 @@ export const FactoryManagerRoutes: XynaRoutes = [
                 canDeactivate: [RedirectGuard],
                 pathMatch: 'full',
                 data : {right: RIGHT_FACTORY_MANAGER_WORKSPACES_AND_APPLICATIONS, reuse: FACTORY_MANAGER.APPLICATIONS + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.APPLICATIONS}
+            },
+            {
+                path: FACTORY_MANAGER.TRIGGER,
+                component: TriggerComponent,
+                canActivate: [RightGuard],
+                canDeactivate: [RedirectGuard],
+                pathMatch: 'full',
+                data : {right: RIGHT_FACTORY_MANAGER_TRIGGER, reuse: FACTORY_MANAGER.TRIGGER + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.TRIGGER}
+            },
+            {
+                path: FACTORY_MANAGER.FILTER,
+                component: FilterComponent,
+                canActivate: [RightGuard],
+                canDeactivate: [RedirectGuard],
+                pathMatch: 'full',
+                data : {right: RIGHT_FACTORY_MANAGER_FILTER, reuse: FACTORY_MANAGER.FILTER + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.FILTER}
             },
             {
                 path: FACTORY_MANAGER.ORDERTYPES,

@@ -1,0 +1,5 @@
+<xc-button [color]="color" (click)="click()">
+    <span [xc-tooltip]="tooltip">{{label}}</span>
+    <span *ngIf="cursiveLabel" class="second-label">{{cursiveLabel}}</span>
+    <xc-template *ngIf="hasIcon" [xc-template-instance]="item.getIcon()"></xc-template>
+</xc-button>

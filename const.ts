@@ -31,6 +31,8 @@ export const GET_TIMEZONE_EMPTY_ERROR = 'Was unable to receive time zones';
 
 export const RIGHT_FACTORY_MANAGER = 'xmcp.xfm.factoryManager';
 export const RIGHT_FACTORY_MANAGER_WORKSPACES_AND_APPLICATIONS = 'xfmg.xfctrl.WorkspaceManagement';
+export const RIGHT_FACTORY_MANAGER_TRIGGER = 'xfmg.xfctrl.TriggerManagement';
+export const RIGHT_FACTORY_MANAGER_FILTER = 'xfmg.xfctrl.FilterManagement';
 export const RIGHT_FACTORY_MANAGER_ORDER_TYPES = 'xfmg.xfctrl.orderTypes';
 export const RIGHT_FACTORY_MANAGER_CRON_LIKE_ORDERS = 'xfmg.xfctrl.cronLikeOrders';
 export const RIGHT_FACTORY_MANAGER_TIME_CONTROLLED_ORDERS = 'xfmg.xfctrl.timeControlledOrders';
@@ -46,6 +48,8 @@ export const PROCESS_MODELLER_TAB_URL = '/xfm/Process-Modeller?tab=';
 export const FACTORY_MANAGER = {
     WORKSPACES: 'workspaces',
     APPLICATIONS: 'applications',
+    TRIGGER: 'trigger',
+    FILTER: 'filter',
     ORDERTYPES: 'ordertypes',
     CRONLIKE_ORDRES: 'cron-like-orders',
     TIMECONTROLLED_ORDERS: 'time-controlled-orders',
