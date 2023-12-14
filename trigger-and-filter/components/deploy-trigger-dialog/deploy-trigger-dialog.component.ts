@@ -40,7 +40,7 @@ export class DeployTriggerDialogComponent extends XcDialogComponent<XoTriggerIns
     parameter: string;
     documentation: string;
 
-    context: XoRuntimeContext;
+    context: XoRuntimeContext = this.injectedData.runtimeContext;
 
     runtimeContextDataWrapper: XcAutocompleteDataWrapper<XoRuntimeContext> = new XcAutocompleteDataWrapper<XoRuntimeContext>(
         () => this.context,

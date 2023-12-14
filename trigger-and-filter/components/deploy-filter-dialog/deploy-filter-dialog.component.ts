@@ -42,7 +42,7 @@ export class DeployFilterDialogComponent extends XcDialogComponent<XoFilterInsta
     documentation: string;
     optional: boolean;
 
-    context: XoRuntimeContext;
+    context: XoRuntimeContext = this.injectedData.runtimeContext;
     triggerInstance: string;
 
     runtimeContextDataWrapper: XcAutocompleteDataWrapper<XoRuntimeContext> = new XcAutocompleteDataWrapper<XoRuntimeContext>(
