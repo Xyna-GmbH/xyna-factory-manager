@@ -41,6 +41,7 @@ export class DeployFilterDialogComponent extends XcDialogComponent<XoFilterInsta
     parameter: string;
     documentation: string;
     optional: boolean;
+    busy: boolean;
 
     context: XoRuntimeContext = this.injectedData.runtimeContext;
     triggerInstance: string;
@@ -102,6 +103,8 @@ export class DeployFilterDialogComponent extends XcDialogComponent<XoFilterInsta
     }
 
     deploy() {
+        this.busy = true;
+
         const request: XoDeployFilterRequest = new XoDeployFilterRequest();
         request.filterName = this.injectedData.name;
         request.filterInstanceName = this.instance;
@@ -114,7 +117,7 @@ export class DeployFilterDialogComponent extends XcDialogComponent<XoFilterInsta
         this.apiService.startOrder(FM_RTC, ORDER_TYPES.DEPLOY_FILTER, request, null, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage)
             .subscribe({
                 next: result => {
-                    if (result && !result.errorMessage) {
+                    if (!result.errorMessage) {
                         const res: XoFilterInstance = new XoFilterInstance();
                         res.filterInstance = this.instance;
                         res.filter = this.injectedData.name;
@@ -122,6 +125,9 @@ export class DeployFilterDialogComponent extends XcDialogComponent<XoFilterInsta
                     } else {
                         this.dialogService.error(result.errorMessage);
                     }
+                },
+                complete: () => {
+                    this.busy = false;
                 }
             });
     }

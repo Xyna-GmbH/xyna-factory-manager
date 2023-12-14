@@ -48,7 +48,7 @@ export class FilterDetailComponent extends XcDynamicComponent<XoFilter> {
         this.refresh();
     }
 
-    private refresh() {
+    refresh() {
         this.busy = true;
         this.apiService.startOrder(FM_RTC, ORDER_TYPES.FILTER_DETAIL, this.buildRequest(this.injectedData), XoFilterDetails, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage)
             .subscribe({

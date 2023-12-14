@@ -65,7 +65,7 @@ export class TriggerInstanceDetailComponent extends XcDynamicComponent<TriggerIn
         this.refresh();
     }
 
-    private refresh() {
+    refresh() {
         this.busy = true;
         this.apiService.startOrder(FM_RTC, ORDER_TYPES.TRIGGER_INSTANCE_DETAIL, this.injectedData.triggerinstance, XoTriggerInstanceDetail, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage)
             .subscribe({

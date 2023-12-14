@@ -18,16 +18,7 @@
 
 import { Comparable } from '@zeta/base';
 import { XcSelectionDataSource, XcSelectionModel, XcSortDirection, XcSortPredicate, XcTemplate } from '@zeta/xc';
-import { XcColor } from '@zeta/xc/shared/xc-themeable.component';
 import { Observable, Subject } from 'rxjs';
-
-export interface iconData {
-    color: XcColor;
-    material: boolean;
-    style: string;
-    name: string;
-    tooltip: string;
-}
 
 export interface TileItemInterface extends Comparable {
     getDetailTemplate(): XcTemplate;
@@ -42,29 +33,29 @@ export class TileDataSource extends XcSelectionDataSource<TileItemInterface> {
     private left: TileItemInterface[];
     private right: TileItemInterface[];
     private _isSelected = true;
-    private leftselected = true;
+    private leftSelected = true;
 
-    constructor(selectionModel: XcSelectionModel<TileItemInterface>, leftitems: TileItemInterface[], rightitems: TileItemInterface[], public label: string = '') {
+    constructor(selectionModel: XcSelectionModel<TileItemInterface>, leftItems: TileItemInterface[], rightItems: TileItemInterface[], public label: string = '') {
         super(selectionModel);
-        this.leftitems = leftitems;
-        this.rightitems = rightitems;
+        this.leftItems = leftItems;
+        this.rightItems = rightItems;
     }
 
-    set leftitems(leftitems: TileItemInterface[]) {
-        this.left = leftitems;
+    set leftItems(leftItems: TileItemInterface[]) {
+        this.left = leftItems;
         this.left.sort(XcSortPredicate(XcSortDirection.asc, t => t.uniqueKey));
     }
 
-    get leftitems(): TileItemInterface[] {
+    get leftItems(): TileItemInterface[] {
         return this.left;
     }
 
-    set rightitems(rightitems: TileItemInterface[]) {
-        this.right = rightitems;
+    set rightItems(rightItems: TileItemInterface[]) {
+        this.right = rightItems;
         this.right.sort(XcSortPredicate(XcSortDirection.asc, t => t.uniqueKey));
     }
 
-    get rightitems(): TileItemInterface[] {
+    get rightItems(): TileItemInterface[] {
         return this.right;
     }
 
@@ -75,12 +66,12 @@ export class TileDataSource extends XcSelectionDataSource<TileItemInterface> {
     }
 
     set detailItem(value: TileItemInterface)  {
-        let selected = this.leftitems.find(item => item.equals(value));
+        let selected = this.leftItems.find(item => item.equals(value));
         if (selected) {
-            this.leftselected = true;
+            this.leftSelected = true;
         } else {
-            selected = this.rightitems.find(item => item.equals(value));
-            this.leftselected = false;
+            selected = this.rightItems.find(item => item.equals(value));
+            this.leftSelected = false;
         }
 
         this.selectionModel.combineOperations(() => {
@@ -103,12 +94,12 @@ export class TileDataSource extends XcSelectionDataSource<TileItemInterface> {
 
     hasDetail(): boolean {
         if (this._isSelected && !this.selectionModel.isEmpty()) {
-            if (this.leftitems.find(item => item.equals(this.selectionModel.selection[0]))) {
-                this.leftselected = true;
+            if (this.leftItems.find(item => item.equals(this.selectionModel.selection[0]))) {
+                this.leftSelected = true;
                 return true;
             }
-            if (this.rightitems.find(item => item.equals(this.selectionModel.selection[0]))) {
-                this.leftselected = false;
+            if (this.rightItems.find(item => item.equals(this.selectionModel.selection[0]))) {
+                this.leftSelected = false;
                 return true;
             }
         }
@@ -117,11 +108,11 @@ export class TileDataSource extends XcSelectionDataSource<TileItemInterface> {
     }
 
     isLeftSelected(): boolean {
-        return this.hasDetail() && this.leftselected;
+        return this.hasDetail() && this.leftSelected;
     }
 
     isRightSelected(): boolean {
-        return this.hasDetail() && !this.leftselected;
+        return this.hasDetail() && !this.leftSelected;
     }
 
     isSelected(item: TileItemInterface): boolean {
@@ -129,6 +120,6 @@ export class TileDataSource extends XcSelectionDataSource<TileItemInterface> {
     }
 
     isEmpty() {
-        return this.leftitems.length === 0 && this.rightitems.length === 0;
+        return this.leftItems.length === 0 && this.rightItems.length === 0;
     }
 }
