@@ -22,6 +22,7 @@ import { XoFilterInstance } from '@fman/trigger-and-filter/xo/xo-filter-instance
 import { XoTriggerInstanceDetail } from '@fman/trigger-and-filter/xo/xo-trigger-instance-detail.model';
 import { XoTriggerInstance } from '@fman/trigger-and-filter/xo/xo-trigger-instance.model';
 import { ApiService, StartOrderOptionsBuilder } from '@zeta/api';
+import { Comparable } from '@zeta/base';
 
 import { I18nService } from '@zeta/i18n';
 import { XC_COMPONENT_DATA, XDSIconName, XcDialogService, XcDynamicComponent, XcLocalTableDataSource } from '@zeta/xc';
@@ -30,6 +31,17 @@ import { filter } from 'rxjs';
 export interface TriggerInstanceDetailsData{
     triggerinstance: XoTriggerInstance;
     refresh: () => void;
+}
+
+class FilterInstanceData extends Comparable {
+
+    constructor(public filterName: string, public instance: string, public context: string) {
+        super();
+    }
+
+    get uniqueKey(): string {
+        return ':instance:' + this.instance + ':rtc:' + this.context;
+    }
 }
 
 @Component({
@@ -45,7 +57,7 @@ export class TriggerInstanceDetailComponent extends XcDynamicComponent<TriggerIn
     }
 
     detail: XoTriggerInstanceDetail = new XoTriggerInstanceDetail();
-    datasource: XcLocalTableDataSource<XoFilterInstance> = new XcLocalTableDataSource<XoFilterInstance>(this.i18nService);
+    datasource: XcLocalTableDataSource<FilterInstanceData> = new XcLocalTableDataSource<FilterInstanceData>(this.i18nService);
     busy = false;
 
     constructor(injector: Injector, private readonly apiService: ApiService, private readonly i18nService: I18nService, private readonly dialogService: XcDialogService, private readonly cdr: ChangeDetectorRef) {
@@ -125,11 +137,11 @@ export class TriggerInstanceDetailComponent extends XcDynamicComponent<TriggerIn
     private fillDatasource(data: XoFilterInstance[]) {
         this.datasource.localTableData = {
             columns: [
-                {path : 'filter', name : 'Filter'},
-                {path : 'instance', name : 'Instance'},
-                {path : 'runtimeContext.label', name : 'RuntimeContext'}
+                {path : 'filterName', name : 'fman.taf.trigger.tile.table.filter'},
+                {path : 'instance', name : 'fman.taf.trigger.tile.table.instance'},
+                {path : 'context', name : 'fman.taf.trigger.tile.table.context'}
             ],
-            rows: data
+            rows: data.map(xo => new FilterInstanceData(xo.filter, xo.filterInstance, xo.runtimeContext.label))
         };
         this.datasource.refresh();
     }

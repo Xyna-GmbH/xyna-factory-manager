@@ -15,20 +15,22 @@
  * limitations under the License.
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
-:host {
-    display: flex;
-    flex: 1 1 auto;
-    overflow: hidden;
+ @import 'const';
 
-    xc-panel > header.divided-header {
-        flex-direction: column;
 
-        h3 {
-            margin: 4px 0;
-            align-self: flex-start;
-        }
-        .bottom-header {
-            padding: 4px 10px;
-        }
-    }
-}
+ :host {
+     display: flex;
+     flex: 1 1 auto;
+     overflow: hidden;
+
+     border-left: 4px solid #000;
+
+     header xc-icon {
+         margin-right: 8px;
+     }
+
+     section {
+         position: relative;
+         flex: 1 1 auto;
+     }
+ }

@@ -33,6 +33,7 @@ import { XoTrigger, XoTriggerArray } from './xo/xo-trigger.model';
 import { DeployTriggerDialogComponent } from './components/deploy-trigger-dialog/deploy-trigger-dialog.component';
 import { trigger_and_filter_translations_de_DE } from './locale/trigger-and-filter-translations.de-DE';
 import { trigger_and_filter_translations_en_US } from './locale/trigger-and-filter-translations.en-US';
+import { RouteComponent } from '@zeta/nav';
 
 class TriggerTile extends Comparable implements TileItemInterface {
 
@@ -94,7 +95,7 @@ class TriggerInstanceTile extends Comparable implements TileItemInterface {
     templateUrl: './trigger.component.html',
     styleUrls: ['./trigger.component.scss']
 })
-export class TriggerComponent {
+export class TriggerComponent extends RouteComponent {
 
     refreshing = false;
     datasources: TileDataSource[];
@@ -107,6 +108,7 @@ export class TriggerComponent {
         private readonly cdr: ChangeDetectorRef,
         private readonly i18nService: I18nService,
         private readonly dialogService: XcDialogService) {
+        super();
 
         this.i18nService.setTranslations(LocaleService.DE_DE, trigger_and_filter_translations_de_DE);
         this.i18nService.setTranslations(LocaleService.EN_US, trigger_and_filter_translations_en_US);

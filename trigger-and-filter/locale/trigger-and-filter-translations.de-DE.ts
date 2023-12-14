@@ -53,6 +53,9 @@ export const trigger_and_filter_translations_de_DE: I18nTranslation[] = [
     { key: 'fman.taf.trigger.tile.tooltip-undeploy', value: 'Löscht die Triggerinstanz.' },
     { key: 'fman.taf.trigger.tile.undeploy.confirm-title', value: 'Undeploy' },
     { key: 'fman.taf.trigger.tile.undeploy.confirm-message', value: 'Wollen Sie den Trigger undeployen.' },
+    { key: 'fman.taf.trigger.tile.table.filter', value: 'Filter' },
+    { key: 'fman.taf.trigger.tile.table.instance', value: 'Instanz' },
+    { key: 'fman.taf.trigger.tile.table.context', value: 'Runtime Context' },
 
     // DeployFilterDialogComponent
 

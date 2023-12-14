@@ -33,6 +33,7 @@ import { ActionButtonData } from '@fman/runtime-contexts/shared/tile/tile.compon
 import { DeployFilterDialogComponent } from './components/deploy-filter-dialog/deploy-filter-dialog.component';
 import { trigger_and_filter_translations_de_DE } from './locale/trigger-and-filter-translations.de-DE';
 import { trigger_and_filter_translations_en_US } from './locale/trigger-and-filter-translations.en-US';
+import { RouteComponent } from '@zeta/nav';
 
 class FilterTile extends Comparable implements TileItemInterface {
 
@@ -94,7 +95,7 @@ class FilterInstanceTile extends Comparable implements TileItemInterface {
     templateUrl: './filter.component.html',
     styleUrls: ['./filter.component.scss']
 })
-export class FilterComponent {
+export class FilterComponent extends RouteComponent {
 
     refreshing = false;
     datasources: TileDataSource[];
@@ -107,6 +108,7 @@ export class FilterComponent {
         private readonly cdr: ChangeDetectorRef,
         private readonly i18nService: I18nService,
         private readonly dialogService: XcDialogService) {
+        super();
 
         this.i18nService.setTranslations(LocaleService.DE_DE, trigger_and_filter_translations_de_DE);
         this.i18nService.setTranslations(LocaleService.EN_US, trigger_and_filter_translations_en_US);
