@@ -20,6 +20,7 @@ import { RuntimeContextType, XoArray, XoArrayClass, XoObject, XoObjectClass, XoP
 import { XoOrderType } from '../../xo/xo-order-type.model';
 import { XoParameterArray } from './xo-parameter.model';
 import { XoSourceType } from './xo-source-type.model';
+import { isNumber } from '@zeta/base';
 
 
 @XoObjectClass(null, 'xmcp.factorymanager.orderinputsources', 'OrderInputSource')
@@ -86,7 +87,7 @@ export class XoOrderInputSource extends XoObject {
     afterDecode() {
         super.afterDecode();
 
-        if (this.referencedInputSourceCount < 0) {
+        if (isNumber(this.referencedInputSourceCount) && this.referencedInputSourceCount < 0) {
             this.referencedInputSourceCount = '';
         }
     }
