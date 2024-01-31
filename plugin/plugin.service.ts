@@ -48,19 +48,10 @@ export class PluginService {
         if (!this._plugins.getValue() && !this.pending) {
             this.pending = true;
 
-            const selectionMask = new XoSelectionMask();
-            selectionMask.rootType = 'xmcp.forms.plugin.Plugin';
-
             this.api.startOrder(
                 environment.zeta.xo.runtimeContext,
-                'xnwh.persistence.Query',
-                [
-                    selectionMask,
-                    new XoFilterCondition(),
-                    new XoQueryParameter()
-                ],
-                undefined,
-                StartOrderOptionsBuilder.defaultOptionsWithErrorMessage
+                'xmcp.forms.plugin.ListPlugins',
+                [], undefined, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage
             ).pipe(
                 catchError(() =>
                     of(<StartOrderResult<Xo>>{orderId: 'error'})
