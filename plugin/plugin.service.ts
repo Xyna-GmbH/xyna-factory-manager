@@ -19,9 +19,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { FACTORY_MANAGER } from '@fman/const';
-import { XoFilterCondition } from '@fman/storable-instances/xo/xo-filtercondition.model';
-import { XoQueryParameter } from '@fman/storable-instances/xo/xo-queryparamterer.model';
-import { XoSelectionMask } from '@fman/storable-instances/xo/xo-selectionmask.model';
 import { ApiService, StartOrderOptionsBuilder, StartOrderResult, Xo } from '@zeta/api';
 import { XoPlugin, XoPluginArray } from '@zeta/xc';
 import { BehaviorSubject, catchError, filter, finalize, map, Observable, of } from 'rxjs';
