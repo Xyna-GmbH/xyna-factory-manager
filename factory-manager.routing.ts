@@ -18,7 +18,7 @@
 import { RouterModule } from '@angular/router';
 
 import { RedirectComponent, RedirectGuardCanActivate, RedirectGuardCanDeactivate, RedirectGuardConfigProvider, RedirectGuardProvider, XynaRoutes } from '@zeta/nav';
-import { RightGuard } from '@zeta/nav/right.guard';
+import { RightGuardCanActivate } from '@zeta/nav/right.guard';
 
 import { AdministrativeVetoesComponent } from './administrative-vetoes/administrative-vetoes.component';
 import { CapacitiesComponent } from './capacities/capacities.component';
@@ -49,7 +49,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
     {
         path: ROOT,
         component: FactoryManagerComponent,
-        canActivate: [RightGuard],
+        canActivate: [RightGuardCanActivate],
         data: { right: RIGHT_FACTORY_MANAGER, reuse: ROOT, title: ROOT },
         children: [
             {
@@ -63,7 +63,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
             {
                 path: FACTORY_MANAGER.WORKSPACES,
                 component: WorkspacesComponent,
-                canActivate: [RightGuard],
+                canActivate: [RightGuardCanActivate],
                 canDeactivate: [RedirectGuardCanDeactivate],
                 pathMatch: 'full',
                 data : {right: RIGHT_FACTORY_MANAGER_WORKSPACES_AND_APPLICATIONS, reuse: FACTORY_MANAGER.WORKSPACES + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.WORKSPACES}
@@ -71,7 +71,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
             {
                 path: FACTORY_MANAGER.APPLICATIONS,
                 component: ApplicationsComponent,
-                canActivate: [RightGuard],
+                canActivate: [RightGuardCanActivate],
                 canDeactivate: [RedirectGuardCanDeactivate],
                 pathMatch: 'full',
                 data : {right: RIGHT_FACTORY_MANAGER_WORKSPACES_AND_APPLICATIONS, reuse: FACTORY_MANAGER.APPLICATIONS + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.APPLICATIONS}
@@ -79,7 +79,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
             {
                 path: FACTORY_MANAGER.TRIGGER,
                 component: TriggerComponent,
-                canActivate: [RightGuard],
+                canActivate: [RightGuardCanActivate],
                 canDeactivate: [RedirectGuardCanDeactivate],
                 pathMatch: 'full',
                 data : {right: RIGHT_FACTORY_MANAGER_TRIGGER, reuse: FACTORY_MANAGER.TRIGGER + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.TRIGGER}
@@ -87,7 +87,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
             {
                 path: FACTORY_MANAGER.FILTER,
                 component: FilterComponent,
-                canActivate: [RightGuard],
+                canActivate: [RightGuardCanActivate],
                 canDeactivate: [RedirectGuardCanDeactivate],
                 pathMatch: 'full',
                 data : {right: RIGHT_FACTORY_MANAGER_FILTER, reuse: FACTORY_MANAGER.FILTER + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.FILTER}
@@ -95,7 +95,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
             {
                 path: FACTORY_MANAGER.ORDERTYPES,
                 component: OrderTypesComponent,
-                canActivate: [RightGuard],
+                canActivate: [RightGuardCanActivate],
                 canDeactivate: [RedirectGuardCanDeactivate],
                 pathMatch: 'full',
                 data : {right: RIGHT_FACTORY_MANAGER_ORDER_TYPES, reuse: FACTORY_MANAGER.ORDERTYPES + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.ORDERTYPES}
@@ -103,7 +103,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
             {
                 path: FACTORY_MANAGER.CRONLIKE_ORDRES,
                 component: CronlikeOrdersComponent,
-                canActivate: [RightGuard],
+                canActivate: [RightGuardCanActivate],
                 canDeactivate: [RedirectGuardCanDeactivate],
                 pathMatch: 'full',
                 data : {right: RIGHT_FACTORY_MANAGER_CRON_LIKE_ORDERS, reuse: FACTORY_MANAGER.CRONLIKE_ORDRES + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.CRONLIKE_ORDRES}
@@ -111,7 +111,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
             {
                 path: FACTORY_MANAGER.TIMECONTROLLED_ORDERS,
                 component: TimeControlledOrdersComponent,
-                canActivate: [RightGuard],
+                canActivate: [RightGuardCanActivate],
                 canDeactivate: [RedirectGuardCanDeactivate],
                 pathMatch: 'full',
                 data : {right: RIGHT_FACTORY_MANAGER_TIME_CONTROLLED_ORDERS, reuse: FACTORY_MANAGER.TIMECONTROLLED_ORDERS + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.TIMECONTROLLED_ORDERS}
@@ -119,7 +119,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
             {
                 path: FACTORY_MANAGER.ORDER_INPUT_SOURCES,
                 component: OrderInputSourcesComponent,
-                canActivate: [RightGuard],
+                canActivate: [RightGuardCanActivate],
                 canDeactivate: [RedirectGuardCanDeactivate],
                 pathMatch: 'full',
                 data : {right: RIGHT_FACTORY_MANAGER_ORDER_INPUT_SOURCES, reuse: FACTORY_MANAGER.ORDER_INPUT_SOURCES + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.ORDER_INPUT_SOURCES}
@@ -127,7 +127,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
             {
                 path: FACTORY_MANAGER.CAPACITIES,
                 component: CapacitiesComponent,
-                canActivate: [RightGuard],
+                canActivate: [RightGuardCanActivate],
                 canDeactivate: [RedirectGuardCanDeactivate],
                 pathMatch: 'full',
                 data : {right: RIGHT_FACTORY_MANAGER_CAPACITIES, reuse: FACTORY_MANAGER.CAPACITIES + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.CAPACITIES}
@@ -135,7 +135,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
             {
                 path: FACTORY_MANAGER.ADMINISTRATIVE_VETOES,
                 component: AdministrativeVetoesComponent,
-                canActivate: [RightGuard],
+                canActivate: [RightGuardCanActivate],
                 canDeactivate: [RedirectGuardCanDeactivate],
                 pathMatch: 'full',
                 data : {right: RIGHT_FACTORY_MANAGER_ADMINISTRATIVE_VETOES, reuse: FACTORY_MANAGER.ADMINISTRATIVE_VETOES + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.ADMINISTRATIVE_VETOES}
@@ -143,7 +143,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
             {
                 path: FACTORY_MANAGER.DEPLOYMENT_ITEMS,
                 component: DeploymentItemsComponent,
-                canActivate: [RightGuard],
+                canActivate: [RightGuardCanActivate],
                 canDeactivate: [RedirectGuardCanDeactivate],
                 pathMatch: 'full',
                 data : {right: RIGHT_FACTORY_MANAGER_DEPLOYMENT_ITEMS, reuse: FACTORY_MANAGER.DEPLOYMENT_ITEMS + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.DEPLOYMENT_ITEMS}
@@ -151,7 +151,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
             {
                 path: FACTORY_MANAGER.STORABLE_INSTANCES,
                 component: StorableInstancesComponent,
-                canActivate: [RightGuard],
+                canActivate: [RightGuardCanActivate],
                 canDeactivate: [RedirectGuardCanDeactivate],
                 pathMatch: 'full',
                 data : {right: RIGHT_FACTORY_MANAGER_STORABLE_INSTANCES, reuse: FACTORY_MANAGER.STORABLE_INSTANCES + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.STORABLE_INSTANCES}
@@ -164,7 +164,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
             {
                 path: FACTORY_MANAGER.XYNA_PROPERTIES,
                 component: XynaPropertiesComponent,
-                canActivate: [RightGuard],
+                canActivate: [RightGuardCanActivate],
                 canDeactivate: [RedirectGuardCanDeactivate],
                 pathMatch: 'full',
                 data : {right: RIGHT_FACTORY_MANAGER_XYNA_PROPERTIES, reuse: FACTORY_MANAGER.XYNA_PROPERTIES + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.XYNA_PROPERTIES}
