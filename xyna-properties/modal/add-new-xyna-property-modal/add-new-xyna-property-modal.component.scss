@@ -18,7 +18,7 @@
 @import '../../../misc/styles/default-modal-styles.scss';
 
 :host::ng-deep {
-    mat-dialog-content {
+    .mat-mdc-dialog-content {
         min-width: 260px;
     }
 }

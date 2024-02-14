@@ -18,13 +18,13 @@
 @import '../../../misc/styles/default-modal-styles.scss';
 
 :host::ng-deep {
-    mat-dialog-content {
+    .mat-mdc-dialog-content {
         min-width: 480px;
 
         .custom-items-row {
             display: flex;
 
-            & > *:first-of-type {
+            &>*:first-of-type {
                 margin-right: 5px;
             }
         }
