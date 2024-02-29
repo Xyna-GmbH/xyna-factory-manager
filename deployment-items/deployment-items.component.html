@@ -102,6 +102,24 @@
 
             <deployment-state-detail xc-i18n-context='deployment-state-detail' [deploymentItem]="detailsObject" ></deployment-state-detail>
 
+
+            <xc-panel *ngIf="detailsObject.inconsitencies && detailsObject.inconsitencies.data && detailsObject.inconsitencies.data.length">
+                <header>
+                    <h3 xc-i18n>inconsistencies</h3>
+                </header>
+                <section class="compact">
+                    <xc-form-textarea
+                        label="inconsistencies-label"
+                        [value]="inconsistencies"
+                        xc-i18n
+                        xc-form-textarea-minlines="1"
+                        xc-form-textarea-maxlines="15"
+                        xc-form-textarea-autosize
+                        readonly
+                    ></xc-form-textarea>
+                </section>
+            </xc-panel>
+
             <xc-panel *ngIf="detailsObject.unresolvable && detailsObject.unresolvable.data && detailsObject.unresolvable.data.length">
                 <header>
                     <h3 xc-i18n>resolution</h3>
