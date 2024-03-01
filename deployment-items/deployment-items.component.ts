@@ -391,4 +391,9 @@ export class DeploymentItemsComponent extends RestorableDeploymentItemsComponent
     get selection(): XoDeploymentItem[] {
         return this.remoteTableDataSource.selectionModel.selection;
     }
+
+    get inconsistencies(): string {
+        return this.detailsObject.inconsitencies.data.map(incon => incon.friendlyString)
+            .reduce((pre, curr) => pre.concat('\n \n', curr));
+    }
 }

@@ -90,6 +90,14 @@ export const deployment_items_translations_de_DE: I18nTranslation[] = [
         value: 'Label'
     },
     {
+        key: 'fman.deployment-items.inconsistencies',
+        value: 'Inkonsistenzen'
+    },
+    {
+        key: 'fman.deployment-items.inconsistencies-label',
+        value: 'Inkonsistenzen'
+    },
+    {
         key: 'fman.deployment-items.resolution',
         value: 'Auflösung'
     },
