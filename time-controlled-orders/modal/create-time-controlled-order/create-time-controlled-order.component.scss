@@ -19,7 +19,7 @@
 @import 'const';
 
 :host::ng-deep {
-    mat-dialog-content {
+    .mat-mdc-dialog-content {
         min-width: 380px;
     }
 }
@@ -33,6 +33,6 @@
     color: $color-warn;
 }
 
-.error-wrapper{
+.error-wrapper {
     margin-bottom: 8px;
 }
