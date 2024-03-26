@@ -46,10 +46,15 @@
                     xc-i18n
                 >delete-button</xc-button>
                 <xc-button
-                    (click)="deploy()"
+                    (click)="deploy(false)"
                     [disabled]="remoteTableDataSource.selectionModel.isEmpty()"
                     xc-i18n
                 >deploy-button</xc-button>
+                <xc-button
+                    (click)="deploy(true)"
+                    [disabled]="remoteTableDataSource.selectionModel.isEmpty()"
+                    xc-i18n
+                >force-deploy-button</xc-button>
                 <xc-button
                     (click)="undeploy()"
                     [disabled]="remoteTableDataSource.selectionModel.isEmpty()"

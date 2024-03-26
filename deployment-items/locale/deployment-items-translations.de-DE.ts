@@ -46,6 +46,10 @@ export const deployment_items_translations_de_DE: I18nTranslation[] = [
         value: 'Deploy...'
     },
     {
+        key: 'fman.deployment-items.force-deploy-button',
+        value: 'Deploy erzwingen...'
+    },
+    {
         key: 'fman.deployment-items.undeploy-button',
         value: 'Undeploy'
     },

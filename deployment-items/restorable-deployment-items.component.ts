@@ -32,6 +32,7 @@ import { XoDeploymentItem } from './xo/xo-deployment-item.model';
 export interface DeploymentItemsInputScreenWorkflowPackage extends InputScreenWorkflowPackage {
     Deploy: string;
     Undeploy: string;
+    ForceDeploy: string;
 }
 
 
@@ -42,7 +43,8 @@ export const DEPLOYMENT_ITEMS_ISWP: DeploymentItemsInputScreenWorkflowPackage = 
     Save: '',
     Delete: 'xmcp.factorymanager.deploymentitems.DeleteDeploymentItem',
     Deploy: 'xmcp.factorymanager.deploymentitems.DeployDeploymentItem',
-    Undeploy: 'xmcp.factorymanager.deploymentitems.UndeployDeploymentItem'
+    Undeploy: 'xmcp.factorymanager.deploymentitems.UndeployDeploymentItem',
+    ForceDeploy: 'xmcp.factorymanager.deploymentitems.ForceDeployDeploymentItem'
 };
 
 
