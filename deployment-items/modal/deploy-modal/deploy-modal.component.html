@@ -18,7 +18,7 @@
 
     <ng-container footer>
         <xc-button (click)="dismiss(false)" xc-i18n>button-cancel</xc-button>
-        <xc-button (click)="deploy()" [busy]="busy" color="primary" xc-i18n>button-deploy</xc-button>
+        <xc-button (click)="deploy()" [busy]="busy" color="primary" xc-i18n>{{injectedData.applyButton}}</xc-button>
     </ng-container>
 
 </xc-dialog-wrapper>

@@ -30,5 +30,9 @@ export const deployModal_translations_de_DE: I18nTranslation[] = [
     {
         key: 'fman.deploy-modal.button-deploy',
         value: 'Deploy'
+    },
+    {
+        key: 'fman.deploy-modal.button-force-deploy',
+        value: 'Deploy erzwingen'
     }
 ];

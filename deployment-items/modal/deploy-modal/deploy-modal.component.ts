@@ -36,6 +36,7 @@ export interface DeployModalComponentData {
     items: XoDeploymentItemArray;
     runtimeContext: XoRuntimeContext;
     UNSPECIFIED_DEPLOY_ERROR: string;
+    applyButton: string;
 }
 
 @Component({

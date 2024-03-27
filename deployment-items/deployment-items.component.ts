@@ -18,6 +18,7 @@
 import { Component, Injector } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { QueryParamService } from '@fman/misc/services/query-param.service';
 import { ApiService, RuntimeContext, RuntimeContextType, StartOrderOptionsBuilder, XoRuntimeContext } from '@zeta/api';
 import { dateTimeString } from '@zeta/base';
 import { I18nService } from '@zeta/i18n';
@@ -37,8 +38,6 @@ import { XoDeleteDeploymentItemResultArray } from './xo/xo-delete-deployment-ite
 import { XoDeploymentItem, XoDeploymentItemArray } from './xo/xo-deployment-item.model';
 import { XoUndeployDeploymentItemResultArray } from './xo/xo-undeploy-deployment-item-result.model';
 import { XoUndeployDeploymentItemParam, XoUndeployDeploymentItemParamArray } from './xo/xo-undeployment-deployment-item-param.model';
-import { QueryParamService } from '@fman/misc/services/query-param.service';
-
 
 
 const ISWP = DEPLOYMENT_ITEMS_ISWP;
@@ -290,7 +289,7 @@ export class DeploymentItemsComponent extends RestorableDeploymentItemsComponent
     }
 
 
-    deploy() {
+    deploy(forceDeploy = false) {
         const items = new XoDeploymentItemArray();
         items.data.push(...this.remoteTableDataSource.selectionModel.selection);
 
@@ -298,10 +297,11 @@ export class DeploymentItemsComponent extends RestorableDeploymentItemsComponent
             apiService: this.apiService,
             i18nService: this.i18nService,
             rtc: FM_RTC,
-            deployWorkflow: ISWP.Deploy,
+            deployWorkflow: forceDeploy ? ISWP.ForceDeploy : ISWP.Deploy,
             items: items,
             runtimeContext: this.selectedRuntimeContext,
-            UNSPECIFIED_DEPLOY_ERROR: this.UNSPECIFIED_DEPLOY_ERROR
+            UNSPECIFIED_DEPLOY_ERROR: this.UNSPECIFIED_DEPLOY_ERROR,
+            applyButton: forceDeploy ? 'button-force-deploy' : 'button-deploy'
         };
 
         this.dialogService.custom<boolean, DeployModalComponentData>(DeployModalComponent, data).afterDismissResult().subscribe(res => {
@@ -311,7 +311,6 @@ export class DeploymentItemsComponent extends RestorableDeploymentItemsComponent
             }
         });
     }
-
 
     undeploy(itemParamsArr?: XoUndeployDeploymentItemParamArray) {
 
