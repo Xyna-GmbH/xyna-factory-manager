@@ -22,6 +22,7 @@
 
     & > .nav {
         width: 235px;
+        overflow: auto;
     }
 
     // without this rule, the HTML elements in this component expand their height over 100% if their content is big enough
