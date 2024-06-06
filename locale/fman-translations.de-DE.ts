@@ -103,7 +103,7 @@ export const fman_translations_de_DE: I18nTranslation[] = [
     },
     {
         key: 'Used Capacities',
-        value: 'Verwendete Kapazitäten'
+        value: 'Kapazitäten'
     },
     // ...
     // TODO - specification is not final

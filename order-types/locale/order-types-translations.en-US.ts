@@ -26,6 +26,10 @@ export const order_types_translations_en_US: I18nTranslation[] = [
         value: 'Order Types'
     },
     {
+        key: 'fman.order-types.label-show-paths',
+        value: 'Show Paths'
+    },
+    {
         key: 'fman.order-types.icon-refresh',
         value: 'Refresh'
     },

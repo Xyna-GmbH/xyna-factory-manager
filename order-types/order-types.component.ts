@@ -22,6 +22,7 @@ import { XmomObjectType } from '@pmod/api/xmom-types';
 import { XoRuntimeContext } from '@pmod/xo/runtime-context.model';
 import { ApiService, FullQualifiedName, StartOrderOptionsBuilder } from '@zeta/api';
 import { I18nService } from '@zeta/i18n';
+import { QueryParameterService } from '@zeta/nav/query-parameter.service';
 import { XcAutocompleteDataWrapper, XcDialogService, XcFormDirective, XcRemoteTableDataSource, XcRichListItem, XcStringIntegerDataWrapper } from '@zeta/xc';
 
 import { Subscription } from 'rxjs';
@@ -38,8 +39,8 @@ import { XoCapacity, XoCapacityArray } from './xo/xo-capacity.model';
 import { XoExecutionDestinationFilter } from './xo/xo-execution-destination-filter.model';
 import { XoOrderTypeCapacitiesTableInfo } from './xo/xo-order-type-capacities-table-info.model';
 import { XoOrderTypeName } from './xo/xo-order-type-name.model';
+import { XoOrderTypeTableFilter } from './xo/xo-order-type-table-filter.model';
 import { XoOrderType, XoOrderTypeArray } from './xo/xo-order-type.model';
-import { QueryParameterService } from '@zeta/nav/query-parameter.service';
 
 
 export const EXECUTION_DESTINATION_DOCUMENT_TYPE = 'workflow';
@@ -126,6 +127,8 @@ export class OrderTypesComponent extends RestorableOrderTypesComponent implement
 
     private readonly tableInfoChangeSubscription: Subscription;
 
+    orderTypeTableFilter = new XoOrderTypeTableFilter();
+
     constructor(
         apiService: ApiService,
         dialogService: XcDialogService,
@@ -136,12 +139,15 @@ export class OrderTypesComponent extends RestorableOrderTypesComponent implement
         injector: Injector
     ) {
         super(apiService, dialogService, route, router, i18nService, injector, settings);
-        this.initRemoteTableDataSource(XoOrderType, XoOrderTypeArray, FM_RTC, ISWP.List, new XoExecutionDestinationFilter());
+
+        this.orderTypeTableFilter.showPath = false;
+
+        this.initRemoteTableDataSource(XoOrderType, XoOrderTypeArray, FM_RTC, ISWP.List, [new XoExecutionDestinationFilter(), this.orderTypeTableFilter]);
 
         this.tableInfoChangeSubscription = this.remoteTableDataSource.tableInfoChange.subscribe(() => {
             // reset overriding execution destination filter that might have been set via jumping from workflow in PMOD to order type overview
             console.log('tableInfoChange');
-            this.remoteTableDataSource.input = [ new XoExecutionDestinationFilter() ];
+            this.remoteTableDataSource.input = [ new XoExecutionDestinationFilter(), this.orderTypeTableFilter ];
         });
 
         this.selectedEntryChange.subscribe(
@@ -539,6 +545,11 @@ export class OrderTypesComponent extends RestorableOrderTypesComponent implement
 
         const url = PROCESS_MODELLER_TAB_URL + QueryParameterService.createQueryValue(this.runtimeContextString, this.executionDestinationDataWrapper.value.name, EXECUTION_DESTINATION_DOCUMENT_TYPE);
         void this.router.navigateByUrl(url);
+    }
+
+    showPaths() {
+        this.orderTypeTableFilter.showPath = !this.orderTypeTableFilter.showPath;
+        this.remoteTableDataSource.refresh();
     }
 
 }
