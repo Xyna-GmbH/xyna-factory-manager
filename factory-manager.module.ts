@@ -77,6 +77,8 @@ import { ChangeTemplateComponent } from './runtime-contexts/shared/change-templa
 import { RuntimeContextButtonComponent } from './runtime-contexts/shared/runtime-context-button.component';
 import { RuntimeContextIconComponent } from './runtime-contexts/shared/runtime-context-icon.component';
 import { RuntimeContextNameComponent } from './runtime-contexts/shared/runtime-context-name.component';
+import { TileButtonComponent } from './runtime-contexts/shared/tile/tile-button/tile-button.component';
+import { TileComponent } from './runtime-contexts/shared/tile/tile.component';
 import { WorkspaceTileComponent } from './runtime-contexts/workspaces/workspace-tile/workspace-tile.component';
 import { WorkspacesComponent } from './runtime-contexts/workspaces/workspaces.component';
 import { StorableInstanceDetailComponent } from './storable-instances/components/storable-instance-detail/storable-instance-detail.component';
@@ -89,22 +91,20 @@ import { TcoExecutionRestrictionComponent } from './time-controlled-orders/compo
 import { CreateTimeControlledOrderComponent } from './time-controlled-orders/modal/create-time-controlled-order/create-time-controlled-order.component';
 import { TimeControlledOrderTableEntryTemplateComponent } from './time-controlled-orders/template/time-controlled-order-table-entry-template/time-controlled-order-table-entry-template.component';
 import { TimeControlledOrdersComponent } from './time-controlled-orders/time-controlled-orders.component';
+import { DeployFilterDialogComponent } from './trigger-and-filter/components/deploy-filter-dialog/deploy-filter-dialog.component';
+import { DeployTriggerDialogComponent } from './trigger-and-filter/components/deploy-trigger-dialog/deploy-trigger-dialog.component';
+import { FilterDetailComponent } from './trigger-and-filter/components/filter-detail/filter-detail.component';
+import { FilterInstanceDetailComponent } from './trigger-and-filter/components/filter-instance-detail/filter-instance-detail.component';
+import { TriggerDetailComponent } from './trigger-and-filter/components/trigger-detail/trigger-detail.component';
+import { TriggerInstanceDetailComponent } from './trigger-and-filter/components/trigger-instance-detail/trigger-instance-detail.component';
+import { FilterComponent } from './trigger-and-filter/filter.component';
+import { TriggerFilterStateIconComponent } from './trigger-and-filter/state-templates/trigger-filter-state-icon.component';
+import { TriggerComponent } from './trigger-and-filter/trigger.component';
 import { WorkflowTesterDialogComponent } from './workflow-tester/workflow-tester-dialog.component';
 import { WorkflowTesterComponent } from './workflow-tester/workflow-tester.component';
 import { AddNewXynaPropertyModalComponent } from './xyna-properties/modal/add-new-xyna-property-modal/add-new-xyna-property-modal.component';
 import { XynaPropertyTableValueTemplateComponent } from './xyna-properties/templates/xyna-property-table-value-template.model';
 import { XynaPropertiesComponent } from './xyna-properties/xyna-properties.component';
-import { TileComponent } from './runtime-contexts/shared/tile/tile.component';
-import { TileButtonComponent } from './runtime-contexts/shared/tile/tile-button/tile-button.component';
-import { FilterComponent } from './trigger-and-filter/filter.component';
-import { FilterInstanceDetailComponent } from './trigger-and-filter/components/filter-instance-detail/filter-instance-detail.component';
-import { FilterDetailComponent } from './trigger-and-filter/components/filter-detail/filter-detail.component';
-import { TriggerFilterStateIconComponent } from './trigger-and-filter/state-templates/trigger-filter-state-icon.component';
-import { DeployFilterDialogComponent } from './trigger-and-filter/components/deploy-filter-dialog/deploy-filter-dialog.component';
-import { TriggerDetailComponent } from './trigger-and-filter/components/trigger-detail/trigger-detail.component';
-import { TriggerInstanceDetailComponent } from './trigger-and-filter/components/trigger-instance-detail/trigger-instance-detail.component';
-import { DeployTriggerDialogComponent } from './trigger-and-filter/components/deploy-trigger-dialog/deploy-trigger-dialog.component';
-import { TriggerComponent } from './trigger-and-filter/trigger.component';
 
 
 @NgModule({
