@@ -21,6 +21,7 @@ import { environment } from '@environments/environment';
 import { FACTORY_MANAGER } from '@fman/const';
 import { ApiService, StartOrderOptionsBuilder, StartOrderResult, Xo } from '@zeta/api';
 import { XoPlugin, XoPluginArray } from '@zeta/xc';
+import { XoPluginPath, XoPluginPathArray } from '@zeta/xc/xc-form/definitions/xo/plugin-path.model';
 import { BehaviorSubject, catchError, filter, finalize, map, Observable, of } from 'rxjs';
 
 @Injectable()
@@ -45,10 +46,13 @@ export class PluginService {
         if (!this._plugins.getValue() && !this.pending) {
             this.pending = true;
 
+            const paths: XoPluginPathArray = new XoPluginPathArray();
+            paths.append(new XoPluginPath()).append(new XoPluginPath());
+            paths.data[1].path = 'manager';
             this.api.startOrder(
                 environment.zeta.xo.runtimeContext,
-                'xmcp.forms.plugin.ListPlugins',
-                [], undefined, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage
+                'xmcp.forms.plugin.FilterPluginsByPaths',
+                [paths], undefined, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage
             ).pipe(
                 catchError(() =>
                     of(<StartOrderResult<Xo>>{orderId: 'error'})
