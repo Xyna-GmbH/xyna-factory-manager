@@ -543,7 +543,7 @@ export class OrderTypesComponent extends RestorableOrderTypesComponent implement
             return;
         }
 
-        const url = PROCESS_MODELLER_TAB_URL + QueryParameterService.createQueryValue(this.runtimeContextString, this.executionDestinationDataWrapper.value.name, EXECUTION_DESTINATION_DOCUMENT_TYPE);
+        const url = PROCESS_MODELLER_TAB_URL + QueryParameterService.createQueryValue(this.detailsObject.runtimeContext.toRuntimeContext().uniqueKey, this.executionDestinationDataWrapper.value.name, EXECUTION_DESTINATION_DOCUMENT_TYPE);
         void this.router.navigateByUrl(url);
     }
 
