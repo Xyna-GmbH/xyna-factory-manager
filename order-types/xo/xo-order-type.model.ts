@@ -1,6 +1,6 @@
 /*
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- * Copyright 2023 Xyna GmbH, Germany
+ * Copyright 2024 Xyna GmbH, Germany
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,8 +27,12 @@ export class XoOrderType extends XoObject {
 
 
     @XoProperty()
-    @XoUnique()
     name: string;
+
+
+    @XoProperty()
+    @XoUnique()
+    fullQualifiedName: string;
 
 
     @XoProperty(XoDestinationType)

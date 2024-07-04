@@ -10,7 +10,7 @@
             ><div class="icon-div"><xc-icon xc-icon-name="msgwarning"></xc-icon></div><div>{{error}}</div></div>
         </div>
 
-        <xc-form-input label="label-name" [(value)]="orderType.name" xc-form-validator-required xc-i18n></xc-form-input>
+        <xc-form-input label="label-name" [(value)]="orderType.fullQualifiedName" xc-form-validator-required xc-i18n></xc-form-input>
 
         <xc-form-autocomplete label="label-workspace-application" placeholder="tooltip-select"
             [(xc-form-autocomplete-option)]="runtimeContextsDataWrapper.value"

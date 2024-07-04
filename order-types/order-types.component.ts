@@ -1,6 +1,6 @@
 /*
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- * Copyright 2023 Xyna GmbH, Germany
+ * Copyright 2024 Xyna GmbH, Germany
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -265,7 +265,7 @@ export class OrderTypesComponent extends RestorableOrderTypesComponent implement
     private getDetails(entry: XoOrderType) {
 
         const name = new XoOrderTypeName();
-        name.name = entry.name;
+        name.name = entry.fullQualifiedName;
 
         const obs = this.apiService.startOrder(FM_RTC, ISWP.Details, [entry.runtimeContext, name], XoOrderType, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage);
         this.handleStartOrderResult(obs, output => {
@@ -352,7 +352,7 @@ export class OrderTypesComponent extends RestorableOrderTypesComponent implement
     duplicate(entry: XoOrderType) {
 
         const name = new XoOrderTypeName();
-        name.name = entry.name;
+        name.name = entry.fullQualifiedName;
 
         const obs = this.apiService.startOrder(FM_RTC, ISWP.Details, [entry.runtimeContext, name], XoOrderType, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage);
         this.handleStartOrderResult(obs, output => {
@@ -368,13 +368,13 @@ export class OrderTypesComponent extends RestorableOrderTypesComponent implement
 
         this.dialogService.confirm(
             this.i18nService.translate(this.FM_DELETE_ENTRY_HEADER),
-            this.i18nService.translate(this.CONFIRM_DELETE, { key: '$0', value: entry.name })
+            this.i18nService.translate(this.CONFIRM_DELETE, { key: '$0', value: entry.fullQualifiedName })
         ).afterDismissResult().subscribe(
             value => {
                 if (value) {
                     if (entry instanceof XoOrderType) {
                         const name = new XoOrderTypeName();
-                        name.name = entry.name;
+                        name.name = entry.fullQualifiedName;
                         const obs = this.apiService.startOrder(FM_RTC, ISWP.Delete, [entry.runtimeContext, name], null, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage);
                         this.handleStartOrderResult(obs, () => {
                             this.detailsObject = null;
@@ -513,7 +513,7 @@ export class OrderTypesComponent extends RestorableOrderTypesComponent implement
     refreshOrderTypeCapacitiesDataSource() {
 
         const name = new XoOrderTypeName();
-        name.name = this.detailsObject.name;
+        name.name = this.detailsObject.fullQualifiedName;
 
         const obs = this.apiService.startOrder(FM_RTC, ISWP.Details, [this.detailsObject.runtimeContext, name], XoOrderType, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage);
         this.handleStartOrderResult(obs, output => {
