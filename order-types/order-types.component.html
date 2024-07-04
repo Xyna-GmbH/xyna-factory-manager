@@ -21,7 +21,7 @@
     <xc-panel detail *ngIf="detailsObject">
         <header>
             <!-- Name and RuntimeContext won't be translated so there is no need for xc-i18n-->
-            <h2 class="items-left"><b>{{detailsObject.name}}</b>&nbsp;-&nbsp;<span>{{runtimeContextString}}</span></h2>
+            <h2 class="items-left"><b>{{detailsObject.fullQualifiedName}}</b>&nbsp;-&nbsp;<span>{{runtimeContextString}}</span></h2>
             <xc-icon-button class="items-right" [xc-tooltip]="TOOLTIP_HEADER" xc-icon-name="info"></xc-icon-button>
         </header>
         <section xc-form class="stretch scroll">
