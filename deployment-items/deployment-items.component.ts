@@ -18,7 +18,7 @@
 import { Component, Injector } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { QueryParamService } from '@fman/misc/services/query-param.service';
+import { QueryParameterService } from '@zeta/nav/query-parameter.service';
 import { ApiService, RuntimeContext, RuntimeContextType, StartOrderOptionsBuilder, XoRuntimeContext } from '@zeta/api';
 import { dateTimeString } from '@zeta/base';
 import { I18nService } from '@zeta/i18n';
@@ -374,7 +374,7 @@ export class DeploymentItemsComponent extends RestorableDeploymentItemsComponent
     open(type: string) {
         const item = this.selection[0];
         const rtc = this.selectedRuntimeContext.toRuntimeContext().uniqueKey;
-        const url = PROCESS_MODELLER_TAB_URL + QueryParamService.createQueryValue(rtc, item.id.name, type);
+        const url = PROCESS_MODELLER_TAB_URL + QueryParameterService.createQueryValue(rtc, item.id.name, type);
         void this.router.navigateByUrl(url);
     }
 
