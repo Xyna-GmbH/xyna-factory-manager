@@ -35,7 +35,7 @@ export interface XynaPropertiesInputScreenWorkflowPackage extends InputScreenWor
 
 
 export const XYNA_PROPERTY_ISWP: XynaPropertiesInputScreenWorkflowPackage = {
-    List : 'xmcp.factorymanager.xynaproperties.GetXynaPropertiesTableInfo',
+    List: 'xmcp.factorymanager.xynaproperties.GetXynaPropertiesTableInfo',
     Details: 'xmcp.factorymanager.xynaproperties.GetXynaPropertyDetails',
     Add: 'xmcp.factorymanager.xynaproperties.CreateXynaProperty',
     Save: 'xmcp.factorymanager.xynaproperties.ChangeXynaProperty',
@@ -44,6 +44,7 @@ export const XYNA_PROPERTY_ISWP: XynaPropertiesInputScreenWorkflowPackage = {
 
 
 @Component({
+    selector: 'restorable-xyna-properties',
     template: ''
 })
 export class RestorableXynaPropertiesComponent extends RestorableRouteComponent<XoXynaProperty> implements OnInit {
