@@ -63,7 +63,7 @@ export class StorableInstanceDetailComponent implements OnDestroy {
     @Input()
     set editSubject(subject: Subject<void>) {
         this.editSubscription = subject.subscribe(() => {
-            const updatedObject = this.structureTreeDataSource.container.data[0];
+            const updatedObject = this.structureTreeDataSource?.container.data[0];
 
             // Checks for complexTemplates and clears them
             for (const key of Object.keys(updatedObject.data)) {
@@ -103,7 +103,7 @@ export class StorableInstanceDetailComponent implements OnDestroy {
     private _fqn: FullQualifiedName;
     private _selectedStorable: XoObject;
 
-    structureTreeDataSource: XcStructureTreeDataSource;
+    structureTreeDataSource: XcStructureTreeDataSource = new XcStructureTreeDataSource(this.apiService, this.i18n, null, [{ rtc: null, fqn: null }]);
 
     ERROR_MESSAGE = 'fman.storable-instances.storable-instances-details.error-message';
 
