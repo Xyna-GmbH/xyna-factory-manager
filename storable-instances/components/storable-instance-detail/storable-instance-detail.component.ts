@@ -103,10 +103,9 @@ export class StorableInstanceDetailComponent implements OnDestroy {
     private _fqn: FullQualifiedName;
     private _selectedStorable: XoObject;
 
-    structureTreeDataSource: XcStructureTreeDataSource = new XcStructureTreeDataSource(this.apiService, this.i18n, null, [{ rtc: null, fqn: null }]);
+    structureTreeDataSource: XcStructureTreeDataSource;
 
     ERROR_MESSAGE = 'fman.storable-instances.storable-instances-details.error-message';
-
 
     constructor(
         private readonly i18n: I18nService,
@@ -115,11 +114,9 @@ export class StorableInstanceDetailComponent implements OnDestroy {
     ) {
     }
 
-
     ngOnDestroy() {
         this.editSubscription.unsubscribe();
     }
-
 
     private updateTree() {
         if (this._rtc && this._fqn && this._selectedStorable) {
