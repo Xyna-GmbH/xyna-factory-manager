@@ -30,7 +30,8 @@ import { XoAdministrativeVeto } from './xo/xo-administrative-veto.model';
 
 
 @Component({
-    template: ''
+    template: '',
+    standalone: false
 })
 export class RestorableAdministrativeVetoComponent extends RestorableRouteComponent<XoAdministrativeVeto> implements OnInit {
     protected UNSPECIFIED_DETAILS_ERROR = 'fman.restorable-administrative-vetoes.unspecified-details-error';

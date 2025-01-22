@@ -31,7 +31,8 @@ import { XC_COMPONENT_DATA, XcDialogService, XcDynamicComponent } from '@zeta/xc
 @Component({
     templateUrl: './trigger-detail.component.html',
     styleUrls: ['./trigger-detail.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class TriggerDetailComponent extends XcDynamicComponent<XoTrigger> {
 

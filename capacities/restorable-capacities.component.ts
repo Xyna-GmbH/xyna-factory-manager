@@ -44,7 +44,8 @@ export const CAPACITY_ISWP: CapacitiesInputScreenWorkflowPackage = {
 
 
 @Component({
-    template: ''
+    template: '',
+    standalone: false
 })
 export class RestorableCapacitiesComponent extends RestorableRouteComponent<XoCapacityInformation> implements OnInit {
 

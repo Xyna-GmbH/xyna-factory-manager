@@ -31,7 +31,8 @@ import { XC_COMPONENT_DATA, XcDialogService, XcDynamicComponent } from '@zeta/xc
 
 @Component({
     templateUrl: './filter-detail.component.html',
-    styleUrls: ['./filter-detail.component.scss']
+    styleUrls: ['./filter-detail.component.scss'],
+    standalone: false
 })
 export class FilterDetailComponent extends XcDynamicComponent<XoFilter> {
 
