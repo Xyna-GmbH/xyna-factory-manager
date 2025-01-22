@@ -38,25 +38,25 @@ import { TriggerComponent } from './trigger-and-filter/trigger.component';
 import { XynaPropertiesComponent } from './xyna-properties/xyna-properties.component';
 
 
-const ROOT = 'Factory-Manager';
+const root = 'Factory-Manager';
 
 export const FactoryManagerRoutes: XynaRoutes = [
     {
         path: '',
-        redirectTo: ROOT,
+        redirectTo: root,
         pathMatch: 'full'
     },
     {
-        path: ROOT,
+        path: root,
         component: FactoryManagerComponent,
         canActivate: [rightGuardCanActivate],
-        data: { right: RIGHT_FACTORY_MANAGER, reuse: ROOT, title: ROOT },
+        data: { right: RIGHT_FACTORY_MANAGER, reuse: root, title: root },
         children: [
             {
                 path: '',
                 component: RedirectComponent,
                 canActivate: [redirectGuardCanActivate],
-                data: { reuse: ROOT, redirectKey: ROOT, redirectDefault: FACTORY_MANAGER.WORKSPACES } // important that the RedirectComponent uses the reuse-strategy as well ( => { reuse : uniqueKey })
+                data: { reuse: root, redirectKey: root, redirectDefault: FACTORY_MANAGER.WORKSPACES } // important that the RedirectComponent uses the reuse-strategy as well ( => { reuse : uniqueKey })
             },
 
             // ++++++++++++++++++++++++++++++++++++++ FACTORY MANAGER
@@ -66,7 +66,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
                 canActivate: [rightGuardCanActivate],
                 canDeactivate: [redirectGuardCanDeactivate],
                 pathMatch: 'full',
-                data : {right: RIGHT_FACTORY_MANAGER_WORKSPACES_AND_APPLICATIONS, reuse: FACTORY_MANAGER.WORKSPACES + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.WORKSPACES}
+                data : {right: RIGHT_FACTORY_MANAGER_WORKSPACES_AND_APPLICATIONS, reuse: FACTORY_MANAGER.WORKSPACES + '_reuse_id', redirectKey: root, title: FACTORY_MANAGER.WORKSPACES}
             },
             {
                 path: FACTORY_MANAGER.APPLICATIONS,
@@ -74,7 +74,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
                 canActivate: [rightGuardCanActivate],
                 canDeactivate: [redirectGuardCanDeactivate],
                 pathMatch: 'full',
-                data : {right: RIGHT_FACTORY_MANAGER_WORKSPACES_AND_APPLICATIONS, reuse: FACTORY_MANAGER.APPLICATIONS + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.APPLICATIONS}
+                data : {right: RIGHT_FACTORY_MANAGER_WORKSPACES_AND_APPLICATIONS, reuse: FACTORY_MANAGER.APPLICATIONS + '_reuse_id', redirectKey: root, title: FACTORY_MANAGER.APPLICATIONS}
             },
             {
                 path: FACTORY_MANAGER.TRIGGER,
@@ -82,7 +82,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
                 canActivate: [rightGuardCanActivate],
                 canDeactivate: [redirectGuardCanDeactivate],
                 pathMatch: 'full',
-                data : {right: RIGHT_FACTORY_MANAGER_TRIGGER, reuse: FACTORY_MANAGER.TRIGGER + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.TRIGGER}
+                data : {right: RIGHT_FACTORY_MANAGER_TRIGGER, reuse: FACTORY_MANAGER.TRIGGER + '_reuse_id', redirectKey: root, title: FACTORY_MANAGER.TRIGGER}
             },
             {
                 path: FACTORY_MANAGER.FILTER,
@@ -90,7 +90,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
                 canActivate: [rightGuardCanActivate],
                 canDeactivate: [redirectGuardCanDeactivate],
                 pathMatch: 'full',
-                data : {right: RIGHT_FACTORY_MANAGER_FILTER, reuse: FACTORY_MANAGER.FILTER + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.FILTER}
+                data : {right: RIGHT_FACTORY_MANAGER_FILTER, reuse: FACTORY_MANAGER.FILTER + '_reuse_id', redirectKey: root, title: FACTORY_MANAGER.FILTER}
             },
             {
                 path: FACTORY_MANAGER.ORDERTYPES,
@@ -98,7 +98,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
                 canActivate: [rightGuardCanActivate],
                 canDeactivate: [redirectGuardCanDeactivate],
                 pathMatch: 'full',
-                data : {right: RIGHT_FACTORY_MANAGER_ORDER_TYPES, reuse: FACTORY_MANAGER.ORDERTYPES + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.ORDERTYPES}
+                data : {right: RIGHT_FACTORY_MANAGER_ORDER_TYPES, reuse: FACTORY_MANAGER.ORDERTYPES + '_reuse_id', redirectKey: root, title: FACTORY_MANAGER.ORDERTYPES}
             },
             {
                 path: FACTORY_MANAGER.CRONLIKE_ORDRES,
@@ -106,7 +106,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
                 canActivate: [rightGuardCanActivate],
                 canDeactivate: [redirectGuardCanDeactivate],
                 pathMatch: 'full',
-                data : {right: RIGHT_FACTORY_MANAGER_CRON_LIKE_ORDERS, reuse: FACTORY_MANAGER.CRONLIKE_ORDRES + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.CRONLIKE_ORDRES}
+                data : {right: RIGHT_FACTORY_MANAGER_CRON_LIKE_ORDERS, reuse: FACTORY_MANAGER.CRONLIKE_ORDRES + '_reuse_id', redirectKey: root, title: FACTORY_MANAGER.CRONLIKE_ORDRES}
             },
             {
                 path: FACTORY_MANAGER.TIMECONTROLLED_ORDERS,
@@ -114,7 +114,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
                 canActivate: [rightGuardCanActivate],
                 canDeactivate: [redirectGuardCanDeactivate],
                 pathMatch: 'full',
-                data : {right: RIGHT_FACTORY_MANAGER_TIME_CONTROLLED_ORDERS, reuse: FACTORY_MANAGER.TIMECONTROLLED_ORDERS + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.TIMECONTROLLED_ORDERS}
+                data : {right: RIGHT_FACTORY_MANAGER_TIME_CONTROLLED_ORDERS, reuse: FACTORY_MANAGER.TIMECONTROLLED_ORDERS + '_reuse_id', redirectKey: root, title: FACTORY_MANAGER.TIMECONTROLLED_ORDERS}
             },
             {
                 path: FACTORY_MANAGER.ORDER_INPUT_SOURCES,
@@ -122,7 +122,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
                 canActivate: [rightGuardCanActivate],
                 canDeactivate: [redirectGuardCanDeactivate],
                 pathMatch: 'full',
-                data : {right: RIGHT_FACTORY_MANAGER_ORDER_INPUT_SOURCES, reuse: FACTORY_MANAGER.ORDER_INPUT_SOURCES + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.ORDER_INPUT_SOURCES}
+                data : {right: RIGHT_FACTORY_MANAGER_ORDER_INPUT_SOURCES, reuse: FACTORY_MANAGER.ORDER_INPUT_SOURCES + '_reuse_id', redirectKey: root, title: FACTORY_MANAGER.ORDER_INPUT_SOURCES}
             },
             {
                 path: FACTORY_MANAGER.CAPACITIES,
@@ -130,7 +130,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
                 canActivate: [rightGuardCanActivate],
                 canDeactivate: [redirectGuardCanDeactivate],
                 pathMatch: 'full',
-                data : {right: RIGHT_FACTORY_MANAGER_CAPACITIES, reuse: FACTORY_MANAGER.CAPACITIES + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.CAPACITIES}
+                data : {right: RIGHT_FACTORY_MANAGER_CAPACITIES, reuse: FACTORY_MANAGER.CAPACITIES + '_reuse_id', redirectKey: root, title: FACTORY_MANAGER.CAPACITIES}
             },
             {
                 path: FACTORY_MANAGER.ADMINISTRATIVE_VETOES,
@@ -138,7 +138,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
                 canActivate: [rightGuardCanActivate],
                 canDeactivate: [redirectGuardCanDeactivate],
                 pathMatch: 'full',
-                data : {right: RIGHT_FACTORY_MANAGER_ADMINISTRATIVE_VETOES, reuse: FACTORY_MANAGER.ADMINISTRATIVE_VETOES + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.ADMINISTRATIVE_VETOES}
+                data : {right: RIGHT_FACTORY_MANAGER_ADMINISTRATIVE_VETOES, reuse: FACTORY_MANAGER.ADMINISTRATIVE_VETOES + '_reuse_id', redirectKey: root, title: FACTORY_MANAGER.ADMINISTRATIVE_VETOES}
             },
             {
                 path: FACTORY_MANAGER.DEPLOYMENT_ITEMS,
@@ -146,7 +146,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
                 canActivate: [rightGuardCanActivate],
                 canDeactivate: [redirectGuardCanDeactivate],
                 pathMatch: 'full',
-                data : {right: RIGHT_FACTORY_MANAGER_DEPLOYMENT_ITEMS, reuse: FACTORY_MANAGER.DEPLOYMENT_ITEMS + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.DEPLOYMENT_ITEMS}
+                data : {right: RIGHT_FACTORY_MANAGER_DEPLOYMENT_ITEMS, reuse: FACTORY_MANAGER.DEPLOYMENT_ITEMS + '_reuse_id', redirectKey: root, title: FACTORY_MANAGER.DEPLOYMENT_ITEMS}
             },
             {
                 path: FACTORY_MANAGER.STORABLE_INSTANCES,
@@ -154,7 +154,7 @@ export const FactoryManagerRoutes: XynaRoutes = [
                 canActivate: [rightGuardCanActivate],
                 canDeactivate: [redirectGuardCanDeactivate],
                 pathMatch: 'full',
-                data : {right: RIGHT_FACTORY_MANAGER_STORABLE_INSTANCES, reuse: FACTORY_MANAGER.STORABLE_INSTANCES + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.STORABLE_INSTANCES}
+                data : {right: RIGHT_FACTORY_MANAGER_STORABLE_INSTANCES, reuse: FACTORY_MANAGER.STORABLE_INSTANCES + '_reuse_id', redirectKey: root, title: FACTORY_MANAGER.STORABLE_INSTANCES}
             },
             // {
             //     path: FACTORY_MANAGER.DATA_MODELS,
@@ -167,77 +167,77 @@ export const FactoryManagerRoutes: XynaRoutes = [
                 canActivate: [rightGuardCanActivate],
                 canDeactivate: [redirectGuardCanDeactivate],
                 pathMatch: 'full',
-                data : {right: RIGHT_FACTORY_MANAGER_XYNA_PROPERTIES, reuse: FACTORY_MANAGER.XYNA_PROPERTIES + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.XYNA_PROPERTIES}
+                data : {right: RIGHT_FACTORY_MANAGER_XYNA_PROPERTIES, reuse: FACTORY_MANAGER.XYNA_PROPERTIES + '_reuse_id', redirectKey: root, title: FACTORY_MANAGER.XYNA_PROPERTIES}
             },
             {
                 path: FACTORY_MANAGER.PLUGIN_00,
                 component: PluginComponent,
                 canDeactivate: [redirectGuardCanDeactivate],
                 pathMatch: 'full',
-                data : {reuse: FACTORY_MANAGER.PLUGIN_00 + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.PLUGIN_00}
+                data : {reuse: FACTORY_MANAGER.PLUGIN_00 + '_reuse_id', redirectKey: root, title: FACTORY_MANAGER.PLUGIN_00}
             },
             {
                 path: FACTORY_MANAGER.PLUGIN_01,
                 component: PluginComponent,
                 canDeactivate: [redirectGuardCanDeactivate],
                 pathMatch: 'full',
-                data : {reuse: FACTORY_MANAGER.PLUGIN_01 + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.PLUGIN_01}
+                data : {reuse: FACTORY_MANAGER.PLUGIN_01 + '_reuse_id', redirectKey: root, title: FACTORY_MANAGER.PLUGIN_01}
             },
             {
                 path: FACTORY_MANAGER.PLUGIN_02,
                 component: PluginComponent,
                 canDeactivate: [redirectGuardCanDeactivate],
                 pathMatch: 'full',
-                data : {reuse: FACTORY_MANAGER.PLUGIN_02 + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.PLUGIN_02}
+                data : {reuse: FACTORY_MANAGER.PLUGIN_02 + '_reuse_id', redirectKey: root, title: FACTORY_MANAGER.PLUGIN_02}
             },
             {
                 path: FACTORY_MANAGER.PLUGIN_03,
                 component: PluginComponent,
                 canDeactivate: [redirectGuardCanDeactivate],
                 pathMatch: 'full',
-                data : {reuse: FACTORY_MANAGER.PLUGIN_03 + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.PLUGIN_03}
+                data : {reuse: FACTORY_MANAGER.PLUGIN_03 + '_reuse_id', redirectKey: root, title: FACTORY_MANAGER.PLUGIN_03}
             },
             {
                 path: FACTORY_MANAGER.PLUGIN_04,
                 component: PluginComponent,
                 canDeactivate: [redirectGuardCanDeactivate],
                 pathMatch: 'full',
-                data : {reuse: FACTORY_MANAGER.PLUGIN_04 + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.PLUGIN_04}
+                data : {reuse: FACTORY_MANAGER.PLUGIN_04 + '_reuse_id', redirectKey: root, title: FACTORY_MANAGER.PLUGIN_04}
             },
             {
                 path: FACTORY_MANAGER.PLUGIN_05,
                 component: PluginComponent,
                 canDeactivate: [redirectGuardCanDeactivate],
                 pathMatch: 'full',
-                data : {reuse: FACTORY_MANAGER.PLUGIN_05 + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.PLUGIN_05}
+                data : {reuse: FACTORY_MANAGER.PLUGIN_05 + '_reuse_id', redirectKey: root, title: FACTORY_MANAGER.PLUGIN_05}
             },
             {
                 path: FACTORY_MANAGER.PLUGIN_06,
                 component: PluginComponent,
                 canDeactivate: [redirectGuardCanDeactivate],
                 pathMatch: 'full',
-                data : {reuse: FACTORY_MANAGER.PLUGIN_06 + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.PLUGIN_06}
+                data : {reuse: FACTORY_MANAGER.PLUGIN_06 + '_reuse_id', redirectKey: root, title: FACTORY_MANAGER.PLUGIN_06}
             },
             {
                 path: FACTORY_MANAGER.PLUGIN_07,
                 component: PluginComponent,
                 canDeactivate: [redirectGuardCanDeactivate],
                 pathMatch: 'full',
-                data : {reuse: FACTORY_MANAGER.PLUGIN_07 + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.PLUGIN_07}
+                data : {reuse: FACTORY_MANAGER.PLUGIN_07 + '_reuse_id', redirectKey: root, title: FACTORY_MANAGER.PLUGIN_07}
             },
             {
                 path: FACTORY_MANAGER.PLUGIN_08,
                 component: PluginComponent,
                 canDeactivate: [redirectGuardCanDeactivate],
                 pathMatch: 'full',
-                data : {reuse: FACTORY_MANAGER.PLUGIN_08 + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.PLUGIN_08}
+                data : {reuse: FACTORY_MANAGER.PLUGIN_08 + '_reuse_id', redirectKey: root, title: FACTORY_MANAGER.PLUGIN_08}
             },
             {
                 path: FACTORY_MANAGER.PLUGIN_09,
                 component: PluginComponent,
                 canDeactivate: [redirectGuardCanDeactivate],
                 pathMatch: 'full',
-                data : {reuse: FACTORY_MANAGER.PLUGIN_09 + '_reuse_id', redirectKey: ROOT, title: FACTORY_MANAGER.PLUGIN_09}
+                data : {reuse: FACTORY_MANAGER.PLUGIN_09 + '_reuse_id', redirectKey: root, title: FACTORY_MANAGER.PLUGIN_09}
             }
         ]
     }
