@@ -44,6 +44,7 @@ export const CAPACITY_ISWP: CapacitiesInputScreenWorkflowPackage = {
 
 
 @Component({
+    selector: 'restorable-capacities',
     template: '',
     standalone: false
 })

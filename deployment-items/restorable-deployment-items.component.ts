@@ -64,6 +64,7 @@ export enum DeleteDeploymentItemResolution {
 
 
 @Component({
+    selector: 'restorable-deployment-items',
     template: '',
     standalone: false
 })

@@ -30,6 +30,7 @@ import { XoAdministrativeVeto } from './xo/xo-administrative-veto.model';
 
 
 @Component({
+    selector: 'restorable-administrative-vetoes',
     template: '',
     standalone: false
 })
